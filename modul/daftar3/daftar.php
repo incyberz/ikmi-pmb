@@ -1,14 +1,16 @@
-<?php 
-<?php 
-//header('Location: /pmb6/');
+<?php
 echo "
 <script>
-  window.location='https://pmb.ikmi.ac.id/pmb6/';
+  window.location='https://pmb.ikmi.ac.id/daftar/';
 </script>
 ";
 exit();
 
-if ($debug_mode) { echo "<br><br><br><br><br><br>";}else{echo "<br><br>";}
+if ($debug_mode) {
+    echo "<br><br><br><br><br><br>";
+} else {
+    echo "<br><br>";
+}
 ?>
 <hr>
 <section id="about" class="about">
@@ -20,15 +22,14 @@ if ($debug_mode) { echo "<br><br><br><br><br><br>";}else{echo "<br><br>";}
     </div>
 
     <?php
-    if (isset($_SESSION['email'])){ 
+    if (isset($_SESSION['email'])) {
+        if ($debug_mode) {
+            echo "<hr>";
+            echo var_dump($_SESSION);
+            echo "<hr>";
+        }
 
-      if($debug_mode){
-        echo "<hr>";
-        echo var_dump($_SESSION);
-        echo "<hr>";
-      }
-
-    ?>
+        ?>
 
     <p>Halo <?=$nama_calon ?>, Anda sedang login!</p>
     <p>Jika bukan Anda silahkan Logout.</p>
@@ -46,7 +47,7 @@ if ($debug_mode) { echo "<br><br><br><br><br><br>";}else{echo "<br><br>";}
 
     
 
-    <?php }else{?>
+    <?php } else {?>
 
 
     <p class="tebal biru">Halo calon Mahasiswa Baru IKMI, silahkan Anda login atau daftar baru terlebih dahulu!<br><small>)* Kami tidak akan pernah men-share data pribadi Anda.</small></p>

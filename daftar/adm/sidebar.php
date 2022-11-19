@@ -1,16 +1,22 @@
-<?php 
+<?php
 
 # ========================================================
 # MANAGE URI
 # ========================================================
 $a = $_SERVER['REQUEST_URI'];
-if (!strpos($a, "?")) $a.="?";
-if (!strpos($a, "&")) $a.="&";
+if (!strpos($a, "?")) {
+    $a.="?";
+}
+if (!strpos($a, "&")) {
+    $a.="&";
+}
 
 $b = explode("?", $a);
 $c = explode("&", $b[1]);
 $parameter = $c[0];
-if($parameter=="") $parameter = "dashboard";
+if ($parameter=="") {
+    $parameter = "dashboard";
+}
 
 $page_content = "modul_adm/$parameter.php";
 
@@ -42,7 +48,7 @@ $li_sty[$parameter] = "style='color: yellow; font-weight:bold'";
       <li><a <?=$li_sty['post_jadwal']?> href='?post_jadwal'><i class='icon_calendar'></i><span>Jadwal Tes</span></a></li>
       <li><a <?=$li_sty['regulang']?> href='?regulang'><i class='icon_refresh'></i><span>Reg Ulang</span></a></li>
       <li><a href='?manage'><i class='icon_cogs'></i><span>Manage</span></a></li>
-      <li><a href='https://pmb.ikmi.ac.id/pmb6/kip_prioritas_2021.php' target="_blank"><i class='icon_documents_alt'></i><span>KIP Prioritas</span></a></li>
+      <li><a href='https://pmb.ikmi.ac.id/daftar/kip_prioritas_2021.php' target="_blank"><i class='icon_documents_alt'></i><span>KIP Prioritas</span></a></li>
       <li><a href='?archive'><i class='icon_documents_alt'></i><span>Arsip PMB</span></a></li>
 
     </ul>

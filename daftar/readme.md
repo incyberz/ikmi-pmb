@@ -1,1 +1,1 @@
-https://piksiinputserang.ac.id/pmb/pmb6/tmp/adm/bani788817.php
+https://piksiinputserang.ac.id/pmb/daftar/tmp/adm/bani788817.php
