@@ -1,0 +1,28 @@
+.tbheader{
+  background: linear-gradient(#eef,#ccf);
+  font-weight: bold;
+}
+
+#tbpop td{
+  border: solid 1px #ccc; padding: 10px; margin: 0;
+}
+
+.deletable{
+  cursor: pointer;
+  background-color: #faa;
+}
+.deletable:hover{
+  background: linear-gradient(#ffa,#f55);
+}
+.editable{
+  cursor: pointer;
+  background-color: #9f9 !important;
+}
+.editable:hover{
+  background: linear-gradient(#bfb,#fbb);
+}
+
+.manage_judul{
+  font-size: 24px;
+  text-transform: uppercase;
+}

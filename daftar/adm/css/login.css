@@ -1,0 +1,15 @@
+.divborder{
+    border: solid 1px #aaaaff;
+}
+.divlogin{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -190px;
+    width: 380px;
+    height: 400px;
+    background-image: linear-gradient(white,#aff);
+    border-radius: 25px;
+    text-align: center
+}​
