@@ -1,44 +1,31 @@
-<?php 
+<?php
 date_default_timezone_set("Asia/Jakarta");
 
 
 # ============================================================
 # DATABASE CONNECTION
 # ============================================================
-$online_version = 1;
-if ($_SERVER['SERVER_NAME'] == "localhost") $online_version = 0;
-
-if ($online_version) {
-  $db_server = "localhost";
-  $db_user = "pmbikmiac_admin_akademik";
-  $db_pass = "pmbikmicirebon2020";
-  $db_name = "pmbikmiac_pmb6";
-}else{
-  $db_server = "localhost";
-  $db_user = "root";
-  $db_pass = "";
-  $db_name = "db_pmb6";
-}
+include 'daftar/config.php';
 
 $cn2 = new mysqli($db_server, $db_user, $db_pass, $db_name);
 if ($cn2->connect_errno) {
-  echo "Error Konfigurasi# Tidak dapat terhubung ke MySQL Server :: $db_name";
-  exit();
+    echo "Error Konfigurasi# Tidak dapat terhubung ke MySQL Server :: $db_name";
+    exit();
 }
 
 
 $s = "SELECT * from tb_rekap_det WHERE kode_rekap='total_pmb'";
-$q = mysqli_query($cn2,$s) or die(mysqli_error($cn));
+$q = mysqli_query($cn2, $s) or die(mysqli_error($cn));
 
 $i=0;
 while ($d = mysqli_fetch_assoc($q)) {
-	$id_rekap_det = $d['id_rekap_det'];
-	$label = $d['label'];
-	$nilai = $d['nilai'];
+    $id_rekap_det = $d['id_rekap_det'];
+    $label = $d['label'];
+    $nilai = $d['nilai'];
 
-	$labels[$i] = $label; 
-	$nilais[$i] = $nilai; 
-	$i++;
+    $labels[$i] = $label;
+    $nilais[$i] = $nilai;
+    $i++;
 }
 
 

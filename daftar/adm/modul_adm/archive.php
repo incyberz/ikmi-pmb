@@ -1,5 +1,5 @@
 <h3 style="margin-top:0; color:#88f; font-weight:bold">Arsip PMB</h3>
-<?php 
+<?php
 $rows = '';
 
 
@@ -11,12 +11,14 @@ $capt =      ['no', 'is_reg',	'tahun_angkatan',	'gelombang_pendaftaran',	'piliha
 $lebar_tabel = [20,	20,	20,	20,	20,	20,	40,	20,	110,	120,	60,	20,	40,	60,	70,	25,	20,	20,	20,	20,	220,	215,	100,	60,	20,	20,	20,	60,	20,	20,	20,	20,	20,	20,	20,	30,	20,	20,	35,	80,	80,	80,	80,	80,	20,	20,	20,	20
 ];
 $tdsize = [];
-for ($i=0; $i < count($lebar_tabel); $i++) { 
-	$tdsize[$i] = "$lebar_tabel[$i]px";
+for ($i=0; $i < count($lebar_tabel); $i++) {
+    $tdsize[$i] = "$lebar_tabel[$i]px";
 }
 
 $rows .= '<thead>';
-for ($i=0; $i < count($capt) ; $i++) $rows.= "<th>$capt[$i]</th>";
+for ($i=0; $i < count($capt) ; $i++) {
+    $rows.= "<th>$capt[$i]</th>";
+}
 $rows .= '</thead>';
 
 
@@ -35,25 +37,35 @@ $rows .= '</thead>';
 $furl = '';
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-if(intval($page)<1) $page=1;
+if (intval($page)<1) {
+    $page=1;
+}
 
-for ($i=1; $i < count($capt); $i++) { 
-	if(isset($_POST['filter'][$i-1])){
-		$filter[$i] = $_POST['filter'][$i-1];
-		$furl .= '&filter[]='. $_POST['filter'][$i-1];
-	}else{
-		$filter[$i] = '';
-	}
+for ($i=1; $i < count($capt); $i++) {
+    if (isset($_POST['filter'][$i-1])) {
+        $filter[$i] = $_POST['filter'][$i-1];
+        $furl .= '&filter[]='. $_POST['filter'][$i-1];
+    } else {
+        $filter[$i] = '';
+    }
 }
 
 $sql_is_reg = " is_reg = 'YA' ";
 $filter[1] = strtolower($filter[1]);
-if($filter[1]=='ya'){
-	$sql_is_reg = " is_reg = 'YA' ";
-}elseif($filter[1]=='tidak'){
-	$sql_is_reg = " is_reg is null ";
-}elseif($filter[1]=='all'){
-	$sql_is_reg = " 1 ";
+
+$selected_ya = '';
+$selected_tidak = '';
+$selected_all = '';
+
+if ($filter[1]=='ya') {
+    $sql_is_reg = " is_reg = 'YA' ";
+    $selected_ya = 'selected';
+} elseif ($filter[1]=='tidak') {
+    $sql_is_reg = " is_reg is null ";
+    $selected_tidak = 'selected';
+} elseif ($filter[1]=='all') {
+    $sql_is_reg = " 1 ";
+    $selected_all = 'selected';
 }
 
 
@@ -67,55 +79,56 @@ AND nama_calon LIKE '%$filter[8]%'
 
 ";
 
-// echo "<h1>$s</h1>";
+echo "<p>$s</p>";
 
 $s_all = $s;
 
-$q = mysqli_query($cn,$s) or die(mysqli_error($cn));
+$q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 $jumlah_rows = mysqli_num_rows($q);
 $page_nav = 'Page: ';
 $total_page = 0;
-if($jumlah_rows==0){
-	$rows = "<tr><td colspan='9'>No Data found.</td></tr>";
-	$page_nav = "Silahkan filter dengan kriteria lainnya!";
-	$page=0;
-}else{
-	$total_page = ceil($jumlah_rows/10);
-	if($total_page<$page and $total_page>0) $page = $total_page;
+if ($jumlah_rows==0) {
+    $rows = "<tr><td colspan='9'>No Data found.</td></tr>";
+    $page_nav = "Silahkan filter dengan kriteria lainnya!";
+    $page=0;
+} else {
+    $total_page = ceil($jumlah_rows/10);
+    if ($total_page<$page and $total_page>0) {
+        $page = $total_page;
+    }
 
-	$limit_dari = 0 + ($page-1)*10;
-	$jumlah_limit = 10;
-
-
-	// <a href="?page=1$furl">1</a> | 
-	for ($i=1; $i <= $total_page; $i++) { 
-		if($total_page>10 and $i>10 and $i<($total_page-2)){
-			continue;
-		}
-		$page_nav .= "<a href='?archive&page=$i$furl'>$i</a> | ";
-	}
+    $limit_dari = 0 + ($page-1)*10;
+    $jumlah_limit = 10;
 
 
-	$s .= " LIMIT $limit_dari, $jumlah_limit";
+    // <a href="?page=1$furl">1</a> |
+    for ($i=1; $i <= $total_page; $i++) {
+        if ($total_page>10 and $i>10 and $i<($total_page-2)) {
+            continue;
+        }
+        $page_nav .= "<a href='?archive&page=$i$furl'>$i</a> | ";
+    }
 
-	$q = mysqli_query($cn,$s) or die("jumlah_rows:$jumlah_rows page:$page $s<hr>".mysqli_error($cn));
-	$i=0+($page-1)*10;
 
-	$jumlah_kolom = mysqli_num_fields($q);
+    $s .= " LIMIT $limit_dari, $jumlah_limit";
+
+    $q = mysqli_query($cn, $s) or die("jumlah_rows:$jumlah_rows page:$page $s<hr>".mysqli_error($cn));
+    $i=0+($page-1)*10;
+
+    $jumlah_kolom = mysqli_num_fields($q);
 
 
-	while ($d=mysqli_fetch_array($q)) {
-		$i++;
+    while ($d=mysqli_fetch_array($q)) {
+        $i++;
 
-		$rows.="<tr id='tr__$d[0]'><td>$i</td>";
+        $rows.="<tr id='tr__$d[0]'><td>$i</td>";
 
-		for ($j=1; $j < $jumlah_kolom; $j++) { 
-			$rows.="<td>$d[$j]</td>";
-		}
+        for ($j=1; $j < $jumlah_kolom; $j++) {
+            $rows.="<td>$d[$j]</td>";
+        }
 
-		$rows.="</tr>";
-
-	}
+        $rows.="</tr>";
+    }
 }
 
 
@@ -131,9 +144,9 @@ if($jumlah_rows==0){
 			</td>
 			<td>
 				<select name='filter[]' class='filter' style='width:50px'>
-					<option>Ya</option>
-					<option>Tidak</option>
-					<option value="">All</option>
+					<option <?=$selected_ya?>>Ya</option>
+					<option <?=$selected_tidak?>>Tidak</option>
+					<option <?=$selected_all?>>All</option>
 				</select>
 				<!-- <input name='filter[]' placeholder='YA' class='filter text-center' maxlength='5' value='YA' style='width:30px'> -->
 			</td>
@@ -141,34 +154,34 @@ if($jumlah_rows==0){
 				<span class="kecil">~</span>
 			</td>
 
-			<?php 
-			for ($i=2; $i < 9; $i++){
-				if($i != (count($capt)-1)){
-					if($i==2 || $i==3 || $i==4){
-						echo "
+			<?php
+            for ($i=2; $i < 9; $i++) {
+                if ($i != (count($capt)-1)) {
+                    if ($i==2 || $i==3 || $i==4) {
+                        echo "
 						<td>
 							<input name='filter[]' placeholder='$capt[$i]' class='filter text-center' maxlength='10' value='$filter[$i]' style='width:40px'>
 						</td>
 						";
-					}elseif($i<8){
-						echo "
+                    } elseif ($i<8) {
+                        echo "
 						<td class='hideit'>
 							<input name='filter[]' placeholder='$capt[$i]' class='filter text-center' maxlength='10' value='$filter[$i]' style='width:100px'>
 						</td>
 						";
-					}else{
-						echo "
+                    } else {
+                        echo "
 						<td>
 							<input name='filter[]' placeholder='$capt[$i]' class='filter text-center' maxlength='10' value='$filter[$i]' style='width:70px'>
 						</td>
 						";
-					}
-				}else{
-					echo "
+                    }
+                } else {
+                    echo "
 					<td>&nbsp;</td>
 					";
-				}
-			}?>
+                }
+            }?>
 
 			<td>
 				<button style="display:nonea">Filter</button>

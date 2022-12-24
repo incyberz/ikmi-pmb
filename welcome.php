@@ -10,7 +10,7 @@
     <br><br>
     <small style="color: yellow;font-weight: bold">Jika ini bukan Anda silahkan <a href="?p=logout">Logout</a>.</small>
     <?php } else { ?>
-    <h1>Selamat Datang Calon Mahasiswa STMIK IKMI Cirebon TA. 2022/2023 !</h1>
+    <h1>Selamat Datang Calon Mahasiswa STMIK IKMI Cirebon TA. 2023/2024 !</h1>
     <h2>Segera dapatkan!</h2>
     <h1>POTONGAN BIAYA KULIAH !</h1>
     <a href="/daftar/" class="btn-get-started">Ayo Daftar</a>

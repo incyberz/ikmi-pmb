@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 $img_help = "<img src='../assets/img/icons/help.png' width='20px'>";
@@ -243,7 +243,7 @@ AND b.id_prodi1 = 5
 
 ";
 
-$q = mysqli_query($cn,$s) or die("Tidak bisa merekap data. ".mysqli_error($cn));
+$q = mysqli_query($cn, $s) or die("Tidak bisa merekap data. ".mysqli_error($cn));
 $d = mysqli_fetch_assoc($q);
 
 $jumlah_aktif = $d['jumlah_aktif'];
@@ -305,40 +305,44 @@ $jumlah_belum_daftar_ulang = $jumlah_lulus_tes - $jumlah_daftar_ulang;
 
 $hari_tgl = "$nama_hari[$weekday], $tanggal_skg $jam_skg WIB";
 
-$sisa_hari_gelombang = durasi_hari(date("Y-m-d"),$tanggal_akhir_gel);
+$sisa_hari_gelombang = durasi_hari(date("Y-m-d"), $tanggal_akhir_gel);
 $sisa_hari_gelombang_sty = "purple";
-if($sisa_hari_gelombang>7) $sisa_hari_gelombang_sty = "blue";
-if($sisa_hari_gelombang<1) $sisa_hari_gelombang_sty = "red";
+if ($sisa_hari_gelombang>7) {
+    $sisa_hari_gelombang_sty = "blue";
+}
+if ($sisa_hari_gelombang<1) {
+    $sisa_hari_gelombang_sty = "red";
+}
 $sisa_hari_gelombang_show = "<span class='badge' style='margin: 5px; background-color:$sisa_hari_gelombang_sty'>$sisa_hari_gelombang hari lagi</span>";
 
-if($sisa_hari_gelombang<=0){
-  # ============================================
-  # AUTO-UBAH GELOMBANG DAFTAR
-  # ============================================
-  // die($id_angkatan);
-  $s = "UPDATE tb_gelombang SET status_gel=0 WHERE 1";
-  $q = mysqli_query($cn,$s) or die("Set unaktif id_gelombang: $id_gelombang. ".mysqli_error($cn));
+if ($sisa_hari_gelombang<=0) {
+    # ============================================
+    # AUTO-UBAH GELOMBANG DAFTAR
+    # ============================================
+    // die($id_angkatan);
+    $s = "UPDATE tb_gelombang SET status_gel=0 WHERE 1";
+    $q = mysqli_query($cn, $s) or die("Set unaktif id_gelombang: $id_gelombang. ".mysqli_error($cn));
 
-  $id_gelombang_tmp = $id_gelombang;
-  $id_gelombang++;
+    $id_gelombang_tmp = $id_gelombang;
+    $id_gelombang++;
 
-  $nid_gelombang = $id_gelombang;
-  $nnama_gel = "'Gelombang $id_gelombang'";
-  $ntanggal_awal_gel = "'".date("Y-m-d")."'";
-  $ntanggal_akhir_gel = "'".date("Y")."-".(date("m")+2)."-".date("d")."'";
+    $nid_gelombang = $id_gelombang;
+    $nnama_gel = "'Gelombang $id_gelombang'";
+    $ntanggal_awal_gel = "'".date("Y-m-d")."'";
+    $ntanggal_akhir_gel = "'".date("Y")."-".(date("m")+2)."-".date("d")."'";
 
-  $s = "INSERT INTO tb_gelombang 
+    $s = "INSERT INTO tb_gelombang 
   (id_gelombang, id_angkatan, nama_gel, tanggal_awal_gel, tanggal_akhir_gel, status_gel) VALUES 
   ($nid_gelombang, $id_angkatan, $nnama_gel, $ntanggal_awal_gel, $ntanggal_akhir_gel, 1) 
   ON DUPLICATE KEY UPDATE status_gel=1";
 
-  // die($s);
+    // die($s);
 
 
-  // $s = "UPDATE tb_gelombang SET status_gel=1 WHERE id_gelombang=$id_gelombang";
-  $q = mysqli_query($cn,$s) or die("Set aktif new id_gelombang: $id_gelombang. ".mysqli_error($cn));
+    // $s = "UPDATE tb_gelombang SET status_gel=1 WHERE id_gelombang=$id_gelombang";
+    $q = mysqli_query($cn, $s) or die("Set aktif new id_gelombang: $id_gelombang. ".mysqli_error($cn));
 
-  echo "
+    echo "
   <p style='color:red'>Gelombang Pendaftaran $id_gelombang_tmp telah habis.</p>
   <hr>
   <h4>Perform Auto Switch Gelombang Pendaftaran</h4>
@@ -351,7 +355,7 @@ if($sisa_hari_gelombang<=0){
   <a href='#' class='btn btn-success btn-sm' onclick=\"location.reload()\">Refresh</a> 
   <a href='?manage_gelombang' class='btn btn-primary btn-sm'>Manage Gelombang PMB</a>
   ";
-  exit();
+    exit();
 }
 
 // echo "<pre>";
@@ -360,9 +364,10 @@ if($sisa_hari_gelombang<=0){
 
 $zzz = "<small><i>[var]</i></small>";
 
-$s = "SELECT 1 from kip_prio where status=1";
-$q = mysqli_query($cn,$s) or die("Tidak bisa menghitung KIP Prio. ".mysqli_error($cn));
-$jumlah_kip_prio = mysqli_num_rows($q);
+// $s = "SELECT 1 from kip_prio where status=1";
+// $q = mysqli_query($cn,$s) or die("Tidak bisa menghitung KIP Prio. ".mysqli_error($cn));
+// $jumlah_kip_prio = mysqli_num_rows($q);
+$jumlah_kip_prio = 0;
 
 $jumlah_submit_formulir_plus_kip_prio = $jumlah_submit_formulir + $jumlah_kip_prio;
 
@@ -381,13 +386,13 @@ $rid_rekap_det = ["'total_pmb_1'","'total_pmb_2'","'total_pmb_3'","'total_pmb_4'
 $rlabel = ["'Total Pendaftar'","'Total Peserta Tes'","'Total Lulus Tes'","'Total Registran'"];
 $rnilai = [$jumlah_total_pendaftar,$jumlah_total_peserta,$jumlah_total_lulus_tes,$jumlah_total_registran];
 
-for ($i=0; $i < count($rid_rekap_det); $i++) { 
-  $s = "INSERT INTO tb_rekap_det 
+for ($i=0; $i < count($rid_rekap_det); $i++) {
+    $s = "INSERT INTO tb_rekap_det 
   (id_rekap_det,kode_rekap,label,nilai) VALUES 
   ($rid_rekap_det[$i],'total_pmb',$rlabel[$i],$rnilai[$i])
   ON DUPLICATE KEY UPDATE nilai = $rnilai[$i]
   ";
-  $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
+    $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 }
 
 
@@ -397,7 +402,7 @@ $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 $i=0;
 $rsingkatan_prodi = [];
 while ($d=mysqli_fetch_assoc($q)) {
-  $rsingkatan_prodi[$i+1] = $d['singkatan_prodi'];  
+    $rsingkatan_prodi[$i+1] = $d['singkatan_prodi'];
 }
 
 
@@ -532,7 +537,7 @@ while ($d=mysqli_fetch_assoc($q)) {
 
     <table class="table table-bordered">
       <tr><td colspan="2" class="pointList">Jumlah Pendaftar 2022 + KIP Prioritas</td></tr>
-      <?php if($admin_level==2){ ?>
+      <?php if ($admin_level==2) { ?>
         <tr class="kabid">
           <td>Jumlah Pendaftar All</td>
           <td><?=$zzz?></td>
@@ -561,17 +566,17 @@ while ($d=mysqli_fetch_assoc($q)) {
       <tr>
         <td>KIP</td>
         <td><?=$jumlah_kip ?> </td>
-        <td><?=round(100*$jumlah_kip/$jumlah_submit_formulir_plus_kip_prio,1)."%" ?> </td>
+        <td><?=round(100*$jumlah_kip/$jumlah_submit_formulir_plus_kip_prio, 1)."%" ?> </td>
       </tr>
       <tr>
         <td>KIP Prioritas 2021</td>
         <td><?=$jumlah_kip_prio ?> </td>
-        <td><?=round(100*$jumlah_kip_prio/$jumlah_submit_formulir_plus_kip_prio,1)."%" ?> </td>
+        <td><?=round(100*$jumlah_kip_prio/$jumlah_submit_formulir_plus_kip_prio, 1)."%" ?> </td>
       </tr>
       <tr>
         <td>Reguler</td>
         <td><?=$jumlah_reg ?> </td>
-        <td><?=round(100*$jumlah_reg/$jumlah_submit_formulir_plus_kip_prio,1)."%" ?> </td>
+        <td><?=round(100*$jumlah_reg/$jumlah_submit_formulir_plus_kip_prio, 1)."%" ?> </td>
       </tr>
       <tr>
         <td class="cell_total">TOTAL PENDAFTAR</td>
@@ -746,12 +751,12 @@ while ($d=mysqli_fetch_assoc($q)) {
 
 
 
-  <?php 
+  <?php
   $s = "SELECT * from tb_rekap";
-  $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
+$q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 
-  $i=0;
-  while ($d=mysqli_fetch_assoc($q)) {
+$i=0;
+while ($d=mysqli_fetch_assoc($q)) {
     $i++;
     $kode_rekap = $d['kode_rekap'];
     $judul_rekap = $d['judul_rekap'];
@@ -760,21 +765,21 @@ while ($d=mysqli_fetch_assoc($q)) {
 
     $row_det = "";
     $s2 = "SELECT * from tb_rekap_det WHERE kode_rekap='$kode_rekap' order by nilai desc";
-    $q2 = mysqli_query($cn,$s2) or die(mysqli_error($cn));
+    $q2 = mysqli_query($cn, $s2) or die(mysqli_error($cn));
 
     $labels = "";
     $nilais = "";
     $j=0;
     while ($d2=mysqli_fetch_assoc($q2)) {
-      $j++;
-      $id_rekap_det = $d2['id_rekap_det'];
-      $label = $d2['label'];
-      $nilai = $d2['nilai'];
+        $j++;
+        $id_rekap_det = $d2['id_rekap_det'];
+        $label = $d2['label'];
+        $nilai = $d2['nilai'];
 
-      $labels .= "Rank $j;";
-      $nilais .= "$nilai;";
+        $labels .= "Rank $j;";
+        $nilais .= "$nilai;";
 
-      $row_det .= "
+        $row_det .= "
       <tr>
       <td>Rank $j</td>
       <td>$label</td>
@@ -851,10 +856,10 @@ while ($d=mysqli_fetch_assoc($q)) {
 
 
     <?php
-  }
+}
 
 
-  ?>
+?>
 
 
 

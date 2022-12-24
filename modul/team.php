@@ -1,8 +1,8 @@
-<?php 
+<?php
 $isi_wa = "Halo Iin Sholihin, saya mendapatkan nomor ini dari Web PMB yang Anda buat. [".date("d M Y h:i:s")."].";
 $linkwa_for_team1 = "https://api.whatsapp.com/send?phone=6287729007318&text=$isi_wa";
 ?>
-<section id="trainers" class="trainers">
+<section id="trainers" class="trainers hideit">
   <div class="container" data-aos="fade-up">
 
     <div class="section-title">

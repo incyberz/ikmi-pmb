@@ -16,11 +16,11 @@
   $(document).ready(function(){
 
     $("#blok_video").html(
-      "<iframe style='width:100%!important;height:auto!important;min-height: 400px;' src='https://www.youtube.com/embed/gOP8BYlhMAs' title='Profil STMIK IKMI' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
+      "<iframe style='width:100%!important;height:auto!important;min-height: 400px;' src='https://www.youtube.com/embed/zrjryfMy8Lg' title='Profil STMIK IKMI' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
       );
 
   })
 </script>
 
 
-<?php include "gallery.php"; ?>
+<?php //include "gallery.php";?>
