@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "config.php";
 require_once "global_var.php";
 
@@ -39,13 +39,20 @@ from tb_calon a
 join tb_akun c on a.email=c.email 
 join tb_daftar b on a.email=b.email 
 where c.email='$email_calon'";
-$q = mysqli_query($cn,$s) or die("Global var error. ".mysqli_error($cn));
-if(mysqli_num_rows($q)!=1) die("Data calon tidak ada. email_calon: $email_calon");
+$q = mysqli_query($cn, $s) or die("Global var error. ".mysqli_error($cn));
+if (mysqli_num_rows($q)!=1) {
+    die("Data calon tidak ada. email_calon: $email_calon");
+}
 
 
 $d = mysqli_fetch_assoc($q);
 
-if(0){echo "<pre>"; echo var_dump($d); echo "</pre>"; exit();}
+if (0) {
+    echo "<pre>";
+    echo var_dump($d);
+    echo "</pre>";
+    exit();
+}
 // $id_calon = $d['id_calon'];
 // $id_daftar = $d['id_daftar'];
 
@@ -150,9 +157,15 @@ $nama_kab_sekolah = $d['nama_kab_sekolah'];
 $nama_kab_ktp = $d['nama_kab_ktp'];
 $nama_kab_domisili = $d['nama_kab_domisili'];
 
-if($nama_kec_sekolah!="") $nama_kec_sekolah = strtoupper("Kec $nama_kec_sekolah $nama_kab_sekolah");
-if($nama_kec_ktp!="") $nama_kec_ktp = strtoupper("Kec $nama_kec_ktp $nama_kab_ktp");
-if($nama_kec_domisili!="") $nama_kec_domisili = strtoupper("Kec $nama_kec_domisili $nama_kab_domisili");
+if ($nama_kec_sekolah!="") {
+    $nama_kec_sekolah = strtoupper("Kec $nama_kec_sekolah $nama_kab_sekolah");
+}
+if ($nama_kec_ktp!="") {
+    $nama_kec_ktp = strtoupper("Kec $nama_kec_ktp $nama_kab_ktp");
+}
+if ($nama_kec_domisili!="") {
+    $nama_kec_domisili = strtoupper("Kec $nama_kec_domisili $nama_kab_domisili");
+}
 
 
 
@@ -168,36 +181,36 @@ $nama_kec_sekolah_disabled = "";
 $jenis_sekolah_disabled = "";
 $status_sekolah_disabled = "";
 
-if($id_sekolah!=""){
-	$s = "SELECT * from tb_sekolah where id_sekolah='$id_sekolah'";
-	$q = mysqli_query($cn,$s) or die("Tidak bisa retrieve data sekolah. ".mysqli_error($cn));
-	if(mysqli_num_rows($q)!=1) die("Data sekolah tidak ditemukan. <hr>$s");
-	$d=mysqli_fetch_assoc($q);
+if ($id_sekolah!="") {
+    $s = "SELECT * from tb_sekolah where id_sekolah='$id_sekolah'";
+    $q = mysqli_query($cn, $s) or die("Tidak bisa retrieve data sekolah. ".mysqli_error($cn));
+    if (mysqli_num_rows($q)!=1) {
+        die("Data sekolah tidak ditemukan. <hr>$s");
+    }
+    $d=mysqli_fetch_assoc($q);
 
-	$id_kec_sekolah = $d['id_kec_sekolah'];
-	$nama_sekolah = $d['nama_sekolah'];
-	$alamat_sekolah = $d['alamat_sekolah'];
-	$jenis_sekolah = $d['jenis_sekolah'];
-	$status_sekolah = $d['status_sekolah'];
-	$is_validated = $d['is_validated'];
+    $id_kec_sekolah = $d['id_kec_sekolah'];
+    $nama_sekolah = $d['nama_sekolah'];
+    $alamat_sekolah = $d['alamat_sekolah'];
+    $jenis_sekolah = $d['jenis_sekolah'];
+    $status_sekolah = $d['status_sekolah'];
+    $is_validated = $d['is_validated'];
 
-	$asal_sekolah = $nama_sekolah;
-	$jenis_sekolah_disabled = "disabled";
-	$status_sekolah_disabled = "disabled";
+    $asal_sekolah = $nama_sekolah;
+    $jenis_sekolah_disabled = "disabled";
+    $status_sekolah_disabled = "disabled";
 
-	if($id_kec_sekolah!=""){
-		$s = "SELECT nama_kec,nama_kab from tb_kec a 
+    if ($id_kec_sekolah!="") {
+        $s = "SELECT nama_kec,nama_kab from tb_kec a 
 		join tb_kab b on a.id_kab=b.id_kab 
 		where id_kec='$id_kec_sekolah'";
-		$q = mysqli_query($cn,$s) or die("Tidak bisa retrieve data kec/kab sekolah. ".mysqli_error($cn));
-		$d = mysqli_fetch_assoc($q);
-		$nama_kec_sekolah = strtoupper("KEC ".$d['nama_kec']." ".$d['nama_kab']);
+        $q = mysqli_query($cn, $s) or die("Tidak bisa retrieve data kec/kab sekolah. ".mysqli_error($cn));
+        $d = mysqli_fetch_assoc($q);
+        $nama_kec_sekolah = strtoupper("KEC ".$d['nama_kec']." ".$d['nama_kab']);
 
-		$id_nama_kec_sekolah = $id_kec_sekolah;
-		$nama_kec_sekolah_disabled = "disabled";
-
-	}
-
+        $id_nama_kec_sekolah = $id_kec_sekolah;
+        $nama_kec_sekolah_disabled = "disabled";
+    }
 }
 
 
@@ -206,62 +219,67 @@ $sudah_upload_foto_profil = 0;
 $sudah_upload_bukti_bayar = 0;
 $sudah_upload_bukti_kip = 0;
 
+
+$jumlah_uploads=0;
+$jumlah_uploads_diterima = 0;
+$jumlah_uploads_ditolak = 0;
+$total_uploads = 2; //zzz
+$ekstensi_foto_profil = "";
+
 $s = "SELECT * from tb_verifikasi_upload a 
 join tb_persyaratan b on a.id_persyaratan=b.id_persyaratan 
 where id_daftar='$id_daftar'";
 
-$q = mysqli_query($cn,$s) or die("Tidak bisa retrieve data verifikasi upload. ".mysqli_error($cn));
-if(mysqli_num_rows($q)){
-	$i=0;
-	$jumlah_uploads=0;
-	$jumlah_uploads_diterima = 0;
-	$jumlah_uploads_ditolak = 0;
-	$total_uploads = 2; //zzz
-	$ekstensi_foto_profil = "";
-	while ($d=mysqli_fetch_assoc($q)) {
-		$i++;
-		$rid_verifikasi[$i] = $d['id_verifikasi'];
-		$rtanggal_upload[$i] = $d['tanggal_upload'];
-		$rid_persyaratan[$i] = $d['id_persyaratan'];
-		$ekstensi_file = $d['ekstensi_file'];
-		$status_upload = $d['status_upload'];
+$q = mysqli_query($cn, $s) or die("Tidak bisa retrieve data verifikasi upload. ".mysqli_error($cn));
+if (mysqli_num_rows($q)) {
+    $i=0;
+    while ($d=mysqli_fetch_assoc($q)) {
+        $i++;
+        $rid_verifikasi[$i] = $d['id_verifikasi'];
+        $rtanggal_upload[$i] = $d['tanggal_upload'];
+        $rid_persyaratan[$i] = $d['id_persyaratan'];
+        $ekstensi_file = $d['ekstensi_file'];
+        $status_upload = $d['status_upload'];
 
-		$rid_petugas[$i] = $d['id_petugas'];
-		$rtanggal_verifikasi_upload[$i] = $d['tanggal_verifikasi_upload'];
+        $rid_petugas[$i] = $d['id_petugas'];
+        $rtanggal_verifikasi_upload[$i] = $d['tanggal_verifikasi_upload'];
 
-		$id_persyaratan = $d['id_persyaratan'];
-		$format_nama_file = $d['format_nama_file'];
+        $id_persyaratan = $d['id_persyaratan'];
+        $format_nama_file = $d['format_nama_file'];
 
-		if($format_nama_file=="img_profile") $ekstensi_foto_profil = $ekstensi_file;
+        if ($format_nama_file=="img_profile") {
+            $ekstensi_foto_profil = $ekstensi_file;
+        }
 
-		$rid_persyaratan[$i] = $id_persyaratan;
-		$rnama_persyaratan[$i] = $d['nama_persyaratan'];
-		$rketerangan_persyaratan[$i] = $d['keterangan_persyaratan'];
+        $rid_persyaratan[$i] = $id_persyaratan;
+        $rnama_persyaratan[$i] = $d['nama_persyaratan'];
+        $rketerangan_persyaratan[$i] = $d['keterangan_persyaratan'];
 
-		$softcopy[$i] = "uploads/$folder_uploads/$format_nama_file"."__$id_daftar.$ekstensi_file";
+        $softcopy[$i] = "uploads/$folder_uploads/$format_nama_file"."__$id_daftar.$ekstensi_file";
 
-		$softcopy_exist[$i] = 1; 
-		if(!file_exists($softcopy[$i])){
-			$softcopy_exist[$i] = 0;
-			$softcopy[$i] = "uploads/img_na.jpg";
-		}else{
-			$jumlah_uploads++;
-		}
+        $softcopy_exist[$i] = 1;
+        if (!file_exists($softcopy[$i])) {
+            $softcopy_exist[$i] = 0;
+            $softcopy[$i] = "uploads/img_na.jpg";
+        } else {
+            $jumlah_uploads++;
+        }
 
-		if($rtanggal_verifikasi_upload[$i]!=""){
-			if($status_upload){
-				$jumlah_uploads_diterima++;
-			}else{
-				$jumlah_uploads_ditolak++;
-			}
-		}
-
-	}
+        if ($rtanggal_verifikasi_upload[$i]!="") {
+            if ($status_upload) {
+                $jumlah_uploads_diterima++;
+            } else {
+                $jumlah_uploads_ditolak++;
+            }
+        }
+    }
 }
 
 $img_profile = "uploads/profile_na.jpg";
 $img_user = "uploads/$folder_uploads/img_profile__$id_daftar.jpg";
-if(file_exists($img_user)) $img_profile = $img_user;
+if (file_exists($img_user)) {
+    $img_profile = $img_user;
+}
 
 
 

@@ -1,60 +1,60 @@
-<?php 
+<?php
 // include "../config.php";
 // include "../pendaftar_var.php";
+$tahun_skg = 2023;
 
-
-$pesan_submit = "";
-$is_show_formulir = "";
-if(isset($_POST['btn_submit_formulir'])){
-  include 'formulir_processing.php';
-  exit();
+$pesan_submit = '';
+$is_show_formulir = '';
+if (isset($_POST['btn_submit_formulir'])) {
+    include 'formulir_processing.php';
+    exit();
 }
 
 
 $opt_pekerjaan_ayah = "<option value='0'>--Pilih--</option>";
-$opt_pekerjaan_ibu = "";
+$opt_pekerjaan_ibu = '';
 
 $s = "SELECT * from tb_pekerjaan";
-$q = mysqli_query($cn,$s) or die(mysqli_error($cn));
+$q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 while ($d=mysqli_fetch_assoc($q)) {
-  $id_pekerjaan = $d['id_pekerjaan'];
-  $pekerjaan = $d['pekerjaan'];
+    $id_pekerjaan = $d['id_pekerjaan'];
+    $pekerjaan = $d['pekerjaan'];
 
-  if($id_pekerjaan_ayah==$id_pekerjaan){
-    $opt_pekerjaan_ayah.= "<option value='$id_pekerjaan' selected>$pekerjaan</option>";
-  }else{
-    $opt_pekerjaan_ayah.= "<option value='$id_pekerjaan'>$pekerjaan</option>";
-  }
+    if ($id_pekerjaan_ayah==$id_pekerjaan) {
+        $opt_pekerjaan_ayah.= "<option value='$id_pekerjaan' selected>$pekerjaan</option>";
+    } else {
+        $opt_pekerjaan_ayah.= "<option value='$id_pekerjaan'>$pekerjaan</option>";
+    }
 
-  if($id_pekerjaan_ibu==$id_pekerjaan){
-    $opt_pekerjaan_ibu.= "<option value='$id_pekerjaan' selected>$pekerjaan</option>";
-  }else{
-    $opt_pekerjaan_ibu.= "<option value='$id_pekerjaan'>$pekerjaan</option>";
-  }
+    if ($id_pekerjaan_ibu==$id_pekerjaan) {
+        $opt_pekerjaan_ibu.= "<option value='$id_pekerjaan' selected>$pekerjaan</option>";
+    } else {
+        $opt_pekerjaan_ibu.= "<option value='$id_pekerjaan'>$pekerjaan</option>";
+    }
 }
 
 
 
 $s = "SELECT id_prodi,nama_prodi,singkatan_prodi,jenjang from tb_prodi";
-$q = mysqli_query($cn,$s) or die(mysqli_error($cn));
+$q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 $i=0;
 while ($d=mysqli_fetch_assoc($q)) {
-  $i++;
-  $rid_prodi[$i] = $d['id_prodi'];
-  $rnama_prodi[$i] = $d['nama_prodi'];
-  $rsingkatan_prodi[$i] = $d['singkatan_prodi'];
-  $rjenjang[$i] = $d['jenjang'];
+    $rid_prodi[$i] = $d['id_prodi'];
+    $rnama_prodi[$i] = $d['nama_prodi'];
+    $rsingkatan_prodi[$i] = $d['singkatan_prodi'];
+    $rjenjang[$i] = $d['jenjang'];
+    $i++;
 }
 
 
 $s = "SELECT id_jalur,nama_jalur,status_jalur from tb_jalur";
-$q = mysqli_query($cn,$s) or die(mysqli_error($cn));
+$q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 $i=0;
 while ($d=mysqli_fetch_assoc($q)) {
-  $i++;
-  $rid_jalur[$i] = $d['id_jalur'];
-  $rnama_jalur[$i] = $d['nama_jalur'];
-  $rstatus_jalur[$i] = $d['status_jalur'];
+    $rid_jalur[$i] = $d['id_jalur'];
+    $rnama_jalur[$i] = $d['nama_jalur'];
+    $rstatus_jalur[$i] = $d['status_jalur'];
+    $i++;
 }
 
 
@@ -62,16 +62,16 @@ $id_referal=2;
 $opt_referal = "<option value='0'>--Pilih--</option>";
 
 $s = "SELECT * from tb_referal";
-$q = mysqli_query($cn,$s) or die(mysqli_error($cn));
+$q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 while ($d=mysqli_fetch_assoc($q)) {
-  $id_referal = $d['id_referal'];
-  $referal = $d['referal'];
+    $id_referal = $d['id_referal'];
+    $referal = $d['referal'];
 
-  if($id_referal==$id_referal){
-    $opt_referal.= "<option value='$id_referal' selected>$referal</option>";
-  }else{
-    $opt_referal.= "<option value='$id_referal'>$referal</option>";
-  }
+    if ($id_referal==$id_referal) {
+        $opt_referal.= "<option value='$id_referal' selected>$referal</option>";
+    } else {
+        $opt_referal.= "<option value='$id_referal'>$referal</option>";
+    }
 }
 
 # ===========================================
@@ -79,27 +79,36 @@ while ($d=mysqli_fetch_assoc($q)) {
 # ===========================================
 $no_ayah_required = "required";
 $no_ibu_required = "required";
-$cek_nowa__no_ayah_checked = "";
-$cek_nowa__no_ibu_checked = "";
-if($no_ayah=="-") {
-  $cek_nowa__no_ayah_checked = "checked";
-  $no_ayah_required = "";
+$cek_nowa__no_ayah_checked = '';
+$cek_nowa__no_ibu_checked = '';
+if ($no_ayah=="-") {
+    $cek_nowa__no_ayah_checked = 'checked';
+    $no_ayah_required = '';
 }
-if($no_ibu=="-") {
-  $cek_nowa__no_ibu_checked = "checked";
-  $no_ibu_required = "";
+if ($no_ibu=="-") {
+    $cek_nowa__no_ibu_checked = 'checked';
+    $no_ibu_required = '';
 }
 
 
-$is_bekerja_checked = "";
-$is_wirausaha_checked = "";
-if($is_bekerja) $is_bekerja_checked = "checked";
-if($is_wirausaha) $is_wirausaha_checked = "checked";
+$is_bekerja_checked = '';
+$is_wirausaha_checked = '';
+if ($is_bekerja) {
+    $is_bekerja_checked = 'checked';
+}
+if ($is_wirausaha) {
+    $is_wirausaha_checked = 'checked';
+}
 
-$cek_no_hp_as_no_wa_checked = ""; if($no_wa==$no_hp) $cek_no_hp_as_no_wa_checked = "checked";
+$cek_no_hp_as_no_wa_checked = '';
+if ($no_wa==$no_hp) {
+    $cek_no_hp_as_no_wa_checked = 'checked';
+}
 
 $batas_tahun_kip = $tahun_skg - 2;
 $catatan_jalur_daftar = "<small>Catatan: hanya lulusan $batas_tahun_kip s.d $tahun_skg yang dapat mengambil Jalur KIP</small>";
+$disable_kip = 'disabled';
+
 ?>
 <style type="text/css">
 	#formulir table{width: 100%; border: solid 1px #afa; margin-bottom: 30px;}
@@ -180,20 +189,26 @@ $catatan_jalur_daftar = "<small>Catatan: hanya lulusan $batas_tahun_kip s.d $tah
             <div class="form-group">
               <div class="row">
                 <div class="col-lg-6">
-                  <?php 
+                  <?php
                   $rjenis_sekolah = ["","SMA","SMK","MA","Paket C","Perguruan Tinggi"];
-                  for ($i=1; $i < count($rjenis_sekolah); $i++) { 
-                    $jenis_sekolah_checked = ""; if($jenis_sekolah==$i) $jenis_sekolah_checked="checked";
-                    echo "<label><input type='radio' class='input_radio jenis_sekolah_radio' id='jenis_sekolah_$i' name='jenis_sekolah' value='$i' required $jenis_sekolah_checked $jenis_sekolah_disabled> $rjenis_sekolah[$i]</label> ";
-                  } ?>
+for ($i=1; $i < count($rjenis_sekolah); $i++) {
+    $jenis_sekolah_checked = '';
+    if ($jenis_sekolah==$i) {
+        $jenis_sekolah_checked='checked';
+    }
+    echo "<label><input type='radio' class='input_radio jenis_sekolah_radio' id='jenis_sekolah_$i' name='jenis_sekolah' value='$i' required $jenis_sekolah_checked $jenis_sekolah_disabled> $rjenis_sekolah[$i]</label> ";
+} ?>
                 </div>
                 <div class="col-lg-6">
-                  <?php 
-                  $rstatus_sekolah = ["","Negeri","Swasta"];
-                  for ($i=1; $i < count($rstatus_sekolah); $i++) { 
-                    $status_sekolah_checked = ""; if($status_sekolah==$i) $status_sekolah_checked="checked";
-                    echo "<label><input type='radio' class='input_radio status_sekolah_radio' id='status_sekolah_$i' name='status_sekolah' value='$i' required $status_sekolah_checked $status_sekolah_disabled> $rstatus_sekolah[$i]</label> ";
-                  } ?>
+                  <?php
+$rstatus_sekolah = ["","Negeri","Swasta"];
+for ($i=1; $i < count($rstatus_sekolah); $i++) {
+    $status_sekolah_checked = '';
+    if ($status_sekolah==$i) {
+        $status_sekolah_checked='checked';
+    }
+    echo "<label><input type='radio' class='input_radio status_sekolah_radio' id='status_sekolah_$i' name='status_sekolah' value='$i' required $status_sekolah_checked $status_sekolah_disabled> $rstatus_sekolah[$i]</label> ";
+} ?>
                 </div>
               </div>
             </div>
@@ -224,52 +239,56 @@ $catatan_jalur_daftar = "<small>Catatan: hanya lulusan $batas_tahun_kip s.d $tah
             <!-- =========================================== -->
             <div class="form-group bundle">
               <label>Pilihan Prodi Pertama:</label>
-              <?php for ($i=1; $i <= count($rnama_prodi); $i++) { 
-                $prodi1_checked = ""; if($id_prodi1==$rid_prodi[$i]) $prodi1_checked="checked";
-                echo "
-                <div><label><input class='pp1 input_radio' id='pp1$i' type='radio' name='id_prodi1' value='$i' required $prodi1_checked> $rjenjang[$i] - $rnama_prodi[$i]</label></div>
-                ";
-              } ?>
+              <?php
+for ($i=0; $i < count($rnama_prodi); $i++) {
+    $j = $i+1;
+    $prodi1_checked= ($id_prodi1==$rid_prodi[$i]) ? 'checked' : '';
+    echo "<div><label><input class='pp1 input_radio' id='pp1$j' type='radio' name='id_prodi1' value='$j' required $prodi1_checked> $rjenjang[$i] - $rnama_prodi[$i]</label></div>";
+} ?>
             </div>
 
             <div class="form-group bundle">
               <label>Pilihan Prodi Kedua:</label>
-              <?php for ($i=1; $i <= count($rnama_prodi); $i++) { 
-                $prodi2_checked = ""; if($id_prodi2==$rid_prodi[$i]) $prodi2_checked="checked";
-                $prodi2_disabled = ""; if($id_prodi1==$rid_prodi[$i]) $prodi2_disabled="disabled";
-                echo "
-                <div><label><input class='pp2 input_radio' id='pp2$i' type='radio' name='id_prodi2' value='$i' required $prodi2_checked $prodi2_disabled> $rjenjang[$i] - $rnama_prodi[$i]</label></div>
+              <?php
+              for ($i=0; $i < count($rnama_prodi); $i++) {
+                  $j = $i+1;
+                  $prodi2_checked = ($id_prodi2==$rid_prodi[$i]) ? 'checked' : '';
+                  $prodi2_disabled = ($id_prodi1==$rid_prodi[$i]) ? 'disabled' : '';
+                  echo "
+                <div><label><input class='pp2 input_radio' id='pp2$j' type='radio' name='id_prodi2' value='$j' required $prodi2_checked $prodi2_disabled> $rjenjang[$i] - $rnama_prodi[$i]</label></div>
                 ";
               } ?>
             </div>
 
 
             <div class="form-group bundle">
-              <?php for ($i=1; $i <= count($rnama_jalur); $i++) { 
-                $jalur_checked = ""; 
-                if($id_jalur!="" and $id_jalur==$rid_jalur[$i]) $jalur_checked="checked";
+              <?php
+              // echo var_dump($rid_jalur);
+for ($i=0; $i < count($rnama_jalur); $i++) {
+    $j = $i+1;
+    $jalur_checked = ($id_jalur!="" and $id_jalur==$rid_jalur[$i]) ? 'checked' : '';
 
-                $disable_jalur = "";
-                $ket_jalur = "";
-                $hide_jalur = "";
-                // if($rid_jalur[$i]==3 and $tahun_lulus<$batas_tahun_kip) $disable_jalur = "disabled";
-                if($rid_jalur[$i]==3 ) {
-                  $disable_jalur = "disabled";
-                  $hide_jalur = " style='display:none' ";
-                  $ket_jalur = "(Jalur KIP Kuliah Sudah Ditutup)";
+    $disable_jalur = '';
+    $ket_jalur = '';
+    $hide_jalur = '';
+    // if($rid_jalur[$i]==3 and $tahun_lulus<$batas_tahun_kip) $disable_jalur = 'disabled';
+    if ($rid_jalur[$i]==3 and $tahun_lulus<2021) {
+        $disable_jalur = 'disabled';
+        $jalur_checked = '';
+        // $hide_jalur = " style='display:none' ";
+        // $ket_jalur = "(Jalur KIP Kuliah Sudah Ditutup)";
+    }
 
-                }
+    if ($rid_jalur[$i]==4) {
+        $disable_jalur = 'disabled';
+        $hide_jalur = " style='display:none' ";
+        // $ket_jalur = "(Sudah Ditutup)";
+    }
 
-                if($rid_jalur[$i]==4 ) {
-                  $disable_jalur = "disabled";
-                  $hide_jalur = " style='display:none' ";
-                  // $ket_jalur = "(Sudah Ditutup)";
-                }
-
-                echo "
-                <div $hide_jalur><label><input type='radio' id='input_jalur__$rid_jalur[$i]' class='input_radio input_jalur' name='id_jalur' value='$i' required $jalur_checked $disable_jalur> $rnama_jalur[$i]</label> <span style='color:darkred'>$ket_jalur</span></div>
+    echo "
+                <div $hide_jalur><label><input type='radio' id='input_jalur__$rid_jalur[$i]' class='input_radio input_jalur' name='id_jalur' value='$j' required $jalur_checked $disable_jalur> $rnama_jalur[$i]</label> <span style='color:darkred'>$ket_jalur</span></div>
                 ";
-              } ?>
+} ?>
 
             </div>
             <?=$catatan_jalur_daftar ?>
@@ -318,19 +337,28 @@ $catatan_jalur_daftar = "<small>Catatan: hanya lulusan $batas_tahun_kip s.d $tah
                   <div class="row">
                     <div class="col-3">
                       <select class="input_select_ttl form-control ttl" id="ttl_tanggal">
-                        <?php for ($i=1; $i < 32; $i++) {$z="";if($ttl_tanggal==$i)$z="selected"; echo "<option $z>$i</option>";}  ?>
+                        <?php for ($i=1; $i < 32; $i++) {
+                            $z='';
+                            if ($ttl_tanggal==$i) {
+                                $z="selected";
+                            } echo "<option $z>$i</option>";
+                        }  ?>
                       </select>
                     </div>
                     <div class="col-3">
                       <select class="input_select_ttl form-control ttl" id="ttl_bulan">
-                        <?php 
-                        for ($i=1; $i < 13; $i++) echo "<option value=$i>".$nama_bln[$i-1]."</option>";
-                        ?>
+                        <?php
+                        for ($i=1; $i < 13; $i++) {
+                            echo "<option value=$i>".$nama_bln[$i-1]."</option>";
+                        }
+?>
                       </select>
                     </div>
                     <div class="col-6">
                       <select class="input_select_ttl form-control ttl" id="ttl_tahun">
-                        <?php for ($i=date("Y"); $i > date("Y")-60; $i--) echo "<option>$i</option>";  ?>
+                        <?php for ($i=date("Y"); $i > date("Y")-60; $i--) {
+                            echo "<option>$i</option>";
+                        }  ?>
                       </select>
                     </div>
                     
@@ -398,30 +426,39 @@ $catatan_jalur_daftar = "<small>Catatan: hanya lulusan $batas_tahun_kip s.d $tah
 
 
             <div class="form-group">
-              <?php 
+              <?php
               $rstatus_menikah = ["","Belum Menikah","Menikah","Janda/Duda"];
-              for ($i=1; $i < count($rstatus_menikah); $i++) { 
-                $status_menikah_checked = ""; if($status_menikah==$i) $status_menikah_checked="checked";
-                echo "<label><input type='radio' class='input_radio' name='status_menikah' value='$i' required $status_menikah_checked> $rstatus_menikah[$i]</label> ";
-              } ?>
+for ($i=1; $i < count($rstatus_menikah); $i++) {
+    $status_menikah_checked = '';
+    if ($status_menikah==$i) {
+        $status_menikah_checked='checked';
+    }
+    echo "<label><input type='radio' class='input_radio' name='status_menikah' value='$i' required $status_menikah_checked> $rstatus_menikah[$i]</label> ";
+} ?>
             </div>
 
             <div class="form-group">
-              <?php 
-              $ragama = ["","Islam","Katolik","Protestan","Hindu","Budha","Konghucu","Lainnya"];
-              for ($i=1; $i < count($ragama); $i++) { 
-                $agama_checked = ""; if($agama==$i) $agama_checked="checked";
-                echo "<label><input type='radio' class='input_radio' name='agama' value='$i' required $agama_checked> $ragama[$i]</label> ";
-              } ?>
+              <?php
+$ragama = ["","Islam","Katolik","Protestan","Hindu","Budha","Konghucu","Lainnya"];
+for ($i=1; $i < count($ragama); $i++) {
+    $agama_checked = '';
+    if ($agama==$i) {
+        $agama_checked='checked';
+    }
+    echo "<label><input type='radio' class='input_radio' name='agama' value='$i' required $agama_checked> $ragama[$i]</label> ";
+} ?>
             </div>
 
             <div class="form-group">
-              <?php 
-              $rwarga_negara = ["","WNI","WNA"];
-              for ($i=1; $i < count($rwarga_negara); $i++) { 
-                $warga_negara_checked = ""; if($warga_negara==$i) $warga_negara_checked="checked";
-                echo "<label><input type='radio' class='input_radio' name='warga_negara' value='$i' required $warga_negara_checked> $rwarga_negara[$i]</label> ";
-              } ?>
+              <?php
+$rwarga_negara = ["","WNI","WNA"];
+for ($i=1; $i < count($rwarga_negara); $i++) {
+    $warga_negara_checked = '';
+    if ($warga_negara==$i) {
+        $warga_negara_checked='checked';
+    }
+    echo "<label><input type='radio' class='input_radio' name='warga_negara' value='$i' required $warga_negara_checked> $rwarga_negara[$i]</label> ";
+} ?>
             </div>
           </td>
         </tr>
