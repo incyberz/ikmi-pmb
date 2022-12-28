@@ -7,7 +7,7 @@
         <style>h4 {color: #339; text-transform: uppercase}</style>
         <h4>A. Biaya Pendaftaran</h4>
         <ul>
-          <li>Biaya Pendaftaran Rp 150.000,-</li>
+          <li>Biaya Pendaftaran Rp 200.000,-</li>
           <li>
             <small>Untuk seluruh Jalur Pendaftaran, dibayarkan saat mendaftar.</small>
           </li>
