@@ -4,12 +4,6 @@ $debug_mode = 0;
 
 // if(1) {include "maintenance.php"; exit();}
 
-//force registered login
-if (0) {
-    $_SESSION['email'] = "akuncoba765@gmail.com";
-    //$_SESSION['nama_calon'] = "Ahmad Firdaus";
-}
-
 $is_login = 0;
 $is_terdaftar=0;
 
@@ -23,7 +17,8 @@ function tampil_error($a)
     return "<br><br><div class='alert alert-danger'>$a</div>";
 }
 
-include "config.php";
+include 'global_const.php';
+include 'config.php';
 // include "assets/include/fungsi.php";
 
 
@@ -42,15 +37,6 @@ if (isset($_SESSION['email'])) {
 }
 
 
-if (0) {
-    echo "
-    <br> =======================================================
-    <br> DEBUG LOGIN
-    <br> =======================================================
-    <br> is_login = $is_login
-
-    ";
-}
 
 ?>
 <!DOCTYPE html>

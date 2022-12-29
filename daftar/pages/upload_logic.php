@@ -92,7 +92,7 @@ if (mysqli_num_rows($q)) {
     Silahkan Anda upload bukti transfer ke:
     <br> - Bank BRI. No Rek. 4149-01-000004-30-5
     <br> - a.n IKMI CIREBON
-    <br> - Nominal: <?=$biaya_daftar?>,-
+    <br> - Nominal: $biaya_daftar
     ";
         $rket_upload[3] = "
     Sistem KIPK Kemdikbud 2022 belum dibuka. Untuk saat ini Anda boleh uploadkan KIP pelajar, PKH, KKS, atau cukup scan SKTM 
