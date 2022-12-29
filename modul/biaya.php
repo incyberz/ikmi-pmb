@@ -1,3 +1,6 @@
+<?php
+$biaya_daftar = 'Rp 200.000,-';
+?>
 <section id="biaya_kuliah" class="biaya_kuliah">
   <div class="container" data-aos="fade-up">
     <h3>Biaya Kuliah IKMI 2022</h3>
@@ -7,7 +10,7 @@
         <style>h4 {color: #339; text-transform: uppercase}</style>
         <h4>A. Biaya Pendaftaran</h4>
         <ul>
-          <li>Biaya Pendaftaran Rp 200.000,-</li>
+          <li>Biaya Pendaftaran <?=$biaya_daftar?>,-</li>
           <li>
             <small>Untuk seluruh Jalur Pendaftaran, dibayarkan saat mendaftar.</small>
           </li>

@@ -2,6 +2,8 @@
 // include "../config.php";
 // include "../pendaftar_var.php";
 $tahun_skg = 2023;
+$info_submit = ($tanggal_submit_formulir=='') ? '' : "<div class='alert alert-info'>Kamu sudah submit formulir pada tanggal : $tanggal_submit_formulir</div>";
+
 
 $pesan_submit = '';
 $is_show_formulir = '';
@@ -141,6 +143,7 @@ $disable_kip = 'disabled';
       <div class="section-title">
         <h2>Formulir Pendaftaran</h2>
         <p>Silahkan Anda isi Formulir Pendaftaran</p>
+        <?=$info_submit?>
       </div>
 
       <table><thead><th>DATA AKUN</th></thead>

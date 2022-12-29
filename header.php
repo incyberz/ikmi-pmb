@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 
@@ -56,17 +56,13 @@
     </nav><!-- .nav-menu -->
 
 
-    <?php if(!$is_login){
-
-
-      ?>
-      <a href="index.php?p=daftar" class="get-started-btn">Daftar/Login</a>
+    <?php if (!$is_login) {
+        ?>
+      <a href="daftar/" class="get-started-btn">Daftar/Login</a>
       <?php
 
-
-
-    } 
-    ?>
+    }
+?>
 
 
   </div>

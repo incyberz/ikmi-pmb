@@ -92,7 +92,6 @@ $img_loading = "<img src='assets/img/icons/loading6.gif' width='20px'>";
 $img_warning = "<img src='assets/img/icons/warning.png' width='20px'>";
 $img_reject = "<img src='assets/img/icons/reject.png' width='20px'>";
 
-$rp_regu = "Rp 200.000,-";
 
 $periode_ta = "2023/2024";
 
@@ -101,3 +100,5 @@ $no_wa_petugas_bani = "085659788817"; //mas abni
 $no_wa_petugas_anam = "082130148448"; //Anam
 $no_wa_petugas = "083821651265"; //Front Office
 $no_wa_petugas = "082316055422"; //Front Office Kedua
+
+$biaya_daftar = 'Rp 200.000,-';

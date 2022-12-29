@@ -1,8 +1,8 @@
 
 <!-- === BUKTI BAYAR ======================================== -->
-<?php 
+<?php
 if ($id_jndaftar==1 or $id_jndaftar==2) {
-?>
+    ?>
 <div class="form-group col-md-5 blok_input_persyaratan" id="input_bukti_bayar" style="display: ">
   <table class="table table-bordered" >
 
@@ -13,20 +13,22 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
               <br> - Bank BRI 
               <br> - No Rek. 4149-01-000004-30-5
               <br> - a.n IKMI CIREBON
-              <br> - Jalur Reguler: Rp 200.000,-
+              <br> - Jalur Reguler: <?=$biaya_daftar?>,-
               <br> - Jalur Transfer: Rp 350.000,-
           </small>
       </td>
     </tr>
     <?php if (file_exists($file_bukti_bayar)) {
-      $btn_upload_bukti_bayar_cap = "Replace Bukti Bayar";
-    ?>
+        $btn_upload_bukti_bayar_cap = "Replace Bukti Bayar";
+        ?>
     <tr>
       <td align="center">
         <a href="javascript:newPopup('<?=$file_bukti_bayar?>')"><img class="img-fluid rounded" src="<?=$file_bukti_bayar?>"></a>
       </td>
     </tr>
-    <?php }else{$btn_upload_bukti_bayar_cap = "Upload Bukti Bayar"; } ?>
+    <?php } else {
+        $btn_upload_bukti_bayar_cap = "Upload Bukti Bayar";
+    } ?>
     <tr>
       <td align="center">
         <input type="file" class="form-control-file" id="file_bukti_bayar" name="file_bukti_bayar" accept="image/jpeg">
@@ -67,14 +69,16 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
       </td>
     </tr>
     <?php if (file_exists($file_pas_photo)) {
-      $btn_upload_pas_photo_cap = "Replace Pas Photo";
-    ?>
+        $btn_upload_pas_photo_cap = "Replace Pas Photo";
+        ?>
     <tr>
       <td align="center">
         <a href="javascript:newPopup('<?=$file_pas_photo?>')"><img class="img-fluid rounded" src="<?=$file_pas_photo?>"></a>
       </td>
     </tr>
-    <?php }else{$btn_upload_pas_photo_cap = "Upload Pas Photo"; } ?>
+    <?php } else {
+        $btn_upload_pas_photo_cap = "Upload Pas Photo";
+    } ?>
     <tr>
       <td align="center">
         <input type="file" class="form-control-file" id="file_pas_photo" name="file_pas_photo" accept="image/jpeg">
@@ -116,14 +120,16 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
       </td>
     </tr>
     <?php if (file_exists($file_ijazah_sma)) {
-      $btn_upload_ijazah_sma_cap = "Replace Ijazah SMA";
-    ?>
+        $btn_upload_ijazah_sma_cap = "Replace Ijazah SMA";
+        ?>
     <tr>
       <td align="center">
         <a href="javascript:newPopup('<?=$file_ijazah_sma?>')"><img class="img-fluid rounded" src="<?=$file_ijazah_sma?>"></a>
       </td>
     </tr>
-    <?php }else{$btn_upload_ijazah_sma_cap = "Upload Ijazah SMA"; } ?>
+    <?php } else {
+        $btn_upload_ijazah_sma_cap = "Upload Ijazah SMA";
+    } ?>
     <tr>
       <td align="center">
         <input type="file" class="form-control-file" id="file_ijazah_sma" name="file_ijazah_sma" accept="image/jpeg">
@@ -165,14 +171,16 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
       </td>
     </tr>
     <?php if (file_exists($file_transkrip_sma)) {
-      $btn_upload_transkrip_sma_cap = "Replace Transkrip SMA";
-    ?>
+        $btn_upload_transkrip_sma_cap = "Replace Transkrip SMA";
+        ?>
     <tr>
       <td align="center">
         <a href="javascript:newPopup('<?=$file_transkrip_sma?>')"><img class="img-fluid rounded" src="<?=$file_transkrip_sma?>"></a>
       </td>
     </tr>
-    <?php }else{$btn_upload_transkrip_sma_cap = "Upload Transkrip SMA"; } ?>
+    <?php } else {
+        $btn_upload_transkrip_sma_cap = "Upload Transkrip SMA";
+    } ?>
     <tr>
       <td align="center">
         <input type="file" class="form-control-file" id="file_transkrip_sma" name="file_transkrip_sma" accept="image/jpeg">
@@ -214,14 +222,16 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
       </td>
     </tr>
     <?php if (file_exists($file_kartu_keluarga)) {
-      $btn_upload_kartu_keluarga_cap = "Replace Kartu Keluarga";
-    ?>
+        $btn_upload_kartu_keluarga_cap = "Replace Kartu Keluarga";
+        ?>
     <tr>
       <td align="center">
         <a href="javascript:newPopup('<?=$file_kartu_keluarga?>')"><img class="img-fluid rounded" src="<?=$file_kartu_keluarga?>"></a>
       </td>
     </tr>
-    <?php }else{$btn_upload_kartu_keluarga_cap = "Upload Kartu Keluarga"; } ?>
+    <?php } else {
+        $btn_upload_kartu_keluarga_cap = "Upload Kartu Keluarga";
+    } ?>
     <tr>
       <td align="center">
         <input type="file" class="form-control-file" id="file_kartu_keluarga" name="file_kartu_keluarga" accept="image/jpeg">
@@ -264,14 +274,16 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
       </td>
     </tr>
     <?php if (file_exists($file_ktp)) {
-      $btn_upload_ktp_cap = "Replace KTP";
-    ?>
+        $btn_upload_ktp_cap = "Replace KTP";
+        ?>
     <tr>
       <td align="center">
         <a href="javascript:newPopup('<?=$file_ktp?>')"><img class="img-fluid rounded" src="<?=$file_ktp?>"></a>
       </td>
     </tr>
-    <?php }else{$btn_upload_ktp_cap = "Upload KTP"; } ?>
+    <?php } else {
+        $btn_upload_ktp_cap = "Upload KTP";
+    } ?>
     <tr>
       <td align="center">
         <input type="file" class="form-control-file" id="file_ktp" name="file_ktp" accept="image/jpeg">
