@@ -14,9 +14,9 @@
     <h2>Segera dapatkan!</h2>
     <h1>POTONGAN BIAYA KULIAH !</h1>
     <a href="/daftar/" class="btn-get-started">Ayo Daftar</a>
-    <a href="<?=$link_panduan?>" class="btn-get-started" target="_blank">Unduh Panduan Pendaftaran</a>
+    <a href="?p=alur" class="btn-get-started">Panduan Pendaftaran</a>
     <?php } ?>  </div>
-</section><!-- End Hero -->
+</section>
 
 <main id="main">
 

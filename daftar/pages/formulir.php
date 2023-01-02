@@ -107,8 +107,10 @@ if ($no_wa==$no_hp) {
     $cek_no_hp_as_no_wa_checked = 'checked';
 }
 
-$batas_tahun_kip = $tahun_skg - 2;
-$catatan_jalur_daftar = "<small>Catatan: hanya lulusan $batas_tahun_kip s.d $tahun_skg yang dapat mengambil Jalur KIP</small>";
+// $batas_tahun_kip = $tahun_skg - 2;
+$batas_tahun_kip = $tahun_skg;
+// $catatan_jalur_daftar = "<small>Catatan: hanya lulusan $batas_tahun_kip s.d $tahun_skg yang dapat mengambil Jalur KIP</small>";
+$catatan_jalur_daftar = "<small>Catatan: * hanya lulusan $tahun_skg yang dapat mengambil Jalur KIP dengan proses seleksi</small>";
 $disable_kip = 'disabled';
 
 ?>

@@ -2,12 +2,14 @@
   <div class="container" data-aos="fade-up">
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-lg-12">
       	<h2>Alur Pendaftaran PMB IKMI 2021</h2>
       	<hr>
-      	<img src="assets/img/alur.png" class="img-fluid">
+        <a href="assets/img/alur.png" target="_blank">
+      	  <img src="assets/img/alur.png" class="img-fluid">
+        </a>
       </div>
     </div>
 
   </div>
-</section><!-- End Pricing Section -->
+</section>

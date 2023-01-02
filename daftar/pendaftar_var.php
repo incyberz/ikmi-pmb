@@ -19,6 +19,7 @@ c.no_wa,
 c.status_no_wa,
 c.status_email,
 c.akun_created,
+c.status_akun,
 (select nama_kab from tb_kab where id_kab=a.id_kab_tempat_lahir) as tempat_lahir, 
 (select nama_kec from tb_kec where id_kec=a.id_nama_kec_sekolah) as nama_kec_sekolah,
 (select nama_kec from tb_kec where id_kec=a.id_nama_kec_ktp) as nama_kec_ktp,
@@ -63,6 +64,7 @@ $no_wa = $d['no_wa'];
 $status_no_wa = $d['status_no_wa'];
 $status_email = $d['status_email'];
 $akun_created = $d['akun_created'];
+$status_akun = $d['status_akun'];
 
 
 

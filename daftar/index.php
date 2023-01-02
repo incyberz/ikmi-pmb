@@ -2,13 +2,13 @@
 session_start();
 // session_destroy(); die("Session destroyed!");
 if (0) {
-  session_unset();
-  exit();
+    session_unset();
+    exit();
 }
 // if(!isset($_SESSION['pendaftar_email'])){
 //   header("Location: ../?");
 //   die("Anda belum login. Silahkan <a href='../'>login dahulu</a>.");
-// } 
+// }
 
 
 
@@ -21,40 +21,45 @@ if (0) {
 # MANAGE URI
 # ========================================================
 $a = $_SERVER['REQUEST_URI'];
-if (!strpos($a, "?")) $a.="?";
-if (!strpos($a, "&")) $a.="&";
+if (!strpos($a, "?")) {
+    $a.="?";
+}
+if (!strpos($a, "&")) {
+    $a.="&";
+}
 
 $b = explode("?", $a);
 $c = explode("&", $b[1]);
 $parameter = $c[0];
 $is_edit = 0;
-if($parameter=="edit")$is_edit=1;
-
-
-
-if($parameter=="logout"){
-  include 'logout.php';
-  exit();
+if ($parameter=="edit") {
+    $is_edit=1;
 }
 
 
 
-if(!isset($_SESSION['pendaftar_email'])){
+if ($parameter=="logout") {
+    include 'logout.php';
+    exit();
+}
 
-  if($parameter=="daftar_akun"){
-    include "daftar_akun.php";
-  }else{
-    include "login.php";
-  }
-  exit();
 
-  
-  // $_SESSION['pendaftar_email'] = "insho@gmail.com";
-  // $_SESSION['pendaftar_nama'] = "Wulan Yulianti";
-  // $_SESSION['pendaftar_admin_level'] = 1;
-  // $_SESSION['pendaftar_id_daftar'] = 10001;
-  // $_SESSION['pendaftar_id_calon'] = 10001;
-  // die("Auto Login enabled. Please Refresh!");
+
+if (!isset($_SESSION['pendaftar_email'])) {
+    if ($parameter=="daftar_akun") {
+        include "daftar_akun.php";
+    } else {
+        include "login.php";
+    }
+    exit();
+
+
+    // $_SESSION['pendaftar_email'] = "insho@gmail.com";
+    // $_SESSION['pendaftar_nama'] = "Wulan Yulianti";
+    // $_SESSION['pendaftar_admin_level'] = 1;
+    // $_SESSION['pendaftar_id_daftar'] = 10001;
+    // $_SESSION['pendaftar_id_calon'] = 10001;
+    // die("Auto Login enabled. Please Refresh!");
 }
 
 # ========================================================
@@ -117,10 +122,16 @@ $img_ucons="<img src='assets/img/under_cons.jpg' width='150px' class='img_zoom'>
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
   <?php include 'header.php'; ?>
-  <?php //include 'hero.php'; ?>
+  <?php //include 'hero.php';?>
 
   <main id="main">
-    <?php include $page_content; ?>
+    <?php
+    if ($status_akun) {
+        include $page_content;
+    } else {
+        include 'akun_suspended.php';
+    }
+?>
 
   </main>
 
