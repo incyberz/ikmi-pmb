@@ -40,7 +40,7 @@ if ($online_version) {
     $db_server = "localhost";
     $db_user = "root";
     $db_pass = "mylocalhost2023";
-    $db_name = "db_pmb6";
+    $db_name = "db_pmb2023";
 }
 
 $cn = new mysqli($db_server, $db_user, $db_pass, $db_name);
@@ -261,24 +261,24 @@ function fnum($x)
         case 1:
         case 2:
         case 3: $y = $x;
-        break;
+            break;
 
         case 4: $y = substr($x, 0, 1).".".substr($x, 1, 3);
-        break;
+            break;
         case 5: $y = substr($x, 0, 2).".".substr($x, 2, 3);
-        break;
+            break;
         case 6: $y = substr($x, 0, 3).".".substr($x, 3, 3);
-        break;
+            break;
 
         case 7: $y = substr($x, 0, 1).".".substr($x, 1, 3).".".substr($x, 4, 3);
-        break;
+            break;
         case 8: $y = substr($x, 0, 2).".".substr($x, 2, 3).".".substr($x, 5, 3);
-        break;
+            break;
         case 9: $y = substr($x, 0, 3).".".substr($x, 3, 3).".".substr($x, 6, 3);
-        break;
+            break;
 
         default: $y = "Out of length digit.";
-        break;
+            break;
     }
 
     if ($y == 0) {

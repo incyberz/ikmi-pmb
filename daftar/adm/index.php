@@ -5,7 +5,7 @@ $debug_mode = 0;
 
 include "../config.php";
 include "../global_var.php";
-include "../global_const.php";
+include "../../global_const.php";
 include "../assets/include/fungsi.php";
 
 echo "<input type='hidden' id='id_gelombang_aktif' value='$id_gelombang_aktif' />";

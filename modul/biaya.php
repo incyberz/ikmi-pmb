@@ -73,7 +73,7 @@
     </div>
 
     <p>
-      <small>Biaya Pendidikan diatas dapat dilakukan Program Relaksasi (pemotongan biaya berdasarkan Grade hasil tes PMB)</small>
+      <small>Biaya Pendidikan diatas dapat dilakukan Program Relaksasi (pemotongan biaya berdasarkan Gelombang Penerimaan, Grade hasil tes PMB)</small>
     </p>
   <hr>
     <h4>D. Biaya Pendidikan (Relaksasi)</h4>
@@ -81,24 +81,24 @@
       Setelah dilakukan Program Relaksasi Biaya, maka Biaya Pendidikan yang Harus dibayar Oleh Calon Mahasiswa Menjadi seperti Pada Tabel Berikut :
     </p>
 
+    <style>.wadah2{border:solid 1px #ccc; margin: 10px 0; padding: 10px;background:linear-gradient(#efe,#cfc)} .biru_tua{color: darkblue;}</style>
     <div class="wadah2">
-      <b>Program Studi Sarjana (S1)</b>
+      <b class='biru_tua'>PROGRAM STUDI SARJANA (S1)</b>
       <hr>
-      <style>.wadah2{border:solid 1px #ccc; margin: 10px 0; padding: 10px;background:linear-gradient(#efe,#cfc)}</style>
       <div class="row">
-        <div class="col-lg-6"><b>Grade A</b></div>
+        <div class="col-lg-6"><b>Gelombang 1 (Grade A)</b></div>
         <div class="col-lg-3">Kelas Pagi: <b>3.200.000</b></div>
         <div class="col-lg-3">Kelas Sore: <b>3.450.000</b></div>
       </div>      
       <hr>
       <div class="row">
-        <div class="col-lg-6"><b>Grade B</b></div>
+        <div class="col-lg-6"><b>Gelombang 2 (Grade B)</b></div>
         <div class="col-lg-3">Kelas Pagi: <b>3.800.000</b></div>
         <div class="col-lg-3">Kelas Sore: <b>4.050.000</b></div>
       </div>      
       <hr>
       <div class="row">
-        <div class="col-lg-6"><b>Grade C</b></div>
+        <div class="col-lg-6"><b>Gelombang 3 (Grade C)</b></div>
         <div class="col-lg-3">Kelas Pagi: <b>4.200.000</b></div>
         <div class="col-lg-3">Kelas Sore: <b>4.400.000</b></div>
       </div>      
@@ -106,22 +106,22 @@
     </div>
 
     <div class="wadah2">
-      <b>Program Studi Diploma (D3)</b>
+      <b class='biru_tua'>PROGRAM STUDI DIPLOMA (D3)</b>
       <hr>
       <div class="row">
-        <div class="col-lg-6"><b>Grade A</b></div>
+        <div class="col-lg-6"><b>Gelombang 1 (Grade A)</b></div>
         <div class="col-lg-3">Kelas Pagi: <b>2.450.000</b></div>
         <div class="col-lg-3">Kelas Sore: <b>2.700.000</b></div>
       </div>      
       <hr>
       <div class="row">
-        <div class="col-lg-6"><b>Grade B</b></div>
+        <div class="col-lg-6"><b>Gelombang 2 (Grade B)</b></div>
         <div class="col-lg-3">Kelas Pagi: <b>3.000.000</b></div>
         <div class="col-lg-3">Kelas Sore: <b>3.250.000</b></div>
       </div>      
       <hr>
       <div class="row">
-        <div class="col-lg-6"><b>Grade C</b></div>
+        <div class="col-lg-6"><b>Gelombang 3 (Grade C)</b></div>
         <div class="col-lg-3">Kelas Pagi: <b>4.200.000</b></div>
         <div class="col-lg-3">Kelas Sore: <b>4.400.000</b></div>
       </div>      
@@ -131,7 +131,8 @@
     <div>Catatan:</div>
     <p>
       <small>
-        Grade A,B,C  ditentukan oleh hasil passing grade tes PMB dan prestasi akademik yang diperoleh dari jenjang SMA/sedrajat, serta ditambah dengan program Relaksasi yang diberikan oleh Yayasan dari Biaya Pendidikan sesungguhnya berdasarkan SK Biaya Pendidikan Yayasan STT Multimedia Cirebon Nomor : 036/SK-KET/YP-STTMC/XII/2022
+        <!-- Grade A,B,C  ditentukan oleh hasil passing grade tes PMB dan prestasi akademik yang diperoleh dari jenjang SMA/sedrajat, serta ditambah dengan program Relaksasi yang diberikan oleh Yayasan dari Biaya Pendidikan sesungguhnya berdasarkan SK Biaya Pendidikan Yayasan STT Multimedia Cirebon Nomor : 036/SK-KET/YP-STTMC/XII/2022 -->
+        Grade A,B,C  ditentukan oleh Gelombang Penerimaan, hasil passing grade tes PMB dan prestasi akademik yang diperoleh dari jenjang SMA/sedrajat, serta ditambah dengan program Relaksasi yang diberikan oleh Yayasan dari Biaya Pendidikan sesungguhnya berdasarkan SK Biaya Pendidikan Yayasan STT Multimedia Cirebon Nomor : 036a/SK-KET/YP-STTMC/XII/2022
       </small>
     </p>
   </div>
