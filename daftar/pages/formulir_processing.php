@@ -2,7 +2,7 @@
 	<h5>Submit Processing</h5>
 	<hr>
 	
-<?php 
+<?php
 
 // echo "<pre>";
 // echo var_dump($_POST);
@@ -38,11 +38,11 @@
 # BLOK JALUR KIP
 # =====================================================
 $id_jalur = $_POST['id_jalur'];
-if($id_jalur==3) die("
-	Maaf, Jalur KIP sudah ditutup, silahkan Pilih Jalur lainnya.
-	<hr>
-	<a class='btn btn-primary' href='?formulir'>Kembali ke Formulir</a>
-	");
+// if($id_jalur==3) die("
+// 	Maaf, Jalur KIP sudah ditutup, silahkan Pilih Jalur lainnya.
+// 	<hr>
+// 	<a class='btn btn-primary' href='?formulir'>Kembali ke Formulir</a>
+// 	");
 
 # =====================================================
 # PROSES PERSETUJUAN
@@ -51,8 +51,9 @@ $syarat_indisabilitas = $_POST['syarat_indisabilitas'];
 $syarat_input_benar = $_POST['syarat_input_benar'];
 $syarat_bersedia = $_POST['syarat_bersedia'];
 
-if($syarat_indisabilitas!="on" or $syarat_input_benar!="on" or $syarat_bersedia!="on")
-	die("<div class='alert alert-danger'>Maaf, Anda belum menceklis semua persetujuan. | $link_back </div>");
+if ($syarat_indisabilitas!="on" or $syarat_input_benar!="on" or $syarat_bersedia!="on") {
+    die("<div class='alert alert-danger'>Maaf, Anda belum menceklis semua persetujuan. | $link_back </div>");
+}
 
 
 
@@ -68,40 +69,42 @@ $asal_sekolah = $_POST['asal_sekolah'];
 $id_nama_kec_sekolah = $_POST['id_nama_kec_sekolah'];
 
 
-if($id_sekolah==""){
+if ($id_sekolah=="") {
+    $jenis_sekolah = $_POST['jenis_sekolah'];
+    $status_sekolah = $_POST['status_sekolah'];
 
-	$jenis_sekolah = $_POST['jenis_sekolah'];
-	$status_sekolah = $_POST['status_sekolah'];
+    $id_kec_sekolah_sql = $id_nama_kec_sekolah;
+    if ($id_nama_kec_sekolah=="") {
+        $id_kec_sekolah_sql = "NULL";
+    }
 
-	$id_kec_sekolah_sql = $id_nama_kec_sekolah; 
-	if($id_nama_kec_sekolah=="") $id_kec_sekolah_sql = "NULL";
-
-	$s = "INSERT INTO tb_sekolah 
+    $s = "INSERT INTO tb_sekolah 
 	(id_kec_sekolah, nama_sekolah, alamat_sekolah,jenis_sekolah, status_sekolah) values 
 	($id_kec_sekolah_sql, '$asal_sekolah', NULL, $jenis_sekolah, $status_sekolah)";
-	$q = mysqli_query($cn,$s) or die(mysqli_error($cn));
+    $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 
-	echo "Save New Sekolah sukses.<hr>";
+    echo "Save New Sekolah sukses.<hr>";
+} else {
+    //cek id_kec sekolah
+    //zzz here duplicate save sekolah
+    $s = "SELECT id_kec_sekolah from tb_sekolah where id_sekolah=$id_sekolah";
+    $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
+    if (mysqli_num_rows($q)!=1) {
+        die("Sekolah asal dengan id: $id_sekolah tidak ditemukan.");
+    }
+    $d = mysqli_fetch_assoc($q);
 
-}else{
-	//cek id_kec sekolah
-	//zzz here duplicate save sekolah
-	$s = "SELECT id_kec_sekolah from tb_sekolah where id_sekolah=$id_sekolah";
-	$q = mysqli_query($cn,$s) or die(mysqli_error($cn));
-	if(mysqli_num_rows($q)!=1) die("Sekolah asal dengan id: $id_sekolah tidak ditemukan.");
-	$d = mysqli_fetch_assoc($q);
+    $id_kec_sekolah = $d['id_kec_sekolah'];
 
-	$id_kec_sekolah = $d['id_kec_sekolah'];
+    if ($id_kec_sekolah=="") {
+        //update id_kec_sekolah
+        $s = "UPDATE tb_sekolah set id_kec_sekolah=$id_nama_kec_sekolah where id_sekolah=$id_sekolah";
+        $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 
-	if($id_kec_sekolah==""){
-		//update id_kec_sekolah
-		$s = "UPDATE tb_sekolah set id_kec_sekolah=$id_nama_kec_sekolah where id_sekolah=$id_sekolah";
-		$q = mysqli_query($cn,$s) or die(mysqli_error($cn));
-
-		echo "Updating data sekolah.. OK";
-	}else{
-		echo "Data sekolah asal.. OK<hr>";
-	}
+        echo "Updating data sekolah.. OK";
+    } else {
+        echo "Data sekolah asal.. OK<hr>";
+    }
 }
 
 
@@ -110,7 +113,7 @@ if($id_sekolah==""){
 # TIMESTAMPS SUBMIT FORMULIR
 # =====================================================
 $s = "UPDATE tb_daftar set tanggal_submit_formulir=CURRENT_TIMESTAMP where id_daftar=$id_daftar";
-$q = mysqli_query($cn,$s) or die(mysqli_error($cn));
+$q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 
 echo "<div class='alert alert-info'>Pilihan Prodi:
 <ol>
