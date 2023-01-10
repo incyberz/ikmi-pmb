@@ -70,7 +70,7 @@
 
           <div class="opsi_step">
             <hr>
-            <?php if($langkah_class[2]=="sudah"){ ?>
+            <?php if ($langkah_class[2]=="sudah") { ?>
               Anda sudah melengkapi formulir pada Kamis, 12 November 2021 19:42 WIB <?=$img_check ?>
 
               <hr>
@@ -78,7 +78,7 @@
 
               <a href="?formulir_download" class="btn btn-success btn-sm" id="download_formulir">Download Formulir</a>
 
-            <?php }else{ ?>
+            <?php } else { ?>
               <hr>
               <a href="?formulir" class="btn btn-primary">Lengkapi Formulir</a>
 
@@ -104,9 +104,12 @@
     		<div class="ket_step" id="ket_step3">
           <div class="opsi_step"><hr></div>
           <ol>
-            <li>Jika Anda memilih Jalur Reguler Anda harus mengupload Bukti Transfer Pembayaran Formulir Pendaftaran</li>
-            <li>Jika Anda memilih Jalur KIP Kuliah Anda harus mengupload Bukti bahwa Anda sudah terdaftar di website KIP Kuliah Kemdikbud</li>
-            <li>Tunggulah proses verifikasi oleh petugas</li>
+            <li>Segera lakukan pembayaran biaya pendaftaran Sebesar Rp. 200.000 ke rekening BRI an. STMIK IKMI Cirebon No Rek. 4149-01-000004-30-5</li>
+            <li>Segera uploadkan bukti transfer pembayaran
+            biaya pendaftaran ke Menu Upload dibawah 
+            ini</li>
+            <li>Tunggu proses verifikasi dari admin petugas 
+            pendaftaran</li>
           </ol>
 
           <div class="opsi_step">

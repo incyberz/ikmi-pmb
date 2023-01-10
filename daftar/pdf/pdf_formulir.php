@@ -200,18 +200,18 @@ $pdf->Cell(30, 5, 'TTL', $cell_border, 0);
 $pdf->Cell(2, 5, ':', $cell_border, 0);
 $pdf->Cell(73, 5, "$tempat_lahir, ".date("d-m-Y", strtotime($tanggal_lahir)), $cell_border, 0);
 
-$pdf->Cell(30, 5, 'Jurusan', $cell_border, 0);
+$pdf->Cell(30, 5, 'Jurusan / NISN', $cell_border, 0);
 $pdf->Cell(2, 5, ':', $cell_border, 0);
-$pdf->Cell(50, 5, $prodi_asal, $cell_border, 1);
+$pdf->Cell(50, 5, "$prodi_asal / $nisn", $cell_border, 1);
 
 // 9
 $pdf->Cell(30, 5, 'Alamat KTP', $cell_border, 0);
 $pdf->Cell(2, 5, ':', $cell_border, 0);
 $pdf->Cell(73, 5, "$alamat_desa_ktp", $cell_border, 0);
 
-$pdf->Cell(30, 5, 'NISN', $cell_border, 0);
+$pdf->Cell(30, 5, ' ', $cell_border, 0);
 $pdf->Cell(2, 5, ' ', $cell_border, 0);
-$pdf->Cell(50, 5, "$nisn", $cell_border, 1);
+$pdf->Cell(50, 5, ' ', $cell_border, 1);
 
 // 10
 $pdf->Cell(30, 5, ' ', $cell_border, 0);
@@ -227,18 +227,18 @@ $pdf->Cell(30, 5, 'Alamat Domisili', $cell_border, 0);
 $pdf->Cell(2, 5, ':', $cell_border, 0);
 $pdf->Cell(73, 5, "$alamat_desa_domisili", $cell_border, 0);
 
-$pdf->Cell(30, 5, 'Ayah', $cell_border, 0);
-$pdf->Cell(2, 5, ':', $cell_border, 0);
-$pdf->Cell(50, 5, "$nama_ayah", $cell_border, 1);
+$pdf->Cell(30, 5, ' ', $cell_border, 0);
+$pdf->Cell(2, 5, ' ', $cell_border, 0);
+$pdf->Cell(50, 5, ' ', $cell_border, 1);
 
 // 12
 $pdf->Cell(30, 5, ' ', $cell_border, 0);
 $pdf->Cell(2, 5, ' ', $cell_border, 0);
 $pdf->Cell(73, 5, "$nama_kab_domisili $kode_pos_nama_kec_domisili", $cell_border, 0);
 
-$pdf->Cell(30, 5, 'Ibu', $cell_border, 0);
+$pdf->Cell(30, 5, 'Ayah / Ibu', $cell_border, 0);
 $pdf->Cell(2, 5, ':', $cell_border, 0);
-$pdf->Cell(50, 5, "$nama_ibu", $cell_border, 1);
+$pdf->Cell(50, 5, "$nama_ayah / $nama_ibu", $cell_border, 1);
 
 // 13
 $pdf->Cell(30, 5, 'Status', $cell_border, 0);
