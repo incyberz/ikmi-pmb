@@ -50,16 +50,17 @@ while ($d=mysqli_fetch_assoc($q)) {
 }
 
 $id_persyaratan = 2; //bukti_bayar
-if ($id_jalur==3) {
-    $id_persyaratan = 3;
-} //bukti kip
+// if ($id_jalur==3) {
+//     $id_persyaratan = 3;
+// } //bukti kip
+
 
 $s = "SELECT a.tanggal_verifikasi_upload,b.nama_persyaratan from tb_verifikasi_upload a 
 join tb_persyaratan b on a.id_persyaratan=b.id_persyaratan 
 where a.id_daftar=$id_daftar and a.id_persyaratan=$id_persyaratan";
 $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 if (mysqli_num_rows($q)!=1) {
-    die("Persyaratan tidak ditemukan. ".mysqli_error($cn));
+    die("Persyaratan tidak ditemukan.<hr>$s ".mysqli_error($cn));
 }
 while ($d=mysqli_fetch_assoc($q)) {
     $tanggal_verifikasi_upload = $d['tanggal_verifikasi_upload'];

@@ -1,6 +1,9 @@
 <h2>Login As Pendaftar</h2>
-<?php 
-function undef($z){ return "<hr><span style='color:red'>Error at AJAX. Index <u>$z</u> belum terdefinisi.</span><hr>";}
+<?php
+function undef($z)
+{
+    return "<hr><span style='color:red'>Error at AJAX. Index <u>$z</u> belum terdefinisi.</span><hr>";
+}
 
 
 $email_calon = isset($_GET['email_calon']) ? $_GET['email_calon'] : die(undef("email_calon"));
@@ -17,6 +20,6 @@ $_SESSION['pendaftar_id_calon'] = $id_calon;
 ?>
 
 <hr>
-Anda sudah login sebagai Pendaftar.
+Anda sudah login sebagai (Login As) Pendaftar atas nama: <b><?=$nama_calon ?></b>.
 <hr>
-<a href="../" target="_blank">Go to Pendaftar Home</a>
+<a href="../" target="_blank">Go to Dashboard milik <b><?=$nama_calon?></b></a>

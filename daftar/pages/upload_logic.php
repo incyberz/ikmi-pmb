@@ -1,5 +1,5 @@
 <?php
-
+$ada_belum_upload = 0;
 
 // $s = "SELECT a.* from tb_persyaratan a";
 $s = "SELECT a.* from tb_persyaratan a LIMIT 3"; // TA2023
@@ -70,6 +70,7 @@ if (mysqli_num_rows($q)) {
             $status_upload_show = "<small><i class='merah'>Belum Upload</i></small>";
             $status_verifikasi = "<span class='red'>Belum Upload</span>";
             $disable_upload = '';
+            $ada_belum_upload++;
         } elseif ($tanggal_verifikasi_upload=="") {
             $status_verifikasi = "<span class='red'>Belum diverifikasi</span><br><a href='$link_wa_hubungi_petugas' target='_blank'>Hubungi Petugas $img_wa</a>";
             $disable_upload = '';
@@ -122,35 +123,6 @@ if (mysqli_num_rows($q)) {
           };
         </script>
         ";
-
-        /*if (($id_jalur==3 and $id_persyaratan==2) or ($id_jalur!=3 and $id_persyaratan==3)) {
-        } else {
-            # ============================================
-            # JIKA ...
-            # ============================================
-            $i++;
-            $rows_persyaratan .= "
-          <div class='row' style='margin-bottom: 20px'>
-            <div class='col-lg-6'>
-              <h5 style='color: #005; font-weight:bold'>$i. $nama_persyaratan</h5>
-              <div style='background: linear-gradient(#fff,#adf); margin:10px 0; padding: 10px; border-radius:10px; border: solid 1px #eee'>
-              $blok_upload
-              </div>
-            </div>
-            <div class='col-lg-6'>
-              <div class='row'>
-                <div class='col-5'>
-                  $status_upload_show
-                  $img_persyaratan
-                </div>
-                <div class='col-7'>
-                  $status_verifikasi
-                </div>
-              </div>
-            </div>
-          </div>
-          ";
-        } */
 
 
         $i++;

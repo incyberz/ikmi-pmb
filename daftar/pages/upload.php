@@ -1,7 +1,7 @@
 <section id="upload" class="">
   <div class="container">
 
-    <?php 
+    <?php
     include 'cek_submit_formulir.php';
     include "upload_process.php";
     include "upload_logic.php";
@@ -38,8 +38,18 @@
     <div class="alert alert-info">
       Saat Anda sudah melengkapi formulir dan upload persyaratan maka Petugas PMB akan memberikan Jadwal Tes untuk Anda.
       <hr>
-      <a href="?jadwal_tes" class="btn btn-primary btn-sm">Lihat Jadwal Tes</a> 
-      <a href="?formulir_download" class="btn btn-primary btn-sm">Download Formulir</a> 
+      <?php
+      // disable jadwal test dan download formulir jika ada belum upload
+      if ($ada_belum_upload) {
+          //echo "<div class='alert alert-info'>Belum bisa download formulir karena ada persyaratan yang belum diupload/diverifikasi</div>";
+      } else {
+          echo "
+          <a href='?jadwal_tes' class='btn btn-primary btn-sm'>Lihat Jadwal Tes</a> 
+          <a href='?formulir_download' class='btn btn-primary btn-sm'>Download Formulir</a> 
+        ";
+      }
+
+    ?>
     </div>
 
 
@@ -48,7 +58,9 @@
 
   </div>
 </section>
-<?php if($tanggal_lulus_tes!="" and $status_lulus==1) include "pages/upload_regisu.php"; ?>
+<?php if ($tanggal_lulus_tes!="" and $status_lulus==1) {
+    include "pages/upload_regisu.php";
+} ?>
 
 
 <script type="text/javascript">
