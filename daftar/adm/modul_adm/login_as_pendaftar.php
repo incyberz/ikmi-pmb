@@ -22,4 +22,4 @@ $_SESSION['pendaftar_id_calon'] = $id_calon;
 <hr>
 Anda sudah login sebagai (Login As) Pendaftar atas nama: <b><?=$nama_calon ?></b>.
 <hr>
-<a href="../" target="_blank">Go to Dashboard milik <b><?=$nama_calon?></b></a>
+<a class="btn btn-primary btn-sm" href="../" target="_blank">Go to Dashboard milik <b><?=$nama_calon?></b></a>
