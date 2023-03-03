@@ -58,9 +58,9 @@ $sql_tanggal_submit = "1";
 if ($admin_level==1) {
     $sql_status_akun = " a.status_akun=1 ";
 }
-if ($admin_level==1) {
-    $sql_status_wa_or_mail = " (status_no_wa = 1 OR status_email = 1) ";
-}
+// if ($admin_level==1) {
+//     $sql_status_wa_or_mail = " (status_no_wa = 1 OR status_email = 1) ";
+// }
 if ($admin_level==1) {
     $sql_tanggal_submit = " c.tanggal_submit_formulir is not null ";
 }
@@ -149,6 +149,7 @@ if ($jumlah_rows and $is_get_csv) {
 }
 
 $s .= " LIMIT  $limit_awal,$limit";
+// die("<h3>$s</h3>");
 $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 
 
@@ -256,8 +257,8 @@ if ($jumlah_rows) {
 
 
         $s2 = "SELECT * from tb_verifikasi_upload a 
-    join tb_persyaratan b on a.id_persyaratan=b.id_persyaratan 
-    where id_daftar=$id_daftar";
+        join tb_persyaratan b on a.id_persyaratan=b.id_persyaratan 
+        where id_daftar=$id_daftar";
         $q2 = mysqli_query($cn, $s2) or die("Tidak dapat mengakses data upload. ".mysqli_error($cn));
         if (mysqli_num_rows($q2)) {
             while ($d2=mysqli_fetch_assoc($q2)) {
@@ -302,9 +303,9 @@ if ($jumlah_rows) {
         $akun_show = "$link_wa_calon $link_email_calon";
 
         $login_as = "
-    <a href='?login_as_pendaftar&email_calon=$email_calon&nama_calon=$nama_calon&id_calon=$id_calon&id_daftar=$id_daftar' target='_blank'>
-      <img class='img_aksi' id='img_aksi__login_as' src='img/icons/login_as.png'>
-    </a>";
+        <a href='?login_as_pendaftar&email_calon=$email_calon&nama_calon=$nama_calon&id_calon=$id_calon&id_daftar=$id_daftar' target='_blank'>
+        <img class='img_aksi' id='img_aksi__login_as' src='img/icons/login_as.png'>
+        </a>";
 
         $set_pass = "";
 
@@ -318,18 +319,18 @@ if ($jumlah_rows) {
         $super_delete = "";
 
         $rows_pendaftar .= "
-    <tr>
-      <td align=center>$i</td>
-      <td align=center>$id_gelombang</td>
-      <td align=center>$tanggal_daftar_show</td>
-      <td align=center style='$sty_jalur'>$singkatan_jalur</td>
-      <td align=center style='$sty_prodi'>$singkatan_prodi1</td>
-      <td>$img_profil_calon $nama_calon_show</td>
-      <td align=center>$akun_show</td>
-      <td align=center>$formulir_show</td>
-      <td align=center>$link_img_syarat[1] $link_img_syarat[2] </td>
-      <td align=center>$login_as $set_pass $switch_prodi $super_delete</td>
-    </tr>";
+        <tr>
+        <td align=center>$i</td>
+        <td align=center>$id_gelombang</td>
+        <td align=center>$tanggal_daftar_show</td>
+        <td align=center style='$sty_jalur'>$singkatan_jalur</td>
+        <td align=center style='$sty_prodi'>$singkatan_prodi1</td>
+        <td>$img_profil_calon $nama_calon_show</td>
+        <td align=center>$akun_show</td>
+        <td align=center>$formulir_show</td>
+        <td align=center>$link_img_syarat[1] $link_img_syarat[2] </td>
+        <td align=center>$login_as $set_pass $switch_prodi $super_delete</td>
+        </tr>";
     }
 }
 

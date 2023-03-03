@@ -1,4 +1,4 @@
-<?php 
+<?php
 $is_login = 0;
 $link_wa_lupa_pass = "";
 $no_wa_petugas = "083821651265"; //Nomor FO
@@ -8,49 +8,46 @@ $link_wa_lupa_pass = "https://api.whatsapp.com/send?phone=62$no_wa_petugas&text=
 
 $email = "";
 $pesan = "Silahkan Anda login memakai email dan password pada saat Anda melakukan Pendaftaran Akun!";
-if(isset($_POST['btn_login'])){
+if (isset($_POST['btn_login'])) {
+    $email = strip_tags($_POST['email']);
+    $password = strip_tags($_POST['password']);
 
-  $email = strip_tags($_POST['email']);
-  $password = strip_tags($_POST['password']);
+    require_once "config.php";
 
-  require_once "config.php";
-
-  $s = "SELECT a.*,b.id_daftar,c.id_calon from tb_akun a 
+    $s = "SELECT a.*,b.id_daftar,c.id_calon from tb_akun a 
   join tb_daftar b on a.email=b.email 
   join tb_calon c on a.email=c.email 
   where a.email='$email' and a.password='$password'";
-  $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
-  if(mysqli_num_rows($q)==1){
-    $d = mysqli_fetch_assoc($q);
+    $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
+    if (mysqli_num_rows($q)==1) {
+        $d = mysqli_fetch_assoc($q);
 
-    $nama_calon = $d['nama_calon'];
-    $no_wa = $d['no_wa'];
-    $status_email = $d['status_email'];
-    $status_no_wa = $d['status_no_wa'];
-    $id_calon = $d['id_calon'];
-    $id_daftar = $d['id_daftar'];
+        $nama_calon = $d['nama_calon'];
+        $no_wa = $d['no_wa'];
+        $status_email = $d['status_email'];
+        $status_no_wa = $d['status_no_wa'];
+        $id_calon = $d['id_calon'];
+        $id_daftar = $d['id_daftar'];
 
-    $is_login = 1;
+        $is_login = 1;
 
-    $pesan = "Welcome $nama_calon!";
+        $pesan = "Welcome $nama_calon!";
 
-    if(!isset($_SESSION)) session_start();
-    $_SESSION['pendaftar_email'] = $email;
-    $_SESSION['pendaftar_nama'] = $nama_calon;
-    $_SESSION['pendaftar_admin_level'] = 1;
-    $_SESSION['pendaftar_id_daftar'] = $id_daftar;
-    $_SESSION['pendaftar_id_calon'] = $id_calon;
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $_SESSION['pendaftar_email'] = $email;
+        $_SESSION['pendaftar_nama'] = $nama_calon;
+        $_SESSION['pendaftar_admin_level'] = 1;
+        $_SESSION['pendaftar_id_daftar'] = $id_daftar;
+        $_SESSION['pendaftar_id_calon'] = $id_calon;
 
-    header("Location: index.php");
-
-
-  }else{
-    $pesan = "<div class='alert alert-danger'>Maaf, username dan password tidak cocok.</div>";
-
-  }
-
-
-  
+        // header("Location: index.php?formulir");
+        header("Location: index.php?formulir"); // update by kahoyong
+        exit;
+    } else {
+        $pesan = "<div class='alert alert-danger'>Maaf, username dan password tidak cocok.</div>";
+    }
 }
 
 ?>

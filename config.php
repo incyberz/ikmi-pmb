@@ -7,6 +7,7 @@
 # ============================================================
 
 
+
 // Header =============================================
 $nama_si 	= "PMB ONLINE STMIK IKMI";
 $judul_menu = "PMB IKMI";
@@ -40,7 +41,7 @@ if ($online_version) {
     $db_server = "localhost";
     $db_user = "pmbikmiac_admikmi";
     $db_pass = "e%]Uzmix[A;m";
-    $db_name = "pmbikmiac_akademik";
+    $db_name = "pmbikmiac_siakad";
 } else {
     $db_server = "localhost";
     $db_user = "root";
@@ -278,15 +279,15 @@ function opsi2angka($a)
 {
     switch (strtolower($a)) {
         case 'a': return 1;
-        break;
+            break;
         case 'b': return 2;
-        break;
+            break;
         case 'c': return 3;
-        break;
+            break;
         case 'd': return 4;
-        break;
+            break;
         case 'e': return 5;
-        break;
+            break;
     }
 }
 
@@ -294,15 +295,15 @@ function angka2opsi($a)
 {
     switch (strtolower($a)) {
         case '1': return "A";
-        break;
+            break;
         case '2': return "B";
-        break;
+            break;
         case '3': return "C";
-        break;
+            break;
         case '4': return "D";
-        break;
+            break;
         case '5': return "E";
-        break;
+            break;
     }
 }
 
