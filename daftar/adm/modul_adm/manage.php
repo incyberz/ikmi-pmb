@@ -43,7 +43,9 @@
 		Manage Prodi
 	</div>
 	<div class="list_manage">
-		Manage Jalur
+		<a href="?manage_jalur">
+			Manage Jalur
+		</a>
 	</div>
 
 	<div class="list_manage">

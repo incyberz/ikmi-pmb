@@ -269,31 +269,35 @@ for ($i=0; $i < count($rnama_prodi); $i++) {
             <div class="form-group bundle">
               <?php
               // echo var_dump($rid_jalur);
-for ($i=0; $i < count($rnama_jalur); $i++) {
-    $j = $i+1;
-    $jalur_checked = ($id_jalur!="" and $id_jalur==$rid_jalur[$i]) ? 'checked' : '';
+              for ($i=0; $i < count($rnama_jalur); $i++) {
+                $j = $i+1;
+                $jalur_checked = ($id_jalur!="" and $id_jalur==$rid_jalur[$i]) ? 'checked' : '';
 
-    $disable_jalur = '';
-    $ket_jalur = '';
-    $hide_jalur = '';
-    // if($rid_jalur[$i]==3 and $tahun_lulus<$batas_tahun_kip) $disable_jalur = 'disabled';
-    if ($rid_jalur[$i]==3 and $tahun_lulus<2021) {
-        $disable_jalur = 'disabled';
-        $jalur_checked = '';
-        // $hide_jalur = " style='display:none' ";
-        // $ket_jalur = "(Jalur KIP Kuliah Sudah Ditutup)";
-    }
+                $disable_jalur = $rstatus_jalur[$i]==1 ? '' : 'disabled';
+                $disable_jalur_ket = $rstatus_jalur[$i]==1 ? '' : '<small style="font-style:italic">(Jalur ini sudah ditutup)</small>';
+                $ket_jalur = '';
+                $hide_jalur = '';
+                // if($rid_jalur[$i]==3 and $tahun_lulus<$batas_tahun_kip) $disable_jalur = 'disabled';
+                if ($rid_jalur[$i]==3 and $tahun_lulus<2021) {
+                    $disable_jalur = 'disabled';
+                    $jalur_checked = '';
+                    // $hide_jalur = " style='display:none' ";
+                    // $ket_jalur = "(Jalur KIP Kuliah Sudah Ditutup)";
+                }
 
-    if ($rid_jalur[$i]==4) {
-        $disable_jalur = 'disabled';
-        $hide_jalur = " style='display:none' ";
-        // $ket_jalur = "(Sudah Ditutup)";
-    }
+                if ($rid_jalur[$i]==4) {
+                    $disable_jalur = 'disabled';
+                    $hide_jalur = " style='display:none' ";
+                    // $ket_jalur = "(Sudah Ditutup)";
+                }
 
-    echo "
-                <div $hide_jalur><label><input type='radio' id='input_jalur__$rid_jalur[$i]' class='input_radio input_jalur' name='id_jalur' value='$j' required $jalur_checked $disable_jalur> $rnama_jalur[$i]</label> <span style='color:darkred'>$ket_jalur</span></div>
+                echo "
+                <div $hide_jalur><label><input type='radio' id='input_jalur__$rid_jalur[$i]' class='input_radio input_jalur' name='id_jalur' value='$j' required $jalur_checked $disable_jalur> $rnama_jalur[$i]</label> <span style='color:darkred'>$ket_jalur$disable_jalur_ket</span></div>
                 ";
-} ?>
+              } 
+              
+              
+              ?>
 
             </div>
             <?=$catatan_jalur_daftar ?>

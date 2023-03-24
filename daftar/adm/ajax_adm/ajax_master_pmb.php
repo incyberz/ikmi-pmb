@@ -92,7 +92,10 @@ c.*,
 (select nama_kec from tb_kec where id_kec=b.id_nama_kec_sekolah) as kecamatan_sekolah,
 (select nama_kec from tb_kec where id_kec=b.id_nama_kec_ktp) as kecamatan_ktp,
 (select nama_kec from tb_kec where id_kec=b.id_nama_kec_domisili) as kecamatan_domisili,
-(select nama_kab from tb_kab where id_kab=b.id_kab_tempat_lahir) as tempat_lahir
+(select nama_kab from tb_kab where id_kab=b.id_kab_tempat_lahir) as tempat_lahir,
+
+(select tanggal_verifikasi_upload from tb_verifikasi_upload where id_daftar=c.id_daftar and id_persyaratan=1 and status_upload=1) as tanggal_verifikasi_profil,
+(select tanggal_verifikasi_upload from tb_verifikasi_upload where id_daftar=c.id_daftar and id_persyaratan=2 and status_upload=1) as tanggal_verifikasi_bukti_bayar 
 
 
 
@@ -113,6 +116,8 @@ AND $sql_nama_calon
 
 ORDER BY $order_by 
 ";
+
+// echo("<pre>$s</pre>");
 $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 $jumlah_rows = mysqli_num_rows($q);
 if ($jumlah_rows and $is_get_csv) {
