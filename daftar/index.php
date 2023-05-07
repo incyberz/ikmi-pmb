@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // session_destroy(); die("Session destroyed!");
 if (0) {
     session_unset();

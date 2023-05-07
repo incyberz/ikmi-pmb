@@ -3,7 +3,6 @@
 // var_dump($_SESSION);
 // echo '</pre>';
 
-$tahun_pmb = 2023; /// zzz debug
 
 $img_help = "<img src='../assets/img/icons/help.png' width='20px'>";
 $img_check = "<img src='../assets/img/icons/check.png' width='20px'>";
