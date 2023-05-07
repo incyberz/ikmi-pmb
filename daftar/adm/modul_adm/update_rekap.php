@@ -3,14 +3,13 @@
 $max_rekap_kec_ktp = 15;
 $max_rekap_kec_dom = 15;
 $max_rekap_kab = 10;
-
+$max_limit_sekolah = 15;
 
 
 
 
 echo "<hr>Updating Rekap Kecamatan KTP...<hr>";
-$s = "
-SELECT a.id_kec, a.nama_kec, b.nama_kab, 
+$s = "SELECT a.id_kec, a.nama_kec, b.nama_kab, 
 (SELECT COUNT(1) from tb_calon WHERE id_nama_kec_ktp=a.id_kec) as jml_kec  
 FROM tb_kec a 
 join tb_kab b on a.id_kab=b.id_kab 
@@ -50,8 +49,7 @@ while ($d=mysqli_fetch_assoc($q)) {
 
 
 echo "<hr>Updating Rekap Kecamatan Domisili...<hr>";
-$s = "
-SELECT a.id_kec, a.nama_kec, b.nama_kab, 
+$s = "SELECT a.id_kec, a.nama_kec, b.nama_kab, 
 (SELECT COUNT(1) from tb_calon WHERE id_nama_kec_domisili=a.id_kec) as jml_kec  
 FROM tb_kec a 
 join tb_kab b on a.id_kab=b.id_kab 
@@ -92,8 +90,7 @@ while ($d=mysqli_fetch_assoc($q)) {
 
 
 echo "<hr>Updating Rekap Kabupaten...<hr>";
-$s = "
-SELECT d.id_kab, d.nama_kab, 
+$s = "SELECT d.id_kab, d.nama_kab, 
 
 (SELECT COUNT(1) from tb_calon a 
 JOIN tb_kec b ON a.id_nama_kec_ktp=b.id_kec 
@@ -135,8 +132,7 @@ while ($d=mysqli_fetch_assoc($q)) {
 
 
 echo "<hr>Updating Rekap Kabupaten...<hr>";
-$s = "
-SELECT e.id_prov, e.nama_prov, 
+$s = "SELECT e.id_prov, e.nama_prov, 
 
 (SELECT COUNT(1) from tb_calon a 
 JOIN tb_kec b ON a.id_nama_kec_ktp=b.id_kec 
@@ -183,12 +179,11 @@ while ($d=mysqli_fetch_assoc($q)) {
 
 
 echo "<hr>Updating Rekap Sekolah...<hr>";
-$s = "
-SELECT a.id_sekolah, a.nama_sekolah,
+$s = "SELECT a.id_sekolah, a.nama_sekolah,
 (SELECT COUNT(1) FROM tb_calon b WHERE b.id_sekolah = a.id_sekolah ) as jml_sekolah 
 FROM tb_sekolah a 
 ORDER BY jml_sekolah DESC 
-LIMIT 15 
+LIMIT $max_limit_sekolah
 ";
 
 $q = mysqli_query($cn,$s) or die(mysqli_error($cn));

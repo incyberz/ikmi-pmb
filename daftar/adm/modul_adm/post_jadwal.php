@@ -16,7 +16,8 @@
 
   Gelombang: 
   <?php 
-  for ($i=1; $i < 5; $i++) echo "<a = href='?post_jadwal&sel_g=$i'>$i</a> | ";
+  $id_gelombang_selected = $id_angkatan.$sel_g;
+  for ($i=1; $i <= 4; $i++) echo "<a = href='?post_jadwal&sel_g=$i'>$i</a> | ";
 
   $s = "SELECT * from tb_jadwal_tes where id_gelombang = $id_angkatan$sel_g";
   $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
@@ -45,7 +46,7 @@
       $tanggal_pelaksanaan_show = "<span style='color:red'>Belum dilaksanakan</span>";
       if($tanggal_pelaksanaan!="") $tanggal_pelaksanaan_show = "Terlaksana pada $tanggal_pelaksanaan";
 
-      $link_delete = "<a href='#' class='not_ready delete_jadwal' id='delete_jadwal__$id_jadwal_tes' style='color:red'>Delete</a>";
+      $link_delete = "<a href='#' class='delete_jadwal' id='delete_jadwal__$id_jadwal_tes' style='color:red'>Delete</a>";
       $link_assign = "<a href='?assign_jadwal&id_jadwal_tes=$id_jadwal_tes' >Assign</a>";
       $link_kelulusan = "<a href='?set_kelulusan&id_jadwal_tes=$id_jadwal_tes' >Kelulusan</a>";
 
@@ -70,6 +71,7 @@
 
 <div class="div_view" id="div_list">
   <!-- <p>Berikut adalah list jadwal test yang dapat Anda assign.</p> -->
+  <span class=debug id=id_gelombang_selected><?=$id_gelombang_selected?></span>
 
   <table class="table table-bordered" id="pj">
     <thead>
@@ -94,4 +96,118 @@
 
 
 
-<script type="text/javascript" src="modul_adm/post_jadwal.js"></script>
+<script type="text/javascript">
+function set_show(id) {
+  $(".div_view").hide();
+  if (id === "div_list") $("#div_list").slideDown();
+  if (id === "div_selected") $("#div_selected").slideDown();
+}
+
+$(document).ready(function () {
+  $(".nama_tes").click(function () {
+    var val = $(this).val();
+    var tid = $(this).prop("id");
+    var rid = tid.split("__");
+    var id_jadwal_tes = rid[1];
+
+    $("#selected__nama_tes").text($("#nama_tes__" + id_jadwal_tes).text());
+    $("#selected__id_jadwal_tes").text(id_jadwal_tes);
+    $("#selected__nama_tes").text($("#nama_tes__" + id_jadwal_tes).text());
+    $("#selected__nama_tes2").text($("#nama_tes__" + id_jadwal_tes).text());
+    $("#selected__tanggal_tes").text(
+      $("#tanggal_tes__" + id_jadwal_tes).text()
+    );
+    $("#selected__tanggal_pelaksanaan").text(
+      $("#tanggal_pelaksanaan__" + id_jadwal_tes).text()
+    );
+    $("#selected__id_gelombang").text(
+      $("#id_gelombang__" + id_jadwal_tes).text()
+    );
+    $("#selected__link_tes").text($("#link_tes__" + id_jadwal_tes).text());
+    $("#selected__keterangan").text($("#keterangan__" + id_jadwal_tes).text());
+
+    $("#btn_assign_peserta_tes").prop(
+      "href",
+      "?assign_jadwal&id_jadwal_tes=" + id_jadwal_tes + ""
+    );
+    set_show("div_selected");
+  });
+
+  $("#back_to_list").click(function () {
+    set_show("div_list");
+  });
+
+  $("#btn_tambah_jadwal_tes").click(function () {
+    let x = confirm("Tambah Jadwal baru?");
+    if (!x) return;
+    let id_gelombang_selected = $("#id_gelombang_selected").text();
+
+    let link_ajax = "ajax_adm/ajax_tambah_jadwal_tes.php?id_gelombang_selected=" + id_gelombang_selected;
+    $.ajax({
+      url: link_ajax,
+      success: function (a) {
+        if (a.trim() == "1__") {
+          location.reload();
+        } else {
+          alert(a);
+        }
+      },
+    });
+  });
+
+  $(".delete_jadwal").click(function () {
+    var x = confirm("Hapus Jadwal ini?");
+    if (!x) return;
+    var tid = $(this).prop("id");
+    var rid = tid.split("__");
+    var id_jadwal_tes = rid[1];
+
+    var link_ajax =
+      "ajax_adm/ajax_hapus_jadwal_tes.php?id_jadwal_tes=" + id_jadwal_tes;
+    $.ajax({
+      url: link_ajax,
+      success: function (a) {
+        if (a.trim() == "1__") {
+          location.reload();
+        } else {
+          alert(a);
+        }
+      },
+    });
+  });
+
+  $(".editable").click(function () {
+    var tid = $(this).prop("id");
+    var rid = tid.split("__");
+    var field = rid[0];
+    var id_jadwal_tes = rid[1];
+    var isi = $(this).text();
+
+    var isi2 = prompt("New value:", isi);
+    if (isi2.trim() == "") return;
+    // var x = confirm("Yakin untuk mengubah data:\n\n"+isi+"\n\n-- menjadi --\n\n"+isi2+" ?"); if(!x) return;
+
+    var link_ajax =
+      "ajax_adm/ajax_ubah_jadwal_tes.php?id_jadwal_tes=" +
+      id_jadwal_tes +
+      "&field=" +
+      field +
+      "&isi=" +
+      isi2 +
+      "";
+    // alert(link_ajax);
+    // return;
+    $.ajax({
+      url: link_ajax,
+      success: function (a) {
+        if (a.trim() == "1__") {
+          location.reload();
+        } else {
+          alert(a);
+        }
+      },
+    });
+  });
+});
+
+</script>

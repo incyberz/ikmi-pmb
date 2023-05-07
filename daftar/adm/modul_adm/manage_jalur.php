@@ -94,17 +94,17 @@ $judultb = "
 <script type="text/javascript">
   $(document).ready(function(){
 
-    var manage = $("#manage").val();
+    let manage = $("#manage").val();
     $("#btn_tambah_"+manage).fadeIn();
 
 
 
     $("#btn_tambah_jalur").click(function(){
-      // var x = confirm("Tambah Jalur baru?"); if(!x) return;
-      var id_jalur = prompt("Jalur baru: (4 digit, contoh: 2022)","2022");
-      if(!id_jalur) return;
+      // let x = confirm("Tambah Jalur baru?"); if(!x) return;
+      let nama_jalur = prompt('Jalur baru:','NEW JALUR');
+      if(!nama_jalur) return;
 
-      var link_ajax = "ajax_adm/ajax_tambah_jalur.php?id_jalur="+id_jalur;
+      let link_ajax = "ajax_adm/ajax_tambah_jalur.php?nama_jalur="+nama_jalur;
       $.ajax({
         url:link_ajax,
         success:function(a){
@@ -118,12 +118,12 @@ $judultb = "
     })
 
     $(".deletable").click(function(){
-      var x = confirm("Hapus Jalur ini?"); if(!x) return;
-      var tid = $(this).prop("id");
-      var rid = tid.split("__");
-      var id_jalur = rid[1];
+      let x = confirm("Hapus Jalur ini?"); if(!x) return;
+      let tid = $(this).prop("id");
+      let rid = tid.split("__");
+      let id_jalur = rid[1];
 
-      var link_ajax = "ajax_adm/ajax_hapus_jalur.php?id_jalur="+id_jalur;
+      let link_ajax = "ajax_adm/ajax_hapus_jalur.php?id_jalur="+id_jalur;
       $.ajax({
         url:link_ajax,
         success:function(a){
@@ -138,22 +138,17 @@ $judultb = "
 
 
     $(".editable").click(function(){
-      var tid = $(this).prop("id");
-      var rid = tid.split("__");
-      var field = rid[0];
-      var id_jalur = rid[1];
-      var isi = $(this).text();
+      let tid = $(this).prop("id");
+      let rid = tid.split("__");
+      let kolom = rid[0];
+      let id_jalur = rid[1];
+      let isi = $(this).text();
 
-      var isi2 = prompt("New value:",isi); if(isi2.trim()=="") return;
-      // var x = confirm("Yakin untuk mengubah data:\n\n"+isi+"\n\n-- menjadi --\n\n"+isi2+" ?"); if(!x) return;
+      let isi2 = prompt("New value:",isi); if(isi2.trim()=="") return;
+      // let x = confirm("Yakin untuk mengubah data:\n\n"+isi+"\n\n-- menjadi --\n\n"+isi2+" ?"); if(!x) return;
       
-
-
-
-
-      var link_ajax = "ajax_adm/ajax_ubah_jalur.php?id_jalur="+id_jalur+"&field="+field+"&isi="+isi2+"";
-      // alert(link_ajax);
-      // return;
+      let link_ajax = "ajax_adm/ajax_ubah_jalur.php?id_jalur="+id_jalur+"&kolom="+kolom+"&isi="+isi2+"";
+      // alert(link_ajax); return;
       $.ajax({
         url:link_ajax,
         success:function(a){

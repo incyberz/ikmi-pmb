@@ -166,6 +166,13 @@ if (!isset($_SESSION['admpmb_email'])) {
 
   <script src="js/jquery.min.js"></script>
   <style type="text/css">
+
+    .debug{
+      background: red;
+      display: nonea;
+      border: solid 3px red;
+      color: white;
+    }
     .help{
       cursor: pointer;
       vertical-align: super;
@@ -205,8 +212,7 @@ if (!isset($_SESSION['admpmb_email'])) {
     .img_wa_disabled{
       cursor: not-allowed;
     }
-  </style>
-  <style type="text/css">
+
     td,th{
       font-size: 10pt;
 

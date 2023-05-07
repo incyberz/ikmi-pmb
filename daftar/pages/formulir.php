@@ -49,7 +49,7 @@ while ($d=mysqli_fetch_assoc($q)) {
 }
 
 
-$s = "SELECT id_jalur,nama_jalur,status_jalur from tb_jalur";
+$s = "SELECT id_jalur,nama_jalur,status_jalur from tb_jalur ";
 $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 $i=0;
 while ($d=mysqli_fetch_assoc($q)) {
@@ -245,11 +245,11 @@ for ($i=1; $i < count($rstatus_sekolah); $i++) {
             <div class="form-group bundle">
               <label>Pilihan Prodi Pertama:</label>
               <?php
-for ($i=0; $i < count($rnama_prodi); $i++) {
-    $j = $i+1;
-    $prodi1_checked= ($id_prodi1==$rid_prodi[$i]) ? 'checked' : '';
-    echo "<div><label><input class='pp1 input_radio' id='pp1$j' type='radio' name='id_prodi1' value='$j' required $prodi1_checked> $rjenjang[$i] - $rnama_prodi[$i]</label></div>";
-} ?>
+              for ($i=0; $i < count($rnama_prodi); $i++) {
+                  $j = $i+1;
+                  $prodi1_checked= ($id_prodi1==$rid_prodi[$i]) ? 'checked' : '';
+                  echo "<div><label><input class='pp1 input_radio' id='pp1$j' type='radio' name='id_prodi1' value='$j' required $prodi1_checked> $rjenjang[$i] - $rnama_prodi[$i]</label></div>";
+              } ?>
             </div>
 
             <div class="form-group bundle">
