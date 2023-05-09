@@ -61,6 +61,9 @@ if (mysqli_num_rows($q)==1) {
 
       $hasil_tes_download = $tahun_pmb==2023 ? 'hasil_tes_download__ta2023' : 'hasil_tes_download';
 
+      $info_fakta_integ = $id_jalur==3 ? 'mengisi <u>Fakta Integritas</u> dan' : '';
+      $link_fakta_integ = $id_jalur==3 ? '<a class="btn btn-primary" target=_blank href="pdf/fakta_integritas_kip_2023.pdf">Download Fakta Integritas</a>' : '';
+
       $hasil_tes = "
       <div class='alert alert-success'><h4>Selamat Anda Lulus Tes</h4><hr>
         <p>Tanggal Kelulusan: <span style='color:#a4f'>$tanggal_lulus_tes_show</span></p>
@@ -68,7 +71,8 @@ if (mysqli_num_rows($q)==1) {
           Berdasarkan hasil Tes Potensi Akademik dalam proses seleksi Penerimaan Mahasiswa Baru $gelombang_show, yang telah dilaksanakan pada Tanggal $tanggal_tes_show, bersama ini diumumkan bahwa Anda dinyatakan : <span style='color:green'><b>LULUS</b></span>
         </p>
         <p>
-          Berdasarkan keputusan di atas, maka Anda wajib melakukan <u>Registrasi Ulang</u> dengan ketentuan sesuai dengan Jalur Daftar yang Anda pilih, <u>maksimal 7 hari setelah Pengumuman Kelulusan Tes PMB</u>. Untuk informasi lebih lanjut silahkan Anda Download Dokumen Pengumuman Hasil Tes PMB berikut ini.
+          Berdasarkan keputusan di atas, maka Anda wajib $info_fakta_integ melakukan <u>Registrasi Ulang</u> dengan ketentuan sesuai dengan Jalur Daftar yang Anda pilih, <u>maksimal 7 hari setelah Pengumuman Kelulusan Tes PMB</u>. Untuk informasi lebih lanjut silahkan Anda Download Dokumen Pengumuman Hasil Tes PMB berikut ini.
+          <div>$link_fakta_integ</div>
         </p>
         <hr>
         <form method='post' action='./pdf/$hasil_tes_download.php' target='_blank'>

@@ -167,35 +167,36 @@ $jumlah_total_peserta = $jlulus+$jgagal;
 
 $hideit = $_SESSION['admpmb_admin_level']==1?'hideit':'';
 
-
-$rekap = "
-<style>
-  .wadah{
-    padding:10px 15px;
-    margin: 5px 0;
-  }
-  .level1 {background: linear-gradient(#efe,#ccc);margin-bottom: 20px;}
-  .level2 {background: linear-gradient(#ffe,#ffa)}
-  .level3 {background: linear-gradient(#fef,#faf);margin-bottom: 20px;}
-  .level4 {background: linear-gradient(#eff,#aff)}
-  .level5 {background: linear-gradient(#fff,#afa)}
-</style>
+# ======================================================
+# GLOBAL REKAP
+# ======================================================
+$jdata_link = $jdata>0 ? "<a href='?master_pmb&get=all_data'>$jdata</a>":$jdata;
+$jaktif_link = $jaktif>0 ? "<a href='?master_pmb&get=data_aktif'>$jaktif</a>":$jaktif;
+$jsubmit_link = $jsubmit>0 ? "<a href='?master_pmb&get=data_submit'>$jsubmit</a>":$jsubmit;
+$jnosubmit_link = $jnosubmit>0 ? "<a href='?master_pmb&get=data_submit'>$jnosubmit</a>":$jnosubmit;
+$jdisabled_link = $jdisabled>0 ? "<a href='?master_pmb&get=data_submit'>$jdisabled</a>":$jdisabled;
+$wadah1 = "
 <div class='wadah level1 $hideit'>
-  All Data : $jdata
+  All Data : $jdata_link
   <div class='wadah level2'>
-    Data Aktif (Peminat) : $jaktif
+    Data Aktif (Peminat) : $jaktif_link
     <div class='wadah level3'>
-      Sudah Submit Formulir : $jsubmit
+      Sudah Submit Formulir : $jsubmit_link
     </div>
     <div class='wadah level3'>
-      Belum Isi Formulir : $jnosubmit
+      Belum Isi Formulir : $jnosubmit_link
     </div>
   </div>
   <div class='wadah level2'>
-    Data Sampah (disabled) : $jdisabled
+    Data Sampah (disabled) : $jdisabled_link
   </div>
 </div>
+";
 
+# ======================================================
+# REKAP BY JALUR DAFTAR
+# ======================================================
+$wadah2 = "
 <div class='wadah level3'>
   Sudah Submit Formulir : $jsubmit
   <div class='wadah level4'>
@@ -220,17 +221,32 @@ $rekap = "
     Jalur Startup : $jstartup ($persen_startup%)
   </div>
 </div>
+";
 
+# ======================================================
+# REKAP BY PRODI
+# ======================================================
+$wadah3 = "
 <div class='wadah level3'>
   Sudah Submit Formulir : $jsubmit
   $div_prodis
 </div>
+";
 
+# ======================================================
+# REKAP BY GELOMBANG
+# ======================================================
+$wadah4 = "
 <div class='wadah level3'>
   Sudah Submit Formulir : $jsubmit
   $div_gels
 </div>
+";
 
+# ======================================================
+# REKAP BY KELULUSAN
+# ======================================================
+$wadah5 = "
 <div class='wadah level3'>
   Sudah Submit Formulir : $jsubmit
   <div class='wadah level4'>
@@ -240,7 +256,33 @@ $rekap = "
   </div>
   <div class='wadah level4'>Gagal : $jgagal</div>
   <div class='wadah level4'>Belum Tes (Pendaftar Baru) : $belum_tes</div>
-</div>";
+</div>
+";
+
+
+# ======================================================
+# FINAL OUTPUT
+# ======================================================
+$rekap = "
+<style>
+  .wadah{
+    padding:10px 15px;
+    margin: 5px 0;
+  }
+  .level1 {background: linear-gradient(#efe,#ccc);margin-bottom: 20px;}
+  .level2 {background: linear-gradient(#ffe,#ffa)}
+  .level3 {background: linear-gradient(#fef,#faf);margin-bottom: 20px;}
+  .level4 {background: linear-gradient(#eff,#aff)}
+  .level5 {background: linear-gradient(#fff,#afa)}
+</style>
+
+$wadah1
+$wadah2
+$wadah3
+$wadah4
+$wadah5
+
+";
 // exit;
 
 

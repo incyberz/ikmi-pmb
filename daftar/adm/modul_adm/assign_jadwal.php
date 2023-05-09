@@ -5,11 +5,13 @@
   .btnz{font-size: 30px; }
 </style>
 
-<h4>Assign Jadwal Tes</h4>
+<?php include "assign_jadwal_logic.php"; ?>
+  
+<h4>
+  Assign Jadwal Tes | 
+  <a href="?set_kelulusan&id_jadwal_tes=<?=$id_jadwal_tes?>">Set Kelulusan</a>
+</h4>
 <hr>
-<!-- <div style="background:linear-gradient(#fff,#ffc); border:solid 1px #fcc; border-radius:15px; padding: 15px; margin:15px 0"> -->
-  <?php include "assign_jadwal_logic.php"; ?>
-
 <div class="row" id="pj">
   <div class="col-lg-6">
     <p>Berikut adalah seluruh pendaftar yang belum mendapat jadwal tes dan sudah melengkapi seluruh persyaratan.</p>

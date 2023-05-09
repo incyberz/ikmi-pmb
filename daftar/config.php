@@ -38,6 +38,7 @@ if ($online_version) {
     $db_user = "pmbikmiac_admikmi";
     $db_pass = "e%]Uzmix[A;m";
     $db_name = "pmbikmiac_pmb";
+
 } else {
     $db_server = "localhost";
     $db_user = "root";

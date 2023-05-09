@@ -21,12 +21,12 @@ if (strlen($id_daftar<5)) {
 } else {
     $nomor_surat = substr($id_daftar, 2, 3);
 }
-$bulan_romawi=["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
-$bulan = $bulan_romawi[intval(date("m"))];
-$tahun = date("Y");
+$bulan_romawi=['','I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+$bulan = $bulan_romawi[intval(date('m'))];
+$tahun = date('Y');
 $tahun_akademik = "$tahun/".($tahun+1);
-$nomor_petugas = "0838-2165-1265 / 0823-1605-5422";
-$link_grup_wa = "https://chat.whatsapp.com/INisQLmreivH56hTMbuo7H";
+$nomor_petugas = ' 0823-1605-5422';
+$link_grup_wa = 'https://chat.whatsapp.com/INisQLmreivH56hTMbuo7H';
 $link_wa_ubah_data_akun = "https://api.whatsapp.com/send?phone=62$no_wa_petugas&text=Yth. Petugas PMB STMIK IKMI Cirebon - Saya $nama_calon, email: $email_calon ingin mengubah Data Akun saya dengan perubahan sebagai berikut:";
 
 
@@ -436,8 +436,7 @@ $pdf->Cell(170, 3, ' ', "", 1);
 $pdf->Cell(170, 5, "Dengan hormat,", $cb, 1);
 if ($id_jalur==3) {
     $pdf->Cell(170, 5, "Kami ucapkan selamat kepada saudara/i yang telah dinyatakan LULUS dan DITERIMA dalam seleksi Tes PMB", $cb, 1);
-    $pdf->Cell(170, 5, "STMIK IKMI Cirebon TA. 2023/2024 UNTUK DIPROSES LEBIH LANJUT sebagai CALON MAHASISWA", $cb, 1);
-    $pdf->Cell(170, 5, "PENERIMA BEASISWA KIP KULIAH STMIK IKMI CIREBON Tahun Akademik 2023/2024 pada :", $cb, 1);
+    $pdf->Cell(170, 5, "STMIK IKMI Cirebon TA. 2023/2024 pada :", $cb, 1);
 } else {
     // jalur REGULER
     $pdf->Cell(170, 5, "Kami ucapkan selamat kepada saudara yang telah dinyatakan LULUS GELOMBANG $nama_gel GRADE $grade_lulus pada jalur ", $cb, 1);
@@ -480,9 +479,8 @@ if ($id_jalur==3) {
     //spacing after
     $pdf->Cell(170, 2, ' ', "", 1);
     // dengan hormat
-    $pdf->Cell(170, 5, "Setelah ditetapkan sebagai Penerima Beasiswa KIP Kuliah dan ketika biaya hidup semester 1 telah ", $cb, 1);
-    $pdf->Cell(170, 5, "dicairkan dari Pemerintah, anda diwajibkan untuk melakukan proses Daftar Ulang (diluar biaya pendidikan) ", $cb, 1);
-    $pdf->Cell(170, 5, "yang akan diinformasikan kemudian.", $cb, 1);
+    $pdf->Cell(170, 5, "Selanjutnya Anda diwajibkan untuk melakukan proses Daftar Ulang (diluar biaya pendidikan) yang akan", $cb, 1);
+    $pdf->Cell(170, 5, "diinformasikan kemudian.", $cb, 1);
 
     $pdf->Cell(170, 5, ' ', $cb, 1);
     $pdf->Cell(170, 5, "Serta menyerahkan kelengkapan dokumen persyaratan di Sekretariat Informasi Pendaftaran STMIK IKMI", $cb, 1);
@@ -494,7 +492,7 @@ if ($id_jalur==3) {
     $pdf->SetMargins(25, 10, 25);
     $pdf->Cell(165, 1, " ", $cb, 1);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(165, 4, "1. Surat Pernyataan kesanggupan melakukan Daftar Ulang (tersedia di Front Office)", $cb, 1);
+    $pdf->Cell(165, 4, "1. Pakta Integritas Daftar Ulang dapat di download melalui akun PMB STMIK IKMI / (tersedia di Front Office)", $cb, 1);
     $pdf->Cell(165, 4, "2. Pas Foto Ukuran 4 x 6 background biru (2 lembar)", $cb, 1);
     $pdf->Cell(165, 4, "3. Fotocopy KTP Calon Mahasiswa / Surat Keterangan Disdukcapil (2 lembar)", $cb, 1);
     $pdf->Cell(165, 4, "4. Fotocopy KTP Orang Tua (2 lembar)", $cb, 1);
@@ -603,9 +601,9 @@ if ($id_jalur==3) {
     $pdf->Cell(170, $line_spasi_reg, "1. Bukti Pembayaran (biaya pendaftaran, dan biaya daftar ulang) lihat di tabel kewajiban pembayaran dibawah ini.", $cb, 1);
     $pdf->Cell(170, $line_spasi_reg, "2. Pas Foto Ukuran 3x4 dan 4 x 6 background biru (masing-masing 2 lembar).", $cb, 1);
     $pdf->Cell(170, $line_spasi_reg, "3. Fotocopy KTP Calon Mahasiswa / Surat Keterangan Disdukcapil (2 lembar).", $cb, 1);
-    $pdf->Cell(170, $line_spasi_reg, "4. Fotocopy KTP Orang Tua", $cb, 1);
-    $pdf->Cell(170, $line_spasi_reg, "5. Fotocopy Ijazah Terakhir / Surat Keterangan Sebagai Siswa Kelas 12 (1 lembar).", $cb, 1);
-    $pdf->Cell(170, $line_spasi_reg, "6. Fotocopy Fotocopy Kartu Keluarga (2 lembar).", $cb, 1);
+    // $pdf->Cell(170, $line_spasi_reg, "4. Fotocopy KTP Orang Tua", $cb, 1);
+    $pdf->Cell(170, $line_spasi_reg, "4. Fotocopy Ijazah Terakhir / Surat Keterangan Sebagai Siswa Kelas 12 (1 lembar).", $cb, 1);
+    $pdf->Cell(170, $line_spasi_reg, "5. Fotocopy Fotocopy Kartu Keluarga (2 lembar).", $cb, 1);
     $pdf->Cell(170, 2, " ", $cb, 1);
 
 
@@ -624,15 +622,15 @@ if ($id_jalur==3) {
     $pdf->Cell(170, $line_spasi_reg, "Tabel Kewajiban Pembayaran :", $cb, 1);
     $pdf->Cell(170, 2, " ", $cb, 1);
 
-    $pdf->SetFont('Arial', 'B', $font_size_reg);
-    $pdf->Cell(170, $line_spasi_reg, "A. Biaya Pendaftaran", $cb, 1);
-    $pdf->SetFont('Arial', '', $font_size_reg);
+    // $pdf->SetFont('Arial', 'B', $font_size_reg);
+    // $pdf->Cell(170, $line_spasi_reg, "A. Biaya Pendaftaran", $cb, 1);
+    // $pdf->SetFont('Arial', '', $font_size_reg);
 
-    $pdf->Cell(170, $line_spasi_reg, "     - Pendaftaran  Rp. 200.000 (Dua ratus ribu rupiah)", $cb, 1);
+    // $pdf->Cell(170, $line_spasi_reg, "     - Pendaftaran  Rp. 200.000 (Dua ratus ribu rupiah)", $cb, 1);
 
-    $pdf->SetTextColor(255, 0, 0);
-    $pdf->Cell(170, $line_spasi_reg, "     - dilunasi sebelum tanggal $tanggal_deadline", $cb, 1);
-    $pdf->SetTextColor(0, 0, 0);
+    // $pdf->SetTextColor(255, 0, 0);
+    // $pdf->Cell(170, $line_spasi_reg, "     - dilunasi sebelum tanggal $tanggal_deadline", $cb, 1);
+    // $pdf->SetTextColor(0, 0, 0);
     // $pdf->Cell(170, 2, " ", $cb, 1);
 
 
@@ -653,7 +651,7 @@ if ($id_jalur==3) {
     */
     # ===========================================
     $pdf->SetFont('Arial', 'B', $font_size_reg);
-    $pdf->Cell(170, 5.5, "B.  Biaya Daftar Ulang", $cb, 1);
+    $pdf->Cell(170, 5.5, "A.  Biaya Daftar Ulang", $cb, 1);
     // $pdf->Cell(170,1," ",$cb,1);
 
     # Cell(float w [, float h [, string txt [, mixed border [, int ln [, string align [, boolean fill [, mixed link]]]]]]])
@@ -741,7 +739,7 @@ if ($id_jalur==3) {
     # ===========================================
 
     $pdf->SetFont('Arial', 'B', $font_size_reg);
-    $pdf->Cell(170, 5.5, "C. Tabel Biaya Kuliah Per Semester yang Harus Dibayar Setelah Mendapatkan Program Relaksasi", $cb, 1);
+    $pdf->Cell(170, 5.5, "B. Tabel Biaya Kuliah Per Semester yang Harus Dibayar Setelah Mendapatkan Program Relaksasi", $cb, 1);
     // $pdf->Cell(170,1," ",$cb,1);
     $cb = 1;
 

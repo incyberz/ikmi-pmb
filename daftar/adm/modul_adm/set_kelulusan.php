@@ -5,10 +5,12 @@
   .btnz{font-size: 30px; }
 </style>
 
-<h4>Set Kelulusan</h4>
+<?php include "set_kelulusan_logic.php"; ?>
+<h4>
+  Assign Jadwal Tes | 
+  <a href="?assign_jadwal&id_jadwal_tes=<?=$id_jadwal_tes?>">Edit Peserta</a>
+</h4>
 <hr>
-<!-- <div style="background:linear-gradient(#fff,#ffc); border:solid 1px #fcc; border-radius:15px; padding: 15px; margin:15px 0"> -->
-  <?php include "set_kelulusan_logic.php"; ?>
 
 <div class="row" id="pj">
   <div class="col-lg-6">
