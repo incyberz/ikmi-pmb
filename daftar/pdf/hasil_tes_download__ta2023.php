@@ -566,7 +566,7 @@ if ($id_jalur==3) {
 
 
     # ===========================================
-    /* Selanjutnya saudara dipersilakan untuk melakukan Daftar Ulang (Registrasi) dengan cara menyelesaikan pembayaran kewajiban melalui Transfer atau M-Banking BANK BRI di Nomor Rekening 4149-01-000004-30-5 atas nama STMIK IKMI CIREBON dan apabila sudah melakukan pembayaran diwajibkan untuk melakukan konfirmasi Whatsapp ke Biro Administrasi Umum (BAU) di nomor 0823-1111-3070.
+    /* Selanjutnya saudara dipersilakan untuk melakukan Daftar Ulang (Registrasi) dengan cara menyelesaikan pembayaran kewajiban melalui Transfer atau M-Banking BANK BRI di Nomor Rekening 0406-01-001456-30-3 atas nama STMIK IKMI CIREBON dan apabila sudah melakukan pembayaran diwajibkan untuk melakukan konfirmasi Whatsapp ke Biro Administrasi Umum (BAU) di nomor 0823-1111-3070.
 
     Selanjutnya menyerahkan kelengkapan dokumen persyaratan di Sekretariat Informasi Pendaftaran STMIK IKMI Cirebon pada hari kerja Senin sd Sabtu (Pukul 08.00 sd 16.00 WIB) sebagai berikut : */
     # ===========================================
@@ -574,7 +574,7 @@ if ($id_jalur==3) {
     $pdf->SetFont('Arial', '', $font_size_reg);
     $line_spasi_reg = 4;
     $pdf->Cell(170, $line_spasi_reg, "Selanjutnya saudara dipersilakan untuk melakukan Daftar Ulang (Registrasi) dengan cara menyelesaikan pembayaran kewajiban melalui", $cb, 1);
-    $pdf->Cell(170, $line_spasi_reg, "Transfer atau M-Banking BANK BRI di Nomor Rekening 4149-01-000004-30-5 atas nama STMIK IKMI CIREBON dan apabila sudah melakukan", $cb, 1);
+    $pdf->Cell(170, $line_spasi_reg, "Transfer atau M-Banking BANK BRI di Nomor Rekening 0406-01-001456-30-3 atas nama STMIK IKMI CIREBON dan apabila sudah melakukan", $cb, 1);
     $pdf->Cell(170, $line_spasi_reg, "pembayaran diwajibkan untuk melakukan konfirmasi Whatsapp ke Biro Administrasi Umum (BAU) di nomor 0823-1111-3070.", $cb, 1);
     $pdf->Cell(170, $line_spasi_reg, " ", $cb, 1);
 

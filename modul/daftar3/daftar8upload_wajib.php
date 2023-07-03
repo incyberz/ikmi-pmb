@@ -11,7 +11,7 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
         <b style="color: blue">Bukti Bayar Biaya Formulir<?=$bm?></b>
         <br><small>Silahkan Anda transfer ke:
               <br> - Bank BRI 
-              <br> - No Rek. 4149-01-000004-30-5
+              <br> - No Rek. 0406-01-001456-30-3
               <br> - a.n IKMI CIREBON
               <br> - Jalur Reguler: <?=$biaya_daftar?>,-
               <br> - Jalur Transfer: Rp 350.000,-

@@ -104,7 +104,7 @@
     		<div class="ket_step" id="ket_step3">
           <div class="opsi_step"><hr></div>
           <ol>
-            <li>Segera lakukan pembayaran biaya pendaftaran Sebesar Rp. 200.000 ke rekening BRI an. STMIK IKMI Cirebon No Rek. 4149-01-000004-30-5</li>
+            <li>Segera lakukan pembayaran biaya pendaftaran Sebesar Rp. 200.000 ke rekening BRI an. STMIK IKMI Cirebon No Rek. 0406-01-001456-30-3</li>
             <li>Segera upload pas photo dan bukti transfer pembayaran biaya pendaftaran ke Menu Upload dibawah ini</li>
             <li>Tunggu proses verifikasi dari admin petugas 
             pendaftaran</li>

@@ -173,8 +173,8 @@ $hideit = $_SESSION['admpmb_admin_level']==1?'hideit':'';
 $jdata_link = $jdata>0 ? "<a href='?master_pmb&get=all_data'>$jdata</a>":$jdata;
 $jaktif_link = $jaktif>0 ? "<a href='?master_pmb&get=data_aktif'>$jaktif</a>":$jaktif;
 $jsubmit_link = $jsubmit>0 ? "<a href='?master_pmb&get=data_submit'>$jsubmit</a>":$jsubmit;
-$jnosubmit_link = $jnosubmit>0 ? "<a href='?master_pmb&get=data_submit'>$jnosubmit</a>":$jnosubmit;
-$jdisabled_link = $jdisabled>0 ? "<a href='?master_pmb&get=data_submit'>$jdisabled</a>":$jdisabled;
+$jnosubmit_link = $jnosubmit>0 ? "<a href='?master_pmb&get=data_nosubmit'>$jnosubmit</a>":$jnosubmit;
+$jdisabled_link = $jdisabled>0 ? "<a href='?master_pmb&get=data_disabled'>$jdisabled</a>":$jdisabled;
 $wadah1 = "
 <div class='wadah level1 $hideit'>
   All Data : $jdata_link
@@ -196,11 +196,13 @@ $wadah1 = "
 # ======================================================
 # REKAP BY JALUR DAFTAR
 # ======================================================
+$jreg_link = $jreg>0 ? "<a href='?master_pmb&get=data_reguler'>$jreg ($persen_reg%)</a>":"$jreg ($persen_reg%)";
+
 $wadah2 = "
 <div class='wadah level3'>
-  Sudah Submit Formulir : $jsubmit
+  Sudah Submit Formulir : $jsubmit_link
   <div class='wadah level4'>
-    Jalur Reguler : $jreg ($persen_reg%)
+    Jalur Reguler : $jreg_link
     <div class='wadah level5'>
       Sudah Terverifikasi Bayar : $jreg_bayar ($persen_reg_bayar%)
     </div>
@@ -228,7 +230,7 @@ $wadah2 = "
 # ======================================================
 $wadah3 = "
 <div class='wadah level3'>
-  Sudah Submit Formulir : $jsubmit
+  Sudah Submit Formulir : $jsubmit_link
   $div_prodis
 </div>
 ";
@@ -238,7 +240,7 @@ $wadah3 = "
 # ======================================================
 $wadah4 = "
 <div class='wadah level3'>
-  Sudah Submit Formulir : $jsubmit
+  Sudah Submit Formulir : $jsubmit_link
   $div_gels
 </div>
 ";
@@ -248,7 +250,7 @@ $wadah4 = "
 # ======================================================
 $wadah5 = "
 <div class='wadah level3'>
-  Sudah Submit Formulir : $jsubmit
+  Sudah Submit Formulir : $jsubmit_link
   <div class='wadah level4'>
     Lulus Tes : $jlulus
     <div class='wadah level5'>Registrasi Ulang : $jregisu</div>

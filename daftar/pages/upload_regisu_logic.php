@@ -89,7 +89,7 @@ if (mysqli_num_rows($q)) {
     ";
         $rket_upload[2] = "
     Silahkan Anda upload bukti transfer ke:
-    <br> - Bank BRI. No Rek. 4149-01-000004-30-5
+    <br> - Bank BRI. No Rek. 0406-01-001456-30-3
     <br> - a.n IKMI CIREBON
     <br> - Nominal: <?=$biaya_daftar?>,-
     ";
