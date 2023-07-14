@@ -71,7 +71,7 @@ switch ($id_jalur) {
 
 
 
-if ($debug_mode) {
+if ($dm) {
   echo "<h1>syarat_tambahan_tidak_lengkap : $syarat_tambahan_tidak_lengkap
   <br>
   <br>
@@ -215,7 +215,7 @@ if ($debug_mode) {
             $q = mysqli_query($cn,$s) or die("Error #bsb34bb32ac4b ".mysqli_error($cn));
             $d = mysqli_fetch_array($q);
             $id_new_event = $d['auto_increment'];
-            if($debug_mode) echo "<hr>
+            if($dm) echo "<hr>
             id_new_event: $id_new_event 
             <br>id_syarat: $id_syarat
             <br>SQL: $s

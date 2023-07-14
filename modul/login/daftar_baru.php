@@ -1,5 +1,5 @@
 <?php 
-if ($debug_mode) { echo "<br><br><br><br><br><br>";}else{echo "<br><br>";}
+if ($dm) { echo "<br><br><br><br><br><br>";}else{echo "<br><br>";}
 ?>
 <hr>
 <section id="daftar_baru" class="about">

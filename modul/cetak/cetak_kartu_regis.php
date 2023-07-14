@@ -1,6 +1,6 @@
 <?php 
 // session_start(); 
-$debug_mode = 0;
+$dm = 0;
 // if (!isset($_SESSION['email'])) {die("Error #6asd5321434b234as");}
 // if (!isset($_SESSION['nama_calon'])) {die("Error #6d3f345j34k5345");}
 // $email = $_SESSION['email'];

@@ -1,6 +1,6 @@
 
 <?php
-$debug_mode = 0;
+$dm = 0;
 if (!isset($_POST['folder_uploads'])) die("Error #ghjklastyug56");
 if (!isset($_POST['no_daf'])) die("Error #gtyghjklastyug56");
 if (!isset($_POST['id_new_event'])) die("Error #g9juht6g6tyug56");
@@ -17,7 +17,7 @@ $id_syarat = $_POST['id_syarat'];
 $no_daf = '';
 
 $nama_file= '';
-if ($debug_mode) {
+if ($dm) {
   echo "
   <br> folder_uploads : $folder_uploads
   <br> id_new_event : $id_new_event
@@ -297,11 +297,11 @@ if (!$up_error) {
     date_event=CURRENT_TIMESTAMP 
     where id_file_name = '$id_file_name'";
 
-    if ($debug_mode) echo "<hr>id_file_name_exists_indb: $id_file_name_exists_indb";
-    if ($debug_mode) echo "<hr>SQL save/upd events: $s";
+    if ($dm) echo "<hr>id_file_name_exists_indb: $id_file_name_exists_indb";
+    if ($dm) echo "<hr>SQL save/upd events: $s";
 
     $q = mysqli_query($cn,$s);
-    if ($debug_mode) echo "<hr>$s<hr>";
+    if ($dm) echo "<hr>$s<hr>";
     if ($q and !$id_file_name_exists_indb) $pesan.="<br>Mengirimkan notifikasi ke petugas berhasil.";
     if ($q and $id_file_name_exists_indb) $pesan.="<br>Update notifikasi untuk petugas berhasil.";
 
@@ -313,7 +313,7 @@ if (!$up_error) {
     $nama_file = 0 
     where id_syarat = '$id_syarat'";
     $q = mysqli_query($cn,$s);
-    if ($debug_mode) echo "<hr>$s<hr>";
+    if ($dm) echo "<hr>$s<hr>";
     if ($q) $pesan.="<br>Update status verifikasi file upload berhasil.";
 
 

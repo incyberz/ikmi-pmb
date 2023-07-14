@@ -1,6 +1,6 @@
 <?php
 session_start();
-$debug_mode = 0;
+$dm = 0;
 
 // if(1) {include "maintenance.php"; exit();}
 
@@ -85,7 +85,7 @@ if (isset($_SESSION['email'])) {
   include "modul/popup/show_popup.php";
 include "header.php";
 
-if ($debug_mode) {
+if ($dm) {
     echo "<br><br><br><br><br><br>";
 } else {
     echo "<br><br>";

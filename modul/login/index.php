@@ -62,7 +62,7 @@ if(!isset($_SESSION['access_token']))
    if($login_button == '')
    {
 
-    if ($debug_mode) {
+    if ($dm) {
       echo "<hr>";
       echo "Access Token: ".$_SESSION['access_token'];
       echo "<hr>";

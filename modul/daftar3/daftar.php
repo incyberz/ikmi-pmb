@@ -6,7 +6,7 @@ echo "
 ";
 exit();
 
-if ($debug_mode) {
+if ($dm) {
     echo "<br><br><br><br><br><br>";
 } else {
     echo "<br><br>";
@@ -23,7 +23,7 @@ if ($debug_mode) {
 
     <?php
     if (isset($_SESSION['email'])) {
-        if ($debug_mode) {
+        if ($dm) {
             echo "<hr>";
             echo var_dump($_SESSION);
             echo "<hr>";

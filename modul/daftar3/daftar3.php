@@ -1,10 +1,10 @@
 <style type="text/css">.pesan_aksi_sukses{border:solid 1px #99cf99; background-color: lightgreen}</style>
 <?php
-$debug_mode=0;
+$dm=0;
 //if (!isset($_SESSION['email'])) {die("Error #3 mail session");}
 //if (!isset($_SESSION['nama_calon'])) {die("Error #3 nama calon session");}
-// $debug_mode=1;
-if ($debug_mode) { echo "<br><br><br><br><br><br>";}else{echo "<br><br>";}
+// $dm=1;
+if ($dm) { echo "<br><br><br><br><br><br>";}else{echo "<br><br>";}
 $cstep=3;
 $do_update=0;
 $do_insert=0;
@@ -44,7 +44,7 @@ if (!isset($_SESSION['email'])) {
 if (isset($_POST['btn_update'])) {
   $do_update=1;
 
-  if ($debug_mode) echo "<br>btn_update isset, Go Update.";
+  if ($dm) echo "<br>btn_update isset, Go Update.";
 
   $nama_calon = str_replace("'", "`",strtoupper(filter_var($_POST['nama_calon'])));
   $no_hp = filter_var($_POST['no_hp']);
@@ -77,7 +77,7 @@ if (isset($_POST['btn_update'])) {
 if (isset($_POST['btn_daftar'])) {
   $do_insert=1;
 
-  if ($debug_mode) echo "<br>btn_daftar isset, Go INSERT.";
+  if ($dm) echo "<br>btn_daftar isset, Go INSERT.";
   $nama_calon = str_replace("'", "`",strtoupper(filter_var($_POST['nama_calon'])));
   $no_hp = filter_var($_POST['no_hp']);
   $no_wa = filter_var($_POST['no_wa']);
@@ -136,7 +136,7 @@ if (isset($_POST['btn_daftar'])) {
   )";
 
 
-  if ($debug_mode) echo "
+  if ($dm) echo "
     <br><br><br><br><br>
     <br> ======================================
     <br> DEBUG
@@ -171,7 +171,7 @@ if (isset($_POST['btn_daftar'])) {
     $d = mysqli_fetch_array($q);
     $id_syarat_new = $d['auto_increment'];
 
-    if($debug_mode) echo "<hr>id_syarat_new: $id_syarat_new <hr>";
+    if($dm) echo "<hr>id_syarat_new: $id_syarat_new <hr>";
 
 
 
@@ -179,7 +179,7 @@ if (isset($_POST['btn_daftar'])) {
     $s = "INSERT into tb_daftar_syarat (id_syarat) values ($id_syarat_new)";
     $q = mysqli_query($cn,$s) or die("Error #4es6d6f8g INSERT New Persyaratan.");
 
-    if($debug_mode) echo "<hr>SQL Insert New Persyaratan: $s <hr>";
+    if($dm) echo "<hr>SQL Insert New Persyaratan: $s <hr>";
 
 
 
@@ -214,8 +214,8 @@ if (isset($_POST['btn_daftar'])) {
 
 
     }else{
-      if($debug_mode) echo "<hr>SQL Daftar: $s<hr>";
-      if($debug_mode) echo "<hr>SQL Error: ".mysqli_error($cn)."<hr>";
+      if($dm) echo "<hr>SQL Daftar: $s<hr>";
+      if($dm) echo "<hr>SQL Error: ".mysqli_error($cn)."<hr>";
       $pesan_aksi = "<div class='alert alert-danger' role='alert'><h4 style='color:red'>Save Data Pendaftaran Failed!</h4></div>";
     }
 
@@ -231,8 +231,8 @@ if (isset($_POST['btn_daftar'])) {
       </div>";
 
     }else{
-      if($debug_mode) echo "<hr>SQL Calon : $s<hr>";
-      if($debug_mode) echo "<hr>SQL Error: ".mysqli_error($cn)."<hr>";
+      if($dm) echo "<hr>SQL Calon : $s<hr>";
+      if($dm) echo "<hr>SQL Error: ".mysqli_error($cn)."<hr>";
 
       $err = mysqli_error($cn);
       // $err = var_dump($_SESSION);
@@ -265,7 +265,7 @@ if (isset($_POST['btn_daftar'])) {
 
 
 
-if ($debug_mode) echo "<br>No INSERT nor UPDATE, Go First Load from Sign Google.";
+if ($dm) echo "<br>No INSERT nor UPDATE, Go First Load from Sign Google.";
 
 //include('modul/login/gconfig.php');
 
@@ -278,13 +278,13 @@ $style_div_blm_terdaftar= '';
 $style_div_btn_next="display:none";
 
 if(isset($_GET["code"])){
-  if ($debug_mode) echo "<br>Google code isset.";
+  if ($dm) echo "<br>Google code isset.";
 
   $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
 
   if(!isset($token['error'])){
 
-    if ($debug_mode) echo "<br>Token isset and not error.";
+    if ($dm) echo "<br>Token isset and not error.";
 
     $google_client->setAccessToken($token['access_token']);
     $_SESSION['access_token'] = $token['access_token'];
@@ -314,7 +314,7 @@ if(isset($_GET["code"])){
 }
 
 if(isset($_SESSION['access_token']) or isset($_SESSION['email'])){
-  if ($debug_mode) echo "<br>Google access_token isset, Go set session[email].";
+  if ($dm) echo "<br>Google access_token isset, Go set session[email].";
  
   if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
@@ -327,7 +327,7 @@ if(isset($_SESSION['access_token']) or isset($_SESSION['email'])){
   $q = mysqli_query($cn,$s) or die("Error #3 cek is terdaftar");
   if (mysqli_num_rows($q) == 1) {
     $is_terdaftar=1;
-    if ($debug_mode) echo "<hr>SQL: $s<hr>";
+    if ($dm) echo "<hr>SQL: $s<hr>";
     $d = mysqli_fetch_array($q);
 
     $nama_calon = $d['nama_calon'];
@@ -353,17 +353,17 @@ if(isset($_SESSION['access_token']) or isset($_SESSION['email'])){
     
   }
 
-  if($debug_mode) echo "<br><hr>session_id: ".session_id()."<hr>";
+  if($dm) echo "<br><hr>session_id: ".session_id()."<hr>";
 
 }else{
 
-  if ($debug_mode) {
+  if ($dm) {
     echo "<br>Google access_token NOT isset, CAN'T set session[email].";
     echo "<br>Token error: ".$token['error'];
   }
 
   if ($do_update or $do_insert) {
-    if ($debug_mode) echo "<br>Google access_token NOT isset (LOST), but.. RE-Session
+    if ($dm) echo "<br>Google access_token NOT isset (LOST), but.. RE-Session
     <br>do_insert : $do_insert
     <br>do_update : $do_update
     <br>email : $email
@@ -381,7 +381,7 @@ if(isset($_SESSION['access_token']) or isset($_SESSION['email'])){
     $no_wa_ket= '';
 
   }else{
-    if($debug_mode) echo "<br>Google access_token NOT isset, CAN'T set session[email].
+    if($dm) echo "<br>Google access_token NOT isset, CAN'T set session[email].
     <br>No Update NOR INSERT";
 
     # =======================================================
@@ -420,7 +420,7 @@ if ($is_terdaftar) {
   $petunjuk_tahap = ")* Email Anda belum terdaftar. Silahkan input data awal!";
 }
 $petunjuk_tahap = ''; //zzz
-if ($debug_mode) echo "
+if ($dm) echo "
 <br> =================================================
 <br> DEBUGGING
 <br> =================================================
@@ -432,7 +432,7 @@ if ($debug_mode) echo "
 <br> no_wa : $no_wa
 ";
 
-if ($debug_mode) {
+if ($dm) {
   echo "<hr>";
   echo var_dump($_SESSION);
   echo "<hr>";

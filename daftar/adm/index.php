@@ -1,7 +1,7 @@
 <?php
 session_start();
 // session_unset(); die("Session Unsetted! Welcome Programmer!");
-$debug_mode = 0;
+$dm = 0;
 
 include "../config.php";
 include "../global_var.php";

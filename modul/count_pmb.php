@@ -71,7 +71,7 @@ join tb_daftar_syarat c on a.id_syarat = c.id_syarat
 where b.id_angkatan = '$id_angkatan' 
 and a.status_daftar != -1 
 ";
-//if($debug_mode)echo "<hr>$s<hr>";
+//if($dm)echo "<hr>$s<hr>";
 //$q = mysqli_query($cn,$s) or die("Error dashboard #1 Can't Get Data.");
 //$jumlah_status_daftar_all = mysqli_num_rows($q);
 

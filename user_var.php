@@ -105,7 +105,7 @@ if (mysqli_num_rows($q) == 1) {
 
   // $id_syarat = '';
 
-  if($debug_mode)echo "<hr>Debug #user_var SQL Get Sub Data Daftar: $s<hr>";
+  if($dm)echo "<hr>Debug #user_var SQL Get Sub Data Daftar: $s<hr>";
 
   $q = mysqli_query($cn,$s) or die("Error #user_var Can't get data daftar. ");
   if (mysqli_num_rows($q)==1){
@@ -528,7 +528,7 @@ $statusdb_file_syarat[24] = '';
 $statusdb_file_syarat[25] = '';
 
 
-if ($debug_mode) {
+if ($dm) {
   echo "<br><br><br><br><br><hr>";
   for ($i=1; $i <=25 ; $i++) { 
     echo "<br> statusdb_file_syarat[$i] = ".$statusdb_file_syarat[$i];
@@ -577,7 +577,7 @@ for ($i=1; $i <=$jumlah_persyaratan_total ; $i++) {
     }
   }
 
-  if ($debug_mode) {
+  if ($dm) {
     echo "<br><br><br>";
     echo "File ke-$i : uploads/$folder_uploads/__".$file_syarat[$i].".jpg";
   }

@@ -1,7 +1,7 @@
 <?php 
 
 session_start(); 
-$debug_mode = 0;
+$dm = 0;
 if (isset($_GET['get_cetak'])) {
   $get_cetak=$_GET['get_cetak'];
   $tmp = explode("__", $get_cetak);
@@ -37,7 +37,7 @@ $file_pas_photo_na = "assets/img/icons/user_na.png";
 
 if (file_exists($file_pas_photo)) {
   $img_pas_photo = "<img src='$file_pas_photo' height='120px'>";
-  if ($debug_mode)echo "<h1>$file_pas_photo</h1>";
+  if ($dm)echo "<h1>$file_pas_photo</h1>";
 }else{
   $img_pas_photo = "<img src='$file_pas_photo_na' height='120px'>";
 }

@@ -1,6 +1,6 @@
 <?php 
 session_start(); 
-$debug_mode = 0;
+$dm = 0;
 
 $petugas = "--All--";
 if(isset($_GET['petugas'])) $petugas = $_GET['petugas'];

@@ -1,7 +1,7 @@
 <?php 
 if (!isset($_SESSION)) session_start();
 // if (!isset($_SESSION)) session_start();
-// if (!isset($debug_mode)) die("Error #logout Can't Access Directly.");
+// if (!isset($dm)) die("Error #logout Can't Access Directly.");
  ?>
 <section id="lupa_pas" class="about">
   <div class="container" data-aos="fade-up">
