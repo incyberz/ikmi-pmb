@@ -16,35 +16,17 @@ if ($_SERVER['SERVER_NAME'] == "localhost") {
 
 if ($online_version) {
     $db_server = "localhost";
-    $db_user = "pmbikmiac_admin_akademik";
-    $db_pass = "PMBAdminAkademik2022";
-    $db_name = "pmbikmiac_pmb6";
-
-    // 000webhost
-    $db_server = "localhost";
-    $db_user = "id19040463_admpmb";
-    $db_pass = "+!JX>WajCIN2}mj%";
-    $db_name = "id19040463_pmb6";
-
-    // piksi
-    $db_server = "localhost";
-    $db_user = "u7653831_adm-pmb-tmp";
-    $db_pass = "646t8ZFCnwvnnSJ";
-    $db_name = "u7653831_pmb-tmp";
-
-    // ikmi2023
-    $db_server = "localhost";
-
     $db_user = "pmbikmiac_admikmi";
     $db_pass = "e%]Uzmix[A;m";
     $db_name = "pmbikmiac_pmb";
-
+    // include 'insho_styles.php';
+    
 } else {
     $db_server = "localhost";
     $db_user = "root";
-    // $db_pass = "mylocalhost2023";
     $db_pass = "";
-    $db_name = "db_pmb6";
+    $db_name = "db_pmb62";
+    // include '../../../insho_styles.php';
 }
 
 $cn = new mysqli($db_server, $db_user, $db_pass, $db_name);

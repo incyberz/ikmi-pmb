@@ -26,6 +26,7 @@ b.id_gelombang,
 b.id_prodi1,  
 b.id_jalur,
 b.tanggal_submit_formulir,
+b.tanggal_tes_pmb,
 b.tanggal_lulus_tes,
 b.status_lulus,
 b.tanggal_registrasi_ulang,
@@ -33,7 +34,7 @@ b.tanggal_registrasi_ulang,
   SELECT status_upload FROM tb_verifikasi_upload 
   WHERE id_daftar=b.id_daftar 
   AND id_persyaratan=2
-  ) as status_upload_syarat2 
+  ) as status_upload_syarat 
   
 
 FROM tb_akun a 
@@ -68,6 +69,13 @@ $jlulus=0;
 $jgagal=0;
 $jregisu=0;
 
+$reg_sudah_tes = 0;
+$reg_lulus = 0;
+$reg_regisu = 0;
+$kip_sudah_tes = 0;
+$kip_lulus = 0;
+$kip_regisu = 0;
+
 if(mysqli_num_rows($q)==0){
   die('Belum ada data pendaftar.');
 }else{
@@ -90,13 +98,23 @@ if(mysqli_num_rows($q)==0){
         # JALUR REGULER / KIP / STARTUP
         # ===================================================
         if($d['id_jalur']==1 || $d['id_jalur']==2){
+          # ===================================================
+          # JALUR REGULER
+          # ===================================================
           $jreg++;
           if($d['id_jalur']==1) $jregp++;
           if($d['id_jalur']==2) $jregs++;
-          if($d['status_upload_syarat2']==1) $jreg_bayar++;
+          if($d['status_upload_syarat']==1) $jreg_bayar++;
+          if($d['tanggal_tes_pmb']!=''||$d['tanggal_lulus_tes']!='') $reg_sudah_tes++;
+          if($d['tanggal_lulus_tes']!='') $reg_lulus++;
+          if($d['tanggal_registrasi_ulang']!='') $reg_regisu++;
+
         }elseif($d['id_jalur']==3){
           $jkip++;
-          if($d['status_upload_syarat2']==1) $jkip_verif++;
+          if($d['status_upload_syarat']==1) $jkip_verif++;
+          if($d['tanggal_tes_pmb']!=''||$d['tanggal_lulus_tes']!='') $kip_sudah_tes++;
+          if($d['tanggal_lulus_tes']!='') $kip_lulus++;
+          if($d['tanggal_registrasi_ulang']!='') $kip_regisu++;
         }elseif($d['id_jalur']==4){
           $jstartup++;
         } // end if jalur
@@ -147,6 +165,26 @@ if(mysqli_num_rows($q)==0){
   $persen_kip_verif = $jkip==0?0: round($jkip_verif/$jkip*100,2);
   $persen_kip_noverif = 100-$persen_kip_verif;
 
+  if($jreg_bayar==0){
+    $persen_reg_sudah_tes = 0;
+    $persen_reg_lulus = 0;
+    $persen_reg_regisu = 0;
+  }else{
+    $persen_reg_sudah_tes = round(($reg_sudah_tes/$jreg_bayar)*100,2);
+    $persen_reg_lulus = round(($reg_lulus/$jreg_bayar)*100,2);
+    $persen_reg_regisu = round(($reg_regisu/$jreg_bayar)*100,2);
+  }
+
+  if($jkip_verif ==0){
+    $persen_kip_sudah_tes = 0;
+    $persen_kip_lulus = 0;
+    $persen_kip_regisu = 0;
+  }else{
+    $persen_kip_sudah_tes = round(($kip_sudah_tes/$jkip_verif)*100,2);
+    $persen_kip_lulus = round(($kip_lulus/$jkip_verif)*100,2);
+    $persen_kip_regisu = round(($kip_regisu/$jkip_verif)*100,2);
+  }
+
   for ($i=0; $i < count($rprodi); $i++) { 
     $jml = $jprodi[$rprodi[$i]];
     $persen = $jsubmit==0?0: round($jml/$jsubmit*100,2);
@@ -196,27 +234,93 @@ $wadah1 = "
 # ======================================================
 # REKAP BY JALUR DAFTAR
 # ======================================================
-$jreg_link = $jreg>0 ? "<a href='?master_pmb&get=data_reguler'>$jreg ($persen_reg%)</a>":"$jreg ($persen_reg%)";
+$jreg_link = $jreg>0 ? "<a href='?master_pmb&get=data_reg'>$jreg ($persen_reg%)</a>":"$jreg ($persen_reg%)";
+$jkip_link = $jkip>0 ? "<a href='?master_pmb&get=data_kip'>$jkip ($persen_kip%)</a>":"$jkip ($persen_kip%)";
 
-$wadah2 = "
-<div class='wadah level3'>
+$wadah2 = "<div class='wadah level3'>
   Sudah Submit Formulir : $jsubmit_link
-  <div class='wadah level4'>
-    Jalur Reguler : $jreg_link
-    <div class='wadah level5'>
-      Sudah Terverifikasi Bayar : $jreg_bayar ($persen_reg_bayar%)
+  <div class='wadah reg level4'>
+    <h4>Jalur Reguler : $jreg_link</h4>
+    <div class='wadah reg level5 '>
+      <div class=''>
+        <a href='?master_pmb&get=reg_sudah_bayar'>Sudah Terverifikasi Bayar : $jreg_bayar ($persen_reg_bayar%)</a>
+        <div class=progress>
+            <div class=progress-bar role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_reg_bayar%'></div>
+        </div>
+      </div>
+
+      <div class='wadah'>
+        <div class=''>
+          <a href='?master_pmb&get=reg_sudah_tes'>Reg ~ Sudah Tes PMB : $reg_sudah_tes ($persen_reg_sudah_tes%)</a>
+          <div class=progress>
+              <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_reg_sudah_tes%'></div>
+          </div>
+        </div>
+
+        <div class=''>
+          <a href='?master_pmb&get=reg_lulus'>Reg ~ Sudah Lulus Tes : $reg_lulus ($persen_reg_lulus%)</a>
+          <div class=progress>
+              <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_reg_lulus%'></div>
+          </div>
+        </div>
+
+        <div class=''>
+          <a href='?master_pmb&get=reg_regisu'>Reg ~ Sudah Registrasi Ulang : $reg_regisu ($persen_reg_regisu%)</a>
+          <div class=progress>
+              <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_reg_regisu%'></div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class='wadah level5'>
-      Belum Bayar/Terverifikasi : $jreg_nobayar ($persen_reg_nobayar%)
+      <a href='?master_pmb&get=reg_belum_bayar'>Reg ~ Belum Bayar/Terverifikasi : $jreg_nobayar ($persen_reg_nobayar%)</a>
+      <div class=progress>
+          <div class='progress-bar progress-bar-danger' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_reg_nobayar%'></div>
+      </div>
+
     </div>
   </div>
-  <div class='wadah level4'>
-    Jalur KIP : $jkip ($persen_kip%)
-    <div class='wadah level5'>
-      Sudah Terverifikasi Bukti KIP : $jkip_verif ($persen_kip_verif%)
+  <div class='wadah kip level2'>
+    <h4>Jalur KIP : $jkip_link</h4>
+    <div class='wadah kip level5'>
+
+      <div class=''>
+        <a href='?master_pmb&get=kip_sudah_verif'>Sudah Terverifikasi Bukti KIP : $jkip_verif ($persen_kip_verif%)</a>
+        <div class=progress>
+            <div class=progress-bar role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_kip_verif%'></div>
+        </div>
+      </div>
+
+      <div class=wadah>
+        <div class=''>
+          <a href='?master_pmb&get=kip_sudah_tes'>KIP ~ Sudah Tes PMB : $kip_sudah_tes ($persen_kip_sudah_tes%)</a>
+          <div class=progress>
+              <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_kip_sudah_tes%'></div>
+          </div>
+        </div>
+
+        <div class=''>
+          <a href='?master_pmb&get=kip_lulus'>KIP ~ Sudah Lulus Tes : $kip_lulus ($persen_kip_lulus%)</a>
+          <div class=progress>
+              <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_kip_lulus%'></div>
+          </div>
+        </div>
+
+        <div class=''>
+          <a href='?master_pmb&get=kip_regisu'>KIP ~ Sudah Registrasi Ulang : $kip_regisu ($persen_kip_regisu%)</a>
+          <div class=progress>
+              <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_kip_regisu%'></div>
+          </div>
+        </div>      
+      </div>
+      
     </div>
     <div class='wadah level5'>
-      Belum Terverifikasi : $jkip_noverif ($persen_kip_noverif%)
+      <a href='?master_pmb&get=kip_belum_terverifikasi'>KIP ~ Belum Terverifikasi : $jkip_noverif ($persen_kip_noverif%)</a>
+      <div class=progress>
+          <div class='progress-bar progress-bar-danger' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_kip_noverif%'></div>
+      </div>
     </div>
   </div>
   <div class='wadah level4'>
@@ -276,6 +380,12 @@ $rekap = "
   .level3 {background: linear-gradient(#fef,#faf);margin-bottom: 20px;}
   .level4 {background: linear-gradient(#eff,#aff)}
   .level5 {background: linear-gradient(#fff,#afa)}
+  .level6_reg {background: linear-gradient(#88f,#55d);color:white}
+  .level6_kip {background: linear-gradient(rgb(179, 113, 8),rgb(100, 64, 6));color:white}
+  .reg{border: solid 2px darkblue}
+  .kip{border: solid 2px darkred}
+  .dark-link{color:white}
+  .dark-link:hover{color:yellow}
 </style>
 
 $wadah1
@@ -287,291 +397,6 @@ $wadah5
 ";
 // exit;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $s = "SELECT 
-// (SELECT count(email) from tb_akun where status_akun=1) as jumlah_aktif,  
-// (SELECT count(a.email) from tb_akun a join tb_daftar b on a.email=b.email where a.status_akun=1 and b.tanggal_submit_formulir is not null) as jumlah_submit_formulir,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.id_jalur=3 
-// ) as jumlah_kip,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.id_jalur!=3 
-// ) as jumlah_reg,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.id_jalur!=3 
-// AND b.tanggal_registrasi_ulang is not null 
-// ) as jumlah_daftar_ulang_reg,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.id_jalur=3 
-// AND b.tanggal_registrasi_ulang is not null 
-// ) as jumlah_daftar_ulang_kip,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// ) as jumlah_peserta_tes,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// ) as jumlah_lulus_tes, 
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_registrasi_ulang is not null 
-// ) as jumlah_daftar_ulang,
-
-
-
-
-
-
-
-
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur = 3 
-// ) as jumlah_lulus_tes_kip,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur = 3 
-// AND b.id_prodi1 = 1 
-// ) as jumlah_lulus_tes_kip_ti,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur = 3 
-// AND b.id_prodi1 = 2
-// ) as jumlah_lulus_tes_kip_rpl,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur = 3 
-// AND b.id_prodi1 = 3 
-// ) as jumlah_lulus_tes_kip_si,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur = 3 
-// AND b.id_prodi1 = 4 
-// ) as jumlah_lulus_tes_kip_mi,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur = 3 
-// AND b.id_prodi1 = 5 
-// ) as jumlah_lulus_tes_kip_ka,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur != 3 
-// ) as jumlah_lulus_tes_reg,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur != 3 
-// AND b.id_prodi1 = 1 
-// ) as jumlah_lulus_tes_reg_ti,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur != 3 
-// AND b.id_prodi1 = 2
-// ) as jumlah_lulus_tes_reg_rpl,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur != 3 
-// AND b.id_prodi1 = 3 
-// ) as jumlah_lulus_tes_reg_si,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur != 3 
-// AND b.id_prodi1 = 4 
-// ) as jumlah_lulus_tes_reg_mi,
-
-// (SELECT count(a.email) FROM tb_akun a 
-// JOIN tb_daftar b on a.email=b.email 
-// JOIN tb_peserta_tes c on b.id_daftar=c.id_daftar 
-// WHERE a.status_akun=1 
-// AND b.tanggal_submit_formulir is not null 
-// AND b.tanggal_lulus_tes is not null 
-// AND b.status_lulus = 1 
-// AND b.id_jalur != 3 
-// AND b.id_prodi1 = 5 
-// ) as jumlah_lulus_tes_reg_ka
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ";
-
-// $q = mysqli_query($cn, $s) or die("Tidak bisa merekap data. ".mysqli_error($cn));
-// $d = mysqli_fetch_assoc($q);
-
-// $jumlah_aktif = $d['jumlah_aktif'];
-// $jumlah_submit_formulir = $d['jumlah_submit_formulir'];
-
-// $jumlah_kip = $d['jumlah_kip'];
-// $jumlah_reg = $d['jumlah_reg'];
-
-// $jumlah_peserta_tes = $d['jumlah_peserta_tes'];
-// $jumlah_lulus_tes = $d['jumlah_lulus_tes'];
-// $jumlah_belum_tes = $jumlah_peserta_tes - $jumlah_lulus_tes;
-
-
-// $jumlah_lulus_tes_kip = $d['jumlah_lulus_tes_kip'];
-// $jumlah_lulus_tes_kip_ti = $d['jumlah_lulus_tes_kip_ti'];
-// $jumlah_lulus_tes_kip_rpl = $d['jumlah_lulus_tes_kip_rpl'];
-// $jumlah_lulus_tes_kip_si = $d['jumlah_lulus_tes_kip_si'];
-// $jumlah_lulus_tes_kip_mi = $d['jumlah_lulus_tes_kip_mi'];
-// $jumlah_lulus_tes_kip_ka = $d['jumlah_lulus_tes_kip_ka'];
-
-
-// $jumlah_lulus_tes_reg = $d['jumlah_lulus_tes_reg'];
-// $jumlah_lulus_tes_reg_ti = $d['jumlah_lulus_tes_reg_ti'];
-// $jumlah_lulus_tes_reg_rpl = $d['jumlah_lulus_tes_reg_rpl'];
-// $jumlah_lulus_tes_reg_si = $d['jumlah_lulus_tes_reg_si'];
-// $jumlah_lulus_tes_reg_mi = $d['jumlah_lulus_tes_reg_mi'];
-// $jumlah_lulus_tes_reg_ka = $d['jumlah_lulus_tes_reg_ka'];
-
-
-// $jumlah_daftar_ulang = $d['jumlah_daftar_ulang'];
-// $jumlah_daftar_ulang_kip = $d['jumlah_daftar_ulang_kip'];
-// $jumlah_daftar_ulang_reg = $d['jumlah_daftar_ulang_reg'];
-// $jumlah_belum_daftar_ulang = $jumlah_lulus_tes - $jumlah_daftar_ulang;
 
 
 

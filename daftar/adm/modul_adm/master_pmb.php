@@ -1,121 +1,225 @@
-<?php //include 'master_pmb_logic.php'; ?>
+<?php 
+$rget = [
+  'all_data',
+  'data_aktif',
+  'data_submit',
+  'data_nosubmit',
+  'data_disabled',
 
+  'data_reg',
+  'data_kip',
+
+  'reg_sudah_bayar',
+  'reg_belum_bayar',
+  'reg_lunas',
+  'reg_regisu',
+
+  'kip_sudah_verif',
+  'kip_belum_terverifikasi',
+  'kip_lunas',
+  'kip_regisu',
+
+];
+
+?>
 <style type="text/css">
   .img_aksi, .img_aksi_disabled{
-    width: 30px;
-  }
-
-  .img_aksi{
+    width: 20px;
+  }.img_aksi{
     transition: transform 0.2s;
     cursor: pointer;
-  }
-
-  .img_aksi:hover{
+  }.img_aksi:hover{
     transform: scale(1.3);
+  }.blok_filter{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 7px;
   }
 </style>
 
-<h4>Pendaftar PMB <?=$id_angkatan ?></h4>
+<h4>Master PMB <?=$id_angkatan ?></h4>
+<div class="debug" id=state>state</div>
+<div class="blok_filter mb2">
+  <div>
+    <select class="form-control input-sm" id=get_data>
+      <option value=all_data>All Data</option>
+    </select>
+  </div>
 
-<button class="btn btn-success btn-sm" style="padding: 0 5px; margin-bottom: 5px;" id="btn_toggle_filter">Hide</button>
+  <div>
+    <input class="form-control input-sm" placeholder='keyword' id=nama_calon_filter>
+  </div>
+
+  <div>
+    <select class="form-control input-sm filter filter_select" id="id_gelombang_filter">
+      <option value=all>All Gel</option>
+      <?php 
+      for ($i=0; $i < count($rid_gelombang) ; $i++) { 
+        echo "<option>$rid_gelombang[$i]</option>";
+      }
+      ?>
+    </select>
+  </div>
+
+  <div>
+    <select class="form-control input-sm filter filter_select" id="id_jalur_filter">
+      <option value=all>All Jalur</option>
+      <option value="reg">Reg</option>
+      <option value="kip">KIP</option>
+    </select>
+  </div>
+
+  <div>
+    <select class="form-control input-sm filter filter_select" id="id_prodi_filter">
+      <option value=all>All Prodi</option>
+      <?php 
+      for ($i=0; $i < count($rsingkatan_prodi) ; $i++) { 
+        echo "<option value='$rid_prodi[$i]'>$rsingkatan_prodi[$i]</option>";
+      }
+      ?>
+    </select>
+  </div>
+
+  <div>
+    <select class="form-control input-sm filter filter_select" id="page_ke">
+      <?php for ($i=1; $i <=30 ; $i++) echo "<option value=$i>Page $i</option>";?>
+    </select>
+  </div>
+
+  <div>
+    <select class="form-control input-sm filter filter_select" id="show_count">
+      <option value=10>Show 10</option>
+      <option value=25>Show 25</option>
+      <option value=50>Show 50</option>
+      <option value=100>Show 100</option>
+      <option value=500>Show 500</option>
+    </select>
+  </div>
+
+  <div>
+    <select class="form-control input-sm filter filter_select" id="order_by">
+      <option value="tanggal_daftar desc">Terbaru</option>
+      <option value="tanggal_daftar">Terlama</option>
+      <option value="nama_calon">Nama</option>
+    </select>
+  </div>
+
+  <div>
+    <button class="btn btn-success btn-sm" id="btn_get_csv">Get CSV</button>
+  </div>
+
+  <div>
+    <label><input type="checkbox" id="show_foto"> <small>Show Foto</small></label>
+  </div>
+
+</div>
+
+<div id="rows_pendaftar" style=margin-top:10px></div>
 
 
 
-<table class="table-bordered" width="100%" id="tb_filter" style="margin-bottom: 5px;">
-  <style type="text/css">#tb_filter td{padding: 5px;}</style>
-  <tr>
-    <td>
-      Gel
-      <select class="filter filter_select" id="id_gelombang_filter">
-        <option value="all">-All-</option>
-        <?php 
-        for ($i=0; $i < count($rid_gelombang) ; $i++) { 
-          echo "<option>$rid_gelombang[$i]</option>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  $(function(){
+
+
+    let is_get_csv = 0;
+
+    $("#btn_toggle_filter").click(function(){
+      let cap = $(this).text();
+      if(cap=="Filter"){
+        $("#tb_filter").slideDown();
+        $("#btn_toggle_filter").text("Hide");
+      }else{
+        $("#btn_toggle_filter").text("Filter");
+        $("#tb_filter").slideUp();
+      }
+    })
+
+    $("#show_foto").click(function(){
+      if($(this).prop('checked')){
+        let y = confirm('Yakin untuk menampilkan gambar? \n\nFile foto membutuhkan bandwidth internet yang jauh lebih besar.');
+        if(!y){
+          $(this).prop('checked',false);
+          return;
         }
-        ?>
-      </select>
-    </td>
-    <td>
-      Jalur
-      <select class="filter filter_select" id="id_jalur_filter">
-        <option value="all">-All-</option>
-        <?php 
-        for ($i=0; $i < count($rsingkatan_jalur) ; $i++) { 
-          echo "<option value='$rid_jalur[$i]'>$rsingkatan_jalur[$i]</option>";
+      }
+      $("#nama_calon_filter").keyup();
+    });
+
+    $(".filter_select").click(function(){
+      $("#nama_calon_filter").keyup();
+    });
+
+    $("#nama_calon_filter").keyup(function(){
+
+      let get_data = $("#get_data").val();
+      let id_gelombang_filter = $("#id_gelombang_filter").val();
+      let id_jalur_filter = $("#id_jalur_filter").val();
+      let id_prodi_filter = $("#id_prodi_filter").val();
+      let nama_calon_filter = $("#nama_calon_filter").val().trim();
+      let show_count = $("#show_count").val();
+      let order_by = $("#order_by").val();
+      let page_ke = $("#page_ke").val();
+      let show_foto = $("#show_foto").prop('checked');
+
+      let old_state = $('#state').text();
+      let new_state = `${get_data}|${id_gelombang_filter}|${id_jalur_filter}|${id_prodi_filter}|${nama_calon_filter}|${show_count}|${order_by}|${page_ke}|${show_foto}`;
+
+      if(old_state==new_state) return;
+      $('#state').text(new_state);
+
+      let link_ajax = "ajax_adm/ajax_master_pmb.php"
+      +"?id_gelombang_filter="+id_gelombang_filter
+      +"&id_jalur_filter="+id_jalur_filter
+      +"&id_prodi_filter="+id_prodi_filter
+      +"&nama_calon_filter="+nama_calon_filter
+      +"&show_count="+show_count
+      +"&order_by="+order_by
+      +"&page_ke="+page_ke
+      +"&is_get_csv="+is_get_csv
+      +"&get_data="+get_data
+      +"&show_foto="+show_foto
+      ;
+      console.log(link_ajax);
+
+      $.ajax({
+        url:link_ajax,
+        success:function(a){
+          $("#rows_pendaftar").html(a);
+          is_get_csv = 0;
         }
-        ?>
-      </select>
-    </td>
-    <td>
-      Prodi
-      <select class="filter filter_select" id="id_prodi_filter">
-        <option value="all">-All-</option>
-        <?php 
-        for ($i=0; $i < count($rsingkatan_prodi) ; $i++) { 
-          echo "<option value='$rid_prodi[$i]'>$rsingkatan_prodi[$i]</option>";
-        }
-        ?>
-      </select>
-    </td>
-    <td>
-      Nama
-      <input type="text" class="" id="nama_calon_filter" size="5">
-    </td>
+      })
 
-    <td>
-      Page:
-      <select class="filter filter_select" id="page_ke">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-      </select>
-    </td>
-    <td>
-      Show:
-      <select class="filter filter_select" id="show_count">
-        <option>10</option>
-        <option>25</option>
-        <option>50</option>
-        <option>100</option>
-        <option>500</option>
-      </select>
-    </td>
-    <td>
-      Sort:
-      <select class="filter filter_select" id="order_by">
-        <option value="tanggal_daftar desc">Terbaru</option>
-        <option value="tanggal_daftar">Terlama</option>
-        <option value="nama_calon">Nama</option>
-      </select>
-    </td>
-    <tr>
-      <td colspan="7">
-        <!-- <label><input type="checkbox" id="enable" checked="" disabled=""> enable</label>
-        <label><input type="checkbox" id="disable" checked="" disabled=""> disable</label>
-        <label><input type="checkbox" id="wa_verified" checked="" disabled=""> wa_verified</label>
-        <label><input type="checkbox" id="mail_verified" checked="" disabled=""> mail_verified</label>
-        <label><input type="checkbox" id="submitted" checked="" disabled=""> submitted</label>
-        <label><input type="checkbox" id="foto_profil" checked="" disabled=""> foto_profil</label>
-        <label><input type="checkbox" id="sudah_bayar" checked="" disabled=""> sudah_bayar</label>
-        <label><input type="checkbox" id="bukti_kip" checked="" disabled=""> bukti_kip</label> -->
-        <button id='btn_get_csv' class="btn btn-primary btn-sm">Get CSV</button>
-      </td>
-      
-    </tr>
-  </tr>
-</table>
+    })
 
 
 
+    $("#btn_get_csv").click(function(){
+      is_get_csv = 1; 
+      $("#nama_calon_filter").keyup();
+    })
 
-<div id="rows_pendaftar"></div>
+    $("#nama_calon_filter").keyup()
 
 
-
-<script type="text/javascript" src="modul_adm/master_pmb.js"></script>
+  })
+</script>

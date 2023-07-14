@@ -53,14 +53,6 @@ if (!isset($_SESSION['pendaftar_email'])) {
         include "login.php";
     }
     exit();
-
-
-    // $_SESSION['pendaftar_email'] = "insho@gmail.com";
-    // $_SESSION['pendaftar_nama'] = "Wulan Yulianti";
-    // $_SESSION['pendaftar_admin_level'] = 1;
-    // $_SESSION['pendaftar_id_daftar'] = 10001;
-    // $_SESSION['pendaftar_id_calon'] = 10001;
-    // die("Auto Login enabled. Please Refresh!");
 }
 
 # ========================================================
@@ -71,7 +63,11 @@ require_once "config.php";
 require_once "pendaftar_var.php";
 
 
-$img_ucons="<img src='assets/img/under_cons.jpg' width='150px' class='img_zoom'>";
+if ($online_version) {
+  include 'insho_styles.php';
+} else {
+  include '../../../insho_styles.php';
+}
 
 ?>
 

@@ -4,15 +4,17 @@
 include 'cek_login_petugas.php';
 
 
-$id_gelombang_filter = isset($_GET['id_gelombang_filter']) ? $_GET['id_gelombang_filter'] : die(undef('id_gelombang_filter'));
-$id_jalur_filter = isset($_GET['id_jalur_filter']) ? $_GET['id_jalur_filter'] : die(undef('id_jalur_filter'));
-$id_prodi_filter = isset($_GET['id_prodi_filter']) ? $_GET['id_prodi_filter'] : die(undef('id_prodi_filter'));
-$nama_calon_filter = isset($_GET['nama_calon_filter']) ? $_GET['nama_calon_filter'] : die(undef('nama_calon_filter'));
-$show_count = isset($_GET['show_count']) ? $_GET['show_count'] : die(undef('show_count'));
-$page_ke = isset($_GET['page_ke']) ? $_GET['page_ke'] : die(undef('page_ke'));
-$order_by = isset($_GET['order_by']) ? $_GET['order_by'] : die(undef('order_by'));
-$is_get_csv = isset($_GET['is_get_csv']) ? $_GET['is_get_csv'] : die(undef('is_get_csv'));
+$id_gelombang_filter = $_GET['id_gelombang_filter'] ?? die(undef('id_gelombang_filter'));
+$id_jalur_filter = $_GET['id_jalur_filter'] ?? die(undef('id_jalur_filter'));
+$id_prodi_filter = $_GET['id_prodi_filter'] ?? die(undef('id_prodi_filter'));
+$nama_calon_filter = $_GET['nama_calon_filter'] ?? die(undef('nama_calon_filter'));
+$show_count = $_GET['show_count'] ?? die(undef('show_count'));
+$page_ke = $_GET['page_ke'] ?? die(undef('page_ke'));
+$order_by = $_GET['order_by'] ?? die(undef('order_by'));
+$is_get_csv = $_GET['is_get_csv'] ?? die(undef('is_get_csv'));
+$show_foto = $_GET['show_foto'] ?? die(undef('show_foto'));
 
+$show_foto = $show_foto=='true' ? 1 : 0;
 
 $isi_csv = "";
 $path_csv = "";
@@ -290,7 +292,7 @@ if ($jumlah_rows) {
             }
         }
 
-        $img_profil_calon = "<img src='$file_profil_calon' class='img-rounded' width='50px' style='margin: 0 10px'>";
+        $img_profil_calon = $show_foto ? "<img src='$file_profil_calon' class='img-rounded' width='50px' style='margin: 0 10px'>" : '';
 
         $img_wa_calon = $img_wa_unverified;
         if ($status_no_wa) {
