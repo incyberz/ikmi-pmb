@@ -29,6 +29,7 @@ if ($online_version) {
     // include '../../../insho_styles.php';
 }
 
+Global $cn;
 $cn = new mysqli($db_server, $db_user, $db_pass, $db_name);
 if ($cn -> connect_errno) {
     echo "Error Konfigurasi# Tidak dapat terhubung ke MySQL Server :: $db_name";

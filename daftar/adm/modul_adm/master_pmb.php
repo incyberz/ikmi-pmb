@@ -1,7 +1,11 @@
 <?php
 include 'include_adm/include_rget.php';
+$get = $_GET['get'] ?? 'all_data';
 $opt_get='';
-foreach ($rget as $key => $val) $opt_get .= "<option>$val</option>";
+foreach ($rget as $key => $val){
+  $selected = $key==$get ? 'selected' : '';
+  $opt_get .= "<option $selected>$val</option>";
+}
 ?>
 <style type="text/css">
   .img_aksi, .img_aksi_disabled{
@@ -35,8 +39,10 @@ foreach ($rget as $key => $val) $opt_get .= "<option>$val</option>";
     <select class="form-control input-sm filter filter_select" id="id_gelombang_filter">
       <option value=all>All Gel</option>
       <?php 
-      for ($i=0; $i < count($rid_gelombang) ; $i++) { 
-        echo "<option>$rid_gelombang[$i]</option>";
+      $s = "SELECT id_gelombang FROM tb_gelombang WHERE id_angkatan=$tahun_pmb";
+      $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
+      while ($d=mysqli_fetch_assoc($q)) {
+        echo "<option value=$d[id_gelombang]>".str_replace($tahun_pmb,'',$d['id_gelombang']).'</option>';
       }
       ?>
     </select>
@@ -45,8 +51,8 @@ foreach ($rget as $key => $val) $opt_get .= "<option>$val</option>";
   <div>
     <select class="form-control input-sm filter filter_select" id="id_jalur_filter">
       <option value=all>All Jalur</option>
-      <option value="reg">Reg</option>
-      <option value="kip">KIP</option>
+      <option value="-3">Reg</option>
+      <option value="3">KIP</option>
     </select>
   </div>
 
@@ -61,7 +67,7 @@ foreach ($rget as $key => $val) $opt_get .= "<option>$val</option>";
     </select>
   </div>
 
-  <div>
+  <div class=hideit>
     <select class="form-control input-sm filter filter_select" id="page_ke">
       <?php for ($i=1; $i <=30 ; $i++) echo "<option value=$i>Page $i</option>";?>
     </select>
@@ -74,6 +80,7 @@ foreach ($rget as $key => $val) $opt_get .= "<option>$val</option>";
       <option value=50>Show 50</option>
       <option value=100>Show 100</option>
       <option value=500>Show 500</option>
+      <option value=9999>Show All</option>
     </select>
   </div>
 
@@ -81,7 +88,7 @@ foreach ($rget as $key => $val) $opt_get .= "<option>$val</option>";
     <select class="form-control input-sm filter filter_select" id="order_by">
       <option value="tanggal_daftar desc">Terbaru</option>
       <option value="tanggal_daftar">Terlama</option>
-      <option value="nama_calon">Nama</option>
+      <option value="nama_calon">By Nama</option>
     </select>
   </div>
 
@@ -122,7 +129,7 @@ foreach ($rget as $key => $val) $opt_get .= "<option>$val</option>";
   $(function(){
 
 
-    let is_get_csv = 0;
+    var is_get_csv = 0;
 
     $("#btn_toggle_filter").click(function(){
       let cap = $(this).text();
@@ -163,7 +170,7 @@ foreach ($rget as $key => $val) $opt_get .= "<option>$val</option>";
       let show_foto = $("#show_foto").prop('checked');
 
       let old_state = $('#state').text();
-      let new_state = `${get_data}|${id_gelombang_filter}|${id_jalur_filter}|${id_prodi_filter}|${nama_calon_filter}|${show_count}|${order_by}|${page_ke}|${show_foto}`;
+      let new_state = `${get_data}|${id_gelombang_filter}|${id_jalur_filter}|${id_prodi_filter}|${nama_calon_filter}|${show_count}|${order_by}|${page_ke}|${show_foto}|${is_get_csv}`;
 
       if(old_state==new_state) return;
       $('#state').text(new_state);
@@ -187,6 +194,9 @@ foreach ($rget as $key => $val) $opt_get .= "<option>$val</option>";
         success:function(a){
           $("#rows_pendaftar").html(a);
           is_get_csv = 0;
+
+          new_state = `${get_data}|${id_gelombang_filter}|${id_jalur_filter}|${id_prodi_filter}|${nama_calon_filter}|${show_count}|${order_by}|${page_ke}|${show_foto}|${is_get_csv}`;
+          $('#state').text(new_state);
         }
       })
 

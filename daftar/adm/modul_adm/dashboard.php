@@ -31,6 +31,9 @@ b.tanggal_lulus_tes,
 b.status_lulus,
 b.tanggal_registrasi_ulang,
 (
+  SELECT 1 FROM tb_peserta_tes WHERE id_daftar=b.id_daftar 
+) sudah_dijadwalkan,
+(
   SELECT status_upload FROM tb_verifikasi_upload 
   WHERE id_daftar=b.id_daftar 
   AND id_persyaratan=2
@@ -69,10 +72,10 @@ $jlulus=0;
 $jgagal=0;
 $jregisu=0;
 
-$reg_sudah_tes = 0;
+$reg_sudah_dijadwalkan = 0;
 $reg_lulus = 0;
 $reg_regisu = 0;
-$kip_sudah_tes = 0;
+$kip_sudah_dijadwalkan = 0;
 $kip_lulus = 0;
 $kip_regisu = 0;
 
@@ -105,14 +108,14 @@ if(mysqli_num_rows($q)==0){
           if($d['id_jalur']==1) $jregp++;
           if($d['id_jalur']==2) $jregs++;
           if($d['status_upload_syarat']==1) $jreg_bayar++;
-          if($d['tanggal_tes_pmb']!=''||$d['tanggal_lulus_tes']!='') $reg_sudah_tes++;
+          if($d['sudah_dijadwalkan']) $reg_sudah_dijadwalkan++;
           if($d['tanggal_lulus_tes']!='') $reg_lulus++;
           if($d['tanggal_registrasi_ulang']!='') $reg_regisu++;
 
         }elseif($d['id_jalur']==3){
           $jkip++;
           if($d['status_upload_syarat']==1) $jkip_verif++;
-          if($d['tanggal_tes_pmb']!=''||$d['tanggal_lulus_tes']!='') $kip_sudah_tes++;
+          if($d['sudah_dijadwalkan']) $kip_sudah_dijadwalkan++;
           if($d['tanggal_lulus_tes']!='') $kip_lulus++;
           if($d['tanggal_registrasi_ulang']!='') $kip_regisu++;
         }elseif($d['id_jalur']==4){
@@ -166,24 +169,29 @@ if(mysqli_num_rows($q)==0){
   $persen_kip_noverif = 100-$persen_kip_verif;
 
   if($jreg_bayar==0){
-    $persen_reg_sudah_tes = 0;
+    $persen_reg_sudah_dijadwalkan = 0;
     $persen_reg_lulus = 0;
     $persen_reg_regisu = 0;
   }else{
-    $persen_reg_sudah_tes = round(($reg_sudah_tes/$jreg_bayar)*100,2);
+    $persen_reg_sudah_dijadwalkan = round(($reg_sudah_dijadwalkan/$jreg_bayar)*100,2);
     $persen_reg_lulus = round(($reg_lulus/$jreg_bayar)*100,2);
     $persen_reg_regisu = round(($reg_regisu/$jreg_bayar)*100,2);
   }
 
   if($jkip_verif ==0){
-    $persen_kip_sudah_tes = 0;
+    $persen_kip_sudah_dijadwalkan = 0;
     $persen_kip_lulus = 0;
     $persen_kip_regisu = 0;
   }else{
-    $persen_kip_sudah_tes = round(($kip_sudah_tes/$jkip_verif)*100,2);
+    $persen_kip_sudah_dijadwalkan = round(($kip_sudah_dijadwalkan/$jkip_verif)*100,2);
     $persen_kip_lulus = round(($kip_lulus/$jkip_verif)*100,2);
     $persen_kip_regisu = round(($kip_regisu/$jkip_verif)*100,2);
   }
+
+  $reg_belum_dijadwalkan = $jreg_bayar-$reg_sudah_dijadwalkan;
+  $kip_belum_dijadwalkan = $jkip_verif-$kip_sudah_dijadwalkan;
+  $persen_reg_belum_dijadwalkan = 100-$persen_reg_sudah_dijadwalkan;
+  $persen_kip_belum_dijadwalkan = 100-$persen_kip_sudah_dijadwalkan;
 
   for ($i=0; $i < count($rprodi); $i++) { 
     $jml = $jprodi[$rprodi[$i]];
@@ -251,9 +259,9 @@ $wadah2 = "<div class='wadah level3'>
 
       <div class='wadah'>
         <div class=''>
-          <a href='?master_pmb&get=reg_sudah_tes'>Reg ~ Sudah Tes PMB : $reg_sudah_tes ($persen_reg_sudah_tes%)</a>
+          <a href='?master_pmb&get=reg_sudah_dijadwalkan'>Reg ~ Sudah Dijadwalkan Tes : $reg_sudah_dijadwalkan ($persen_reg_sudah_dijadwalkan%)</a>
           <div class=progress>
-              <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_reg_sudah_tes%'></div>
+              <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_reg_sudah_dijadwalkan%'></div>
           </div>
         </div>
 
@@ -268,6 +276,13 @@ $wadah2 = "<div class='wadah level3'>
           <a href='?master_pmb&get=reg_regisu'>Reg ~ Sudah Registrasi Ulang : $reg_regisu ($persen_reg_regisu%)</a>
           <div class=progress>
               <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_reg_regisu%'></div>
+          </div>
+        </div>
+
+        <div class=''>
+          <a href='?master_pmb&get=reg_belum_dijadwalkan'>Reg ~ Belum Dijadwalkan : $reg_belum_dijadwalkan ($persen_reg_belum_dijadwalkan%)</a>
+          <div class=progress>
+              <div class='progress-bar progress-bar-danger' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_reg_belum_dijadwalkan%'></div>
           </div>
         </div>
       </div>
@@ -294,9 +309,9 @@ $wadah2 = "<div class='wadah level3'>
 
       <div class=wadah>
         <div class=''>
-          <a href='?master_pmb&get=kip_sudah_tes'>KIP ~ Sudah Tes PMB : $kip_sudah_tes ($persen_kip_sudah_tes%)</a>
+          <a href='?master_pmb&get=kip_sudah_dijadwalkan'>KIP ~ Sudah Dijadwalkan Tes : $kip_sudah_dijadwalkan ($persen_kip_sudah_dijadwalkan%)</a>
           <div class=progress>
-              <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_kip_sudah_tes%'></div>
+              <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_kip_sudah_dijadwalkan%'></div>
           </div>
         </div>
 
@@ -313,6 +328,14 @@ $wadah2 = "<div class='wadah level3'>
               <div class='progress-bar progress-bar-success' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_kip_regisu%'></div>
           </div>
         </div>      
+
+        <div class=''>
+          <a href='?master_pmb&get=kip_belum_dijadwalkan'>KIP ~ Belum Dijadwalkan : $kip_belum_dijadwalkan ($persen_kip_belum_dijadwalkan%)</a>
+          <div class=progress>
+              <div class='progress-bar progress-bar-danger' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_kip_belum_dijadwalkan%'></div>
+          </div>
+        </div>
+
       </div>
       
     </div>

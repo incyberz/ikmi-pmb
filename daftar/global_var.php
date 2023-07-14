@@ -85,12 +85,12 @@ $btn_back = "<a href='javascript:history.go(-1)'><button class='btn btn-primary'
 
 $bm = '<span style="color: red;font-weight: bold">*</span>';
 
-$img_help = "<img src='assets/img/icons/help.png' width='20px'>";
-$img_check = "<img src='assets/img/icons/check.png' width='20px'>";
-$img_wa = "<img src='assets/img/icons/wa.png' width='30px'>";
-$img_loading = "<img src='assets/img/icons/loading6.gif' width='20px'>";
-$img_warning = "<img src='assets/img/icons/warning.png' width='20px'>";
-$img_reject = "<img src='assets/img/icons/reject.png' width='20px'>";
+Global $img_help; $img_help = "<img src='assets/img/icons/help.png' width='20px'>";
+Global $img_check; $img_check = "<img src='assets/img/icons/check.png' width='20px'>";
+Global $img_wa; $img_wa = "<img src='assets/img/icons/wa.png' width='30px'>";
+Global $img_loading; $img_loading = "<img src='assets/img/icons/loading6.gif' width='20px'>";
+Global $img_warning; $img_warning = "<img src='assets/img/icons/warning.png' width='20px'>";
+Global $img_reject; $img_reject = "<img src='assets/img/icons/reject.png' width='20px'>";
 
 
 $periode_ta = "2023/2024";
