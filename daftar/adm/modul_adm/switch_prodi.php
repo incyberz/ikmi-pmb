@@ -55,7 +55,7 @@ $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
 $d = mysqli_fetch_assoc($q);
 
 $tanggal_lulus_tes = $d['tanggal_lulus_tes'];
-// $tanggal_lulus_tes = "";
+// $tanggal_lulus_tes = '';
 $grade_lulus = $d['grade_lulus'];
 // $grade_lulus = "A";
 $status_lulus = $d['status_lulus'];

@@ -358,7 +358,7 @@ function ftgl($t){
 function penyebut($nilai) {
   $nilai = abs($nilai);
   $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
-  $temp = "";
+  $temp = '';
   if ($nilai < 12) {
     $temp = " ". $huruf[$nilai];
   } else if ($nilai <20) {

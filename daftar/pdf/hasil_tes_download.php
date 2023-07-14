@@ -33,7 +33,7 @@ $link_wa_ubah_data_akun = "https://api.whatsapp.com/send?phone=62$no_wa_petugas&
 # ===========================================
 # GET ID JADWAL TES
 # ===========================================
-$id_jadwal_tes = "";
+$id_jadwal_tes = '';
 $s = "SELECT 
 b.id_jadwal_tes,
 b.titi_mangsa,

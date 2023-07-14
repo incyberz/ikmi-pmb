@@ -24,12 +24,12 @@ $page_content = "modul_adm/$parameter.php";
 
 
 
-$li_sty['dashboard'] = "";
-$li_sty['master_pmb'] = "";
-$li_sty['verif_akun'] = "";
-$li_sty['verif_upload'] = "";
-$li_sty['post_jadwal'] = "";
-$li_sty['regulang'] = "";
+$li_sty['dashboard'] = '';
+$li_sty['master_pmb'] = '';
+$li_sty['verif_akun'] = '';
+$li_sty['verif_upload'] = '';
+$li_sty['post_jadwal'] = '';
+$li_sty['regulang'] = '';
 
 
 $li_sty[$parameter] = "style='color: yellow; font-weight:bold'";

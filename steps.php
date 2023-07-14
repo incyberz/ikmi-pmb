@@ -36,8 +36,8 @@ $step_next=$cstep+1;
 $step_prev = "<a href='?p=daftar$step_prev'>$prev_btn</a>";
 $step_next = "<a href='?p=daftar$step_next'>$next_btn</a>";
 
-if ($cstep==3) $step_prev="";
-if ($cstep==9) $step_next="";
+if ($cstep==3) $step_prev= '';
+if ($cstep==9) $step_next= '';
 
 ?>
 

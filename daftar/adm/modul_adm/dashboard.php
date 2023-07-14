@@ -317,7 +317,7 @@ $wadah2 = "<div class='wadah level3'>
       
     </div>
     <div class='wadah level5'>
-      <a href='?master_pmb&get=kip_belum_terverifikasi'>KIP ~ Belum Terverifikasi : $jkip_noverif ($persen_kip_noverif%)</a>
+      <a href='?master_pmb&get=kip_belum_verif'>KIP ~ Belum Terverifikasi : $jkip_noverif ($persen_kip_noverif%)</a>
       <div class=progress>
           <div class='progress-bar progress-bar-danger' role=progressbar aria-valuenow=90 aria-valuemin=0 aria-valuemax=100 style='width: $persen_kip_noverif%'></div>
       </div>
@@ -725,12 +725,12 @@ while ($d=mysqli_fetch_assoc($q)) {
     $chart_type = $d['chart_type'];
     $index_axis = $d['index_axis'];
 
-    $row_det = "";
+    $row_det = '';
     $s2 = "SELECT * from tb_rekap_det WHERE kode_rekap='$kode_rekap' order by nilai desc";
     $q2 = mysqli_query($cn, $s2) or die(mysqli_error($cn));
 
-    $labels = "";
-    $nilais = "";
+    $labels = '';
+    $nilais = '';
     $j=0;
     while ($d2=mysqli_fetch_assoc($q2)) {
         $j++;

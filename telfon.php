@@ -8,8 +8,8 @@ if(isset($_GET['petugas'])) $petugas = $_GET['petugas'];
 $is_login = 0; 
 $is_terdaftar=0;
 
-$email="";
-$nama_calon="";
+$email= '';
+$nama_calon= '';
 $link_panduan = "assets/files/panduan_upload_persyaratan_pmb_ikmi_2021.pdf";
 $link_login = "<a href='?p=login_email' class='btn btn-primary'>Login Pendaftaran PMB</a>";
 

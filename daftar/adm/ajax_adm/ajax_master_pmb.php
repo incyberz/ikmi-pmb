@@ -1,9 +1,18 @@
 <?php
-
-
 include 'cek_login_petugas.php';
 
+# ========================================
+# ARRAY GET HANDLER
+# ========================================
+include '../include_adm/include_rget.php';
+$get_data = $_GET['get_data'] ?? die(undef('get_data'));
+if(!in_array($get_data,$rget)) die("Get_data: $get_data tidak ada pada array_get.");
 
+
+
+# ========================================
+# OTHERS GET HANDLER
+# ========================================
 $id_gelombang_filter = $_GET['id_gelombang_filter'] ?? die(undef('id_gelombang_filter'));
 $id_jalur_filter = $_GET['id_jalur_filter'] ?? die(undef('id_jalur_filter'));
 $id_prodi_filter = $_GET['id_prodi_filter'] ?? die(undef('id_prodi_filter'));
@@ -16,8 +25,8 @@ $show_foto = $_GET['show_foto'] ?? die(undef('show_foto'));
 
 $show_foto = $show_foto=='true' ? 1 : 0;
 
-$isi_csv = "";
-$path_csv = "";
+$isi_csv = '';
+$path_csv = '';
 
 
 $limit = $show_count;
@@ -68,6 +77,37 @@ if ($admin_level==1) {
 }
 
 
+# =======================================
+# SQL WHERE GET
+# =======================================
+// a=tb_akun b=tb_calon c=tb_daftar
+$sudah_submit = 'a.status_akun=1 AND c.tanggal_submit_formulir is not null';
+$reg_aktif = "$sudah_submit AND c.id_jalur!=3";
+$kip_aktif = "$sudah_submit AND c.id_jalur=3";
+$rwhere = [
+  'All Data' => '1',
+  'Data Aktif' => 'a.status_akun=1',
+  'Sudah Submit' => $sudah_submit,
+  'Belum Submit' => 'a.status_akun=1 AND c.tanggal_submit_formulir is null',
+  'Data Sampah' => 'a.status_akun!=1',
+
+  'Reguler Aktif' => $reg_aktif,
+  'KIP Aktif' => $kip_aktif,
+
+  'Reg Sudah bayar' => $reg_aktif,
+  'Reg Lulus' => $reg_aktif,
+  'Reg Reg-Ulang' => $reg_aktif,
+  'Reg Belum Bayar' => $reg_aktif,
+
+  'KIP Sudah Verif' => $kip_aktif,
+  'KIP Lulus' => $kip_aktif,
+  'KIP Reg-Ulang' => $kip_aktif,
+  'KIP Belum Verif' => $kip_aktif
+
+];
+
+$where_get = $rwhere[$get_data];
+
 include '../../config.php';
 include '../../global_var.php';
 include '../global_var_adm.php';
@@ -89,12 +129,6 @@ c.*,
 (select jenjang from tb_prodi where id_prodi=c.id_prodi1) as jenjang1, 
 (select jenjang from tb_prodi where id_prodi=c.id_prodi2) as jenjang2, 
 (select singkatan_jalur from tb_jalur where id_jalur=c.id_jalur) as singkatan_jalur, 
-(select nama_sekolah from tb_sekolah where id_sekolah=b.id_sekolah) as nama_sekolah,
-
-(select nama_kec from tb_kec where id_kec=b.id_nama_kec_sekolah) as kecamatan_sekolah,
-(select nama_kec from tb_kec where id_kec=b.id_nama_kec_ktp) as kecamatan_ktp,
-(select nama_kec from tb_kec where id_kec=b.id_nama_kec_domisili) as kecamatan_domisili,
-(select nama_kab from tb_kab where id_kab=b.id_kab_tempat_lahir) as tempat_lahir,
 
 (select tanggal_verifikasi_upload from tb_verifikasi_upload where id_daftar=c.id_daftar and id_persyaratan=1 and status_upload=1) as tanggal_verifikasi_profil,
 (select tanggal_verifikasi_upload from tb_verifikasi_upload where id_daftar=c.id_daftar and id_persyaratan=2 and status_upload=1) as tanggal_verifikasi_bukti_bayar 
@@ -115,11 +149,11 @@ AND $sql_id_prodi
 AND $sql_id_jalur 
 AND $sql_nama_calon 
 
+AND $where_get 
 
 ORDER BY $order_by 
 ";
 
-// echo("<pre>$s</pre>");
 $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 $jumlah_rows = mysqli_num_rows($q);
 if ($jumlah_rows and $is_get_csv) {
@@ -161,7 +195,7 @@ $q = mysqli_query($cn, $s) or die(mysqli_error($cn));
 
 
 if ($jumlah_rows) {
-    $rows_pendaftar = "";
+    $rows_pendaftar = '';
     $i=0;
     while ($d=mysqli_fetch_assoc($q)) {
         $i++;
@@ -179,9 +213,6 @@ if ($jumlah_rows) {
         # ===========================================
         $id_calon   = $d['id_calon'];
         $no_hp   = $d['no_hp'];
-        $no_ayah  = $d['no_ayah'];
-        $no_ibu  = $d['no_ibu'];
-        $no_saudara  = $d['no_saudara'];
 
         # ===========================================
         # DATA DAFTAR
@@ -240,8 +271,8 @@ if ($jumlah_rows) {
         # ===========================================
         $rwarna_jalur = ["","#def","#ffc","#cff","#fcc"];
 
-        $sty_jalur = "";
-        $sty_prodi = "";
+        $sty_jalur = '';
+        $sty_prodi = '';
         if ($id_jalur!="") {
             $sty_jalur = "background-color:". $rwarna_jalur[$id_jalur];
         }
@@ -314,7 +345,7 @@ if ($jumlah_rows) {
         <img class='img_aksi' id='img_aksi__login_as' src='img/icons/login_as.png'>
         </a>";
 
-        $set_pass = "";
+        $set_pass = '';
 
         $switch_prodi = "<img class='img_aksi_disabled' id='img_aksi__switch_prodi' src='img/icons/switch_prodi_disabled.png'>";
 
@@ -323,7 +354,7 @@ if ($jumlah_rows) {
         }
 
 
-        $super_delete = "";
+        $super_delete = '';
 
         $rows_pendaftar .= "
         <tr>
@@ -344,7 +375,7 @@ if ($jumlah_rows) {
 
 
 
-$dw_csv = $is_get_csv ? "<a href='$path_csv' class='btn btn-success btn-sm' target='_blank'>Download CSV</a>" : "";
+$dw_csv = $is_get_csv ? "<a href='$path_csv' class='btn btn-success btn-sm' target='_blank'>Download CSV</a>" : '';
 
 
 die(" <div> <pre> $jumlah_rows records found | Limit  $limit_awal,$limit  $dw_csv</pre></div>
@@ -365,4 +396,7 @@ die(" <div> <pre> $jumlah_rows records found | Limit  $limit_awal,$limit  $dw_cs
     $rows_pendaftar
 
   </table>
+  
+  <pre class=debug>$s</pre>);
+
   ");

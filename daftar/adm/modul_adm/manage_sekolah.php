@@ -1,11 +1,11 @@
-<?php $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : ""; ?>
+<?php $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : ''; ?>
 <p><b>Manage Data Sekolah</b> :: Ceklis 2 sekolah lalu Merge Data jika sekolah tersebut sama.</p>
 <form method="post" action="index.php?manage_sekolah">
 	<input type="text" name="keyword" value="<?=$keyword?>" style='text-align: center;'> <button>Filter</button>
 </form>
 
 <?php 
-$rows_data = "";
+$rows_data = '';
 
 $s = "
 SELECT a.id_sekolah, a.nama_sekolah,

@@ -1,5 +1,5 @@
 <?php 
-$id_jadwal_tes = "";
+$id_jadwal_tes = '';
 $hasil_tes = "
 <p class='merah'>Anda belum mengikuti tes PMB atau Hasil Tes PMB belum diumumkan.</p>
 <hr>
@@ -56,8 +56,8 @@ if(mysqli_num_rows($q)==1){
     $link_hasil_kip_show = "<div style='color:red'>Petugas belum memosting Link Hasil Jalur KIP </div>";
     if(1) $link_hasil_kip_show = "<a href='$link_hasil_kip' target='_blank' class='btn btn-primary btn-sm'>Download Hasil Tes Jalur KIP</a>";
 
-    $download_formulir_token = "";
-    $img_pdf="";
+    $download_formulir_token = '';
+    $img_pdf= '';
 
     $a = date("mydh").$id_jalur;
     $download_formulir_token = md5($a);

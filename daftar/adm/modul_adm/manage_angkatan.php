@@ -7,7 +7,7 @@ $s = "SELECT * from tb_angkatan";
 $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
 
 if(mysqli_num_rows($q)>0){
-  $rows = "";
+  $rows = '';
   $i=0;
   while ($d = mysqli_fetch_array($q)) {
     $i++;

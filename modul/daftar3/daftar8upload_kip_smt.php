@@ -28,7 +28,7 @@
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_foto_keluarga").disabled = true;
               }else{
                 document.getElementById("btn_upload_foto_keluarga").disabled = false;
@@ -81,7 +81,7 @@
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_dok_eko").disabled = true;
               }else{
                 document.getElementById("btn_upload_dok_eko").disabled = false;
@@ -132,7 +132,7 @@
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_foto_rumah").disabled = true;
               }else{
                 document.getElementById("btn_upload_foto_rumah").disabled = false;
@@ -185,7 +185,7 @@
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_foto_ruang_klg").disabled = true;
               }else{
                 document.getElementById("btn_upload_foto_ruang_klg").disabled = false;

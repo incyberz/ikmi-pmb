@@ -6,7 +6,7 @@ $q = mysqli_query($cn, $s) or die("Tidak bisa mengakses data persyaratan. ".mysq
 $rows_persyaratan_regisu = "<tr><td colspan=4>No Persyaratan available.</td></tr>";
 
 if (mysqli_num_rows($q)) {
-    $rows_persyaratan_regisu = "";
+    $rows_persyaratan_regisu = '';
     $i=0;
     while ($d=mysqli_fetch_assoc($q)) {
         $id_persyaratan = $d['id_persyaratan'];
@@ -24,10 +24,10 @@ if (mysqli_num_rows($q)) {
             die("Tidak boleh dua persyaratan sejenis dalam 1 pendaftaran, id_persyaratan=$id_persyaratan, id_daftar=$id_daftar");
         }
 
-        $ekstensi_file = "";
-        $tanggal_verifikasi_upload = "";
-        $status_upload = "";
-        $alasan_reject = "";
+        $ekstensi_file = '';
+        $tanggal_verifikasi_upload = '';
+        $status_upload = '';
+        $alasan_reject = '';
         if (mysqli_num_rows($q2)) {
             $d2 = mysqli_fetch_assoc($q2);
             $ekstensi_file = $d2['ekstensi_file'];
@@ -49,7 +49,7 @@ if (mysqli_num_rows($q)) {
         if (!file_exists($softcopy[$id_persyaratan])) {
             $softcopy_exist[$id_persyaratan] = 0;
             $softcopy[$id_persyaratan] = "uploads/img_na.jpg";
-            $img_persyaratan = "";
+            $img_persyaratan = '';
         }
 
 
@@ -69,7 +69,7 @@ if (mysqli_num_rows($q)) {
 
         if ($tanggal_verifikasi_upload=="") {
             $status_verifikasi = "<span class='red'>Belum diverifikasi</span><br><a href='$link_wa_hubungi_petugas' target='_blank'>Hubungi Petugas $img_wa</a>";
-            $disable_upload = "";
+            $disable_upload = '';
         } else {
             if ($status_upload) {
                 $status_verifikasi = "<span class='green'>Terverifikasi $img_check<br>
@@ -80,7 +80,7 @@ if (mysqli_num_rows($q)) {
                 $status_verifikasi = "<span class='red'>Ditolak $img_reject<br>
         <small>at: $tanggal_verifikasi_upload<br>alasan: $alasan_reject</small>
         </span> <br>Silahkan Anda tekan tombol Browse - Upload untuk upload ulang!";
-                $disable_upload = "";
+                $disable_upload = '';
             }
         }
 

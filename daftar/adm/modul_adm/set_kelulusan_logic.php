@@ -47,7 +47,7 @@ $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
 $i=0;
 $rows_peserta_ikut_tes = "<tr><td colspan='7' style='color:red'>Jadwal ini belum punya peserta tes.</td></tr>";
 if(mysqli_num_rows($q)){
-  $rows_peserta_ikut_tes = "";
+  $rows_peserta_ikut_tes = '';
   while ($d=mysqli_fetch_assoc($q)) {
     $i++;
     $id_daftar = $d['id_daftar'];
@@ -183,7 +183,7 @@ $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
 $i=0;
 $rows_peserta_lulus_tes = "<tr><td colspan='7' style='color:red'>Jadwal ini belum punya peserta yang lulus tes.</td></tr>";
 if(mysqli_num_rows($q)){
-  $rows_peserta_lulus_tes = "";
+  $rows_peserta_lulus_tes = '';
   while ($d=mysqli_fetch_assoc($q)) {
     $i++;
     $id_daftar = $d['id_daftar'];

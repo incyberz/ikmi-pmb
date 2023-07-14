@@ -12,7 +12,7 @@ $lembaga 	= "STMIK IKMI";
 $title 		= "$judul_menu :: $lembaga"; // muncul di title
 $nama_author = "Iin Sholihin";
 $tahun_release = 2021;
-$dev_kontak = "";
+$dev_kontak = '';
 $dev_name = "Iin Sholihin, M.Kom";
 
 

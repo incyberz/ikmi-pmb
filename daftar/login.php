@@ -1,12 +1,12 @@
 <?php
 $is_login = 0;
-$link_wa_lupa_pass = "";
+$link_wa_lupa_pass = '';
 $no_wa_petugas = "083821651265"; //Nomor FO
 
 $link_wa_lupa_pass = "https://api.whatsapp.com/send?phone=62$no_wa_petugas&text=Yth. Petugas PMB STMIK IKMI Cirebon saya lupa password akun PMB. Berikut adalah data saya: (silahkan ketik nama dan email Anda)";
 
 
-$email = "";
+$email = '';
 $pesan = "Silahkan Anda login memakai email dan password pada saat Anda melakukan Pendaftaran Akun!";
 if (isset($_POST['btn_login'])) {
     $email = strip_tags($_POST['email']);

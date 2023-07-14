@@ -31,7 +31,7 @@ $rows_peserta_lulus_tes = "<tr><td colspan='7' style='color:red'>Jadwal ini belu
 // die("mysqli_num_rows:".mysqli_num_rows($q));
 $jumlah_peserta_lulus_tes = mysqli_num_rows($q);
 if($jumlah_peserta_lulus_tes){
-  $rows_peserta_lulus_tes = "";
+  $rows_peserta_lulus_tes = '';
   while ($d=mysqli_fetch_assoc($q)) {
     $i++;
     $id_daftar = $d['id_daftar'];
@@ -130,7 +130,7 @@ $i=0;
 $rows_peserta_sudah_reg = "<tr><td colspan='8' style='color:red'>Belum ada peserta yang sudah registrasi ulang.</td></tr>";
 $jumlah_peserta_sudah_reg = mysqli_num_rows($q);
 if($jumlah_peserta_sudah_reg){
-  $rows_peserta_sudah_reg = "";
+  $rows_peserta_sudah_reg = '';
   while ($d=mysqli_fetch_assoc($q)) {
     $i++;
     $id_daftar = $d['id_daftar'];
@@ -347,7 +347,7 @@ if (mysqli_num_rows($q)) {
       let set_reg = btn_id=="btn_sudah_reg" ? 1 : 0;
       // alert("set_reg: "+set_reg);
 
-      let tgl_reg = "";
+      let tgl_reg = '';
       if(set_reg){
         let d = new Date();
         let saat_ini = d.getFullYear()

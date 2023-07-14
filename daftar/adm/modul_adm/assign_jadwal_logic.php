@@ -41,7 +41,7 @@ $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
 $i=0;
 $rows_peserta_this_tes = "<tr><td colspan='' style='color:red'>Jadwal ini belum punya peserta tes.</td></tr>";
 if(mysqli_num_rows($q)){
-  $rows_peserta_this_tes = "";
+  $rows_peserta_this_tes = '';
   while ($d=mysqli_fetch_assoc($q)) {
     $i++;
     $id_daftar = $d['id_daftar'];
@@ -187,7 +187,7 @@ if(mysqli_num_rows($q)==0){
 }else{
   $i=0;
   $j=0;
-  $rows_calon_peserta_tes = "";
+  $rows_calon_peserta_tes = '';
 
   // echo "<pre>"; echo var_dump($q); echo "</pre>"; exit();
   while ($d=mysqli_fetch_assoc($q)) {

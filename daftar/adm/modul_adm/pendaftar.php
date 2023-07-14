@@ -108,7 +108,7 @@
 		$(".icon_edit").click(function(){
 			// alert(0)
 			let id = $(this).prop("id");
-			let field="";
+			let field= '';
 
 			if(id=="icon_edit__nama_calon") field = "nama_calon";
 			if(id=="icon_edit__no_wa") field = "no_wa";
@@ -118,7 +118,7 @@
 			let email_calon = $("#email_calon").text();
 			let no_wa = $("#no_wa").text();
 
-			let default_isi = "";
+			let default_isi = '';
 			if(field=="nama_calon") default_isi = nama_calon;
 			if(field=="no_wa") default_isi = no_wa;
 

@@ -14,9 +14,9 @@ echo "<input type='hidden' id='id_gelombang_aktif' value='$id_gelombang_aktif' /
 # ========================================================
 # PROCESS SUBMIT LOGIN
 # ========================================================
-$username = "";
-$password = "";
-$pesan_login = "";
+$username = '';
+$password = '';
+$pesan_login = '';
 
 if (isset($_POST['btn_login'])) {
     $username = $_POST['username'];
@@ -65,17 +65,17 @@ if ($pesan_login!="") {
 # INITIALIZATION VAR
 # ========================================================
 $is_login = 0;
-$nama_petugas = "";
-$g_nama_petugas = "";
-$g_email_petugas = "";
-$g_gender_petugas = "";
-$g_img_petugas = "";
+$nama_petugas = '';
+$g_nama_petugas = '';
+$g_email_petugas = '';
+$g_gender_petugas = '';
+$g_img_petugas = '';
 $img_petugas = "../adm/img/petugas/admin.jpg";
 // $id_angkatan = date("Y");
 $id_angkatan = '2023'; //set manual
-$option_gel = "";
-$option_tahap = "";
-$rlist_tahap = "";
+$option_gel = '';
+$option_tahap = '';
+$rlist_tahap = '';
 
 
 include "global_var_adm.php";

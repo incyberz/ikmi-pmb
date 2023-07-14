@@ -26,7 +26,7 @@
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_ijazah_pt").disabled = true;
               }else{
                 document.getElementById("btn_upload_ijazah_pt").disabled = false;
@@ -74,7 +74,7 @@
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_transkrip_pt").disabled = true;
               }else{
                 document.getElementById("btn_upload_transkrip_pt").disabled = false;
@@ -123,7 +123,7 @@
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_ktm").disabled = true;
               }else{
                 document.getElementById("btn_upload_ktm").disabled = false;
@@ -171,7 +171,7 @@
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_sk_pindah_studi").disabled = true;
               }else{
                 document.getElementById("btn_upload_sk_pindah_studi").disabled = false;
@@ -219,7 +219,7 @@
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_laporan_pdpt").disabled = true;
               }else{
                 document.getElementById("btn_upload_laporan_pdpt").disabled = false;
@@ -267,7 +267,7 @@
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_s_rekom_lldikti").disabled = true;
               }else{
                 document.getElementById("btn_upload_s_rekom_lldikti").disabled = false;

@@ -7,8 +7,8 @@ $debug_mode = 0;
 $is_login = 0;
 $is_terdaftar=0;
 
-$email="";
-$nama_calon="";
+$email= '';
+$nama_calon= '';
 $link_panduan = "files/panduan-pmb-stmik-ikmi-2022.pdf";
 $link_login = "<a href='?p=login_email' class='btn btn-primary'>Login Pendaftaran PMB</a>";
 

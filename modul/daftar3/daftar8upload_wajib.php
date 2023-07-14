@@ -38,7 +38,7 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_bukti_bayar").disabled = true;
               }else{
                 document.getElementById("btn_upload_bukti_bayar").disabled = false;
@@ -88,7 +88,7 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_pas_photo").disabled = true;
               }else{
                 document.getElementById("btn_upload_pas_photo").disabled = false;
@@ -139,7 +139,7 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_ijazah_sma").disabled = true;
               }else{
                 document.getElementById("btn_upload_ijazah_sma").disabled = false;
@@ -190,7 +190,7 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_transkrip_sma").disabled = true;
               }else{
                 document.getElementById("btn_upload_transkrip_sma").disabled = false;
@@ -241,7 +241,7 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_kartu_keluarga").disabled = true;
               }else{
                 document.getElementById("btn_upload_kartu_keluarga").disabled = false;
@@ -293,7 +293,7 @@ if ($id_jndaftar==1 or $id_jndaftar==2) {
           uploadField.onchange = function() {
               if(this.files[0].size > 512000){
                 alert("Ukuran File terlalu besar, maksimal 500KB. Silahkan Anda kecilkan ukurannya, atau Anda cari file lain yang lebih sesuai.");
-                this.value = "";
+                this.value = '';
                 document.getElementById("btn_upload_ktp").disabled = true;
               }else{
                 document.getElementById("btn_upload_ktp").disabled = false;

@@ -24,7 +24,7 @@ if ($online_version) {
 } else {
     $db_server = "localhost";
     $db_user = "root";
-    $db_pass = "";
+    $db_pass = '';
     $db_name = "db_pmb62";
     // include '../../../insho_styles.php';
 }
@@ -281,7 +281,7 @@ function penyebut($nilai)
 {
     $nilai = abs($nilai);
     $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
-    $temp = "";
+    $temp = '';
     if ($nilai < 12) {
         $temp = " ". $huruf[$nilai];
     } elseif ($nilai <20) {

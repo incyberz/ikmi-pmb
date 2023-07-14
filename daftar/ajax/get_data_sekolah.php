@@ -13,7 +13,7 @@ $jenis_sekolah = $d['jenis_sekolah'];
 $status_sekolah = $d['status_sekolah'];
 $id_kec_sekolah = $d['id_kec_sekolah'];
 
-$nama_kec_sekolah = "";
+$nama_kec_sekolah = '';
 if($id_kec_sekolah!=""){
 	$s = "SELECT a.nama_kec,b.nama_kab from tb_kec a  
 	join tb_kab b on a.id_kab=b.id_kab 

@@ -7,9 +7,9 @@ $rows_data = "
 </tr>
 "; 
 
-$rows_data_deleted = ""; 
+$rows_data_deleted = ''; 
 
-$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
+$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 
 
 
@@ -48,7 +48,7 @@ $jumlah_rows = mysqli_num_rows($q);
 if($jumlah_rows>0){
 	$i=0;
 	$j=0;
-	$rows_data = "";
+	$rows_data = '';
 
 	while ($d=mysqli_fetch_assoc($q)) {
 		$id = $d['id'];

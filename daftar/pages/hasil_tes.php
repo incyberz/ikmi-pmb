@@ -1,5 +1,5 @@
 <?php
-$id_jadwal_tes = "";
+$id_jadwal_tes = '';
 $hasil_tes = "
 <p class='merah'>Anda belum mengikuti tes PMB atau Hasil Tes PMB belum diumumkan.</p>
 <hr>
@@ -53,8 +53,8 @@ if (mysqli_num_rows($q)==1) {
     $tanggal_tes_show = date("d F Y", strtotime($tanggal_tes));
 
     if ($status_lulus) {
-      $download_formulir_token = "";
-      $img_pdf="";
+      $download_formulir_token = '';
+      $img_pdf= '';
 
       $a = date("mydh").$id_jalur;
       $download_formulir_token = md5($a);

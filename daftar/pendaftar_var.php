@@ -174,14 +174,14 @@ if ($nama_kec_domisili!="") {
 # ===========================================
 # DATA SEKOLAH
 # ===========================================
-$asal_sekolah = "";
-$jenis_sekolah = "";
-$status_sekolah = "";
-$id_kec_sekolah = "";
+$asal_sekolah = '';
+$jenis_sekolah = '';
+$status_sekolah = '';
+$id_kec_sekolah = '';
 
-$nama_kec_sekolah_disabled = "";
-$jenis_sekolah_disabled = "";
-$status_sekolah_disabled = "";
+$nama_kec_sekolah_disabled = '';
+$jenis_sekolah_disabled = '';
+$status_sekolah_disabled = '';
 
 if ($id_sekolah!="") {
     $s = "SELECT * from tb_sekolah where id_sekolah='$id_sekolah'";
@@ -226,7 +226,7 @@ $jumlah_uploads=0;
 $jumlah_uploads_diterima = 0;
 $jumlah_uploads_ditolak = 0;
 $total_uploads = 2; //zzz
-$ekstensi_foto_profil = "";
+$ekstensi_foto_profil = '';
 
 $s = "SELECT * from tb_verifikasi_upload a 
 join tb_persyaratan b on a.id_persyaratan=b.id_persyaratan 

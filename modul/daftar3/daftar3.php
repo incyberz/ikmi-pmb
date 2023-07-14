@@ -8,9 +8,9 @@ if ($debug_mode) { echo "<br><br><br><br><br><br>";}else{echo "<br><br>";}
 $cstep=3;
 $do_update=0;
 $do_insert=0;
-if(!isset($nama_calon))$nama_calon="";
-if(!isset($no_hp))$no_hp="";
-if(!isset($no_wa))$no_wa="";
+if(!isset($nama_calon))$nama_calon= '';
+if(!isset($no_hp))$no_hp= '';
+if(!isset($no_wa))$no_wa= '';
 $style_email_calon = "disabled";
 
 
@@ -271,10 +271,10 @@ if ($debug_mode) echo "<br>No INSERT nor UPDATE, Go First Load from Sign Google.
 
 $nama_calon_ket="Silahkan isi nama Anda sesuai KTP.";
 $no_hp_ket="Silahkan isi No Handphone Anda!";
-$no_wa_ket="";
+$no_wa_ket= '';
 
 $style_div_terdaftar="display:none";
-$style_div_blm_terdaftar="";
+$style_div_blm_terdaftar= '';
 $style_div_btn_next="display:none";
 
 if(isset($_GET["code"])){
@@ -343,13 +343,13 @@ if(isset($_SESSION['access_token']) or isset($_SESSION['email'])){
 
 
 
-    $style_div_terdaftar="";
+    $style_div_terdaftar= '';
     $style_div_blm_terdaftar="display:none";
-    $style_div_btn_next="";
+    $style_div_btn_next= '';
 
-    $nama_calon_ket="";
-    $no_hp_ket="";
-    $no_wa_ket="";
+    $nama_calon_ket= '';
+    $no_hp_ket= '';
+    $no_wa_ket= '';
     
   }
 
@@ -372,13 +372,13 @@ if(isset($_SESSION['access_token']) or isset($_SESSION['email'])){
     <br>no_wa : $no_wa
     ";
 
-    $style_div_terdaftar="";
+    $style_div_terdaftar= '';
     $style_div_blm_terdaftar="display:none";
-    $style_div_btn_next="";
+    $style_div_btn_next= '';
 
-    $nama_calon_ket="";
-    $no_hp_ket="";
-    $no_wa_ket="";
+    $nama_calon_ket= '';
+    $no_hp_ket= '';
+    $no_wa_ket= '';
 
   }else{
     if($debug_mode) echo "<br>Google access_token NOT isset, CAN'T set session[email].
@@ -397,7 +397,7 @@ if(isset($_SESSION['access_token']) or isset($_SESSION['email'])){
       // if (!isset($_SESSION['admin_pmb_img_pegawai'])) die("Admin Requirement #6 not set.");
       // session_destroy();
 
-      $style_email_calon = "";
+      $style_email_calon = '';
       $pesan_aksi = "<div class='alert alert-danger' role='alert'><h4 style='color:red'>Add New Calon by Petugas PMB</h4>
       <p>
         Untuk menambah data calon silahkan Anda masukan email calon, nama calon, no. wa, dan nomor hp calon!
@@ -408,7 +408,7 @@ if(isset($_SESSION['access_token']) or isset($_SESSION['email'])){
       $aksi = $_GET['aksi'];
 
       if($aksi!="daftar_baru") die("<br><br><br><br><br><br><b><center>Aksi tidak tepat. Silahkan <a href='?p=daftar'>login</a> terlebih dahulu !</center></b>");
-      $style_email_calon = ""; //membolehkan mengedit email saat Sign in with Google error
+      $style_email_calon = ''; //membolehkan mengedit email saat Sign in with Google error
     }
   }
 }
@@ -419,7 +419,7 @@ if ($is_terdaftar) {
 }else{
   $petunjuk_tahap = ")* Email Anda belum terdaftar. Silahkan input data awal!";
 }
-$petunjuk_tahap =""; //zzz
+$petunjuk_tahap = ''; //zzz
 if ($debug_mode) echo "
 <br> =================================================
 <br> DEBUGGING
@@ -478,7 +478,7 @@ if ($debug_mode) {
             this.value = this.oldValue;
             this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
           } else {
-            this.value = "";
+            this.value = '';
           }
         });
       };

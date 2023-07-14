@@ -14,9 +14,9 @@ $id_new_event = $_POST['id_new_event'];
 $id_calon = $_POST['id_calon'];
 $id_syarat = $_POST['id_syarat'];
 //$no_daf = $_POST['no_daf'];
-$no_daf = "";
+$no_daf = '';
 
-$nama_file="";
+$nama_file= '';
 if ($debug_mode) {
   echo "
   <br> folder_uploads : $folder_uploads

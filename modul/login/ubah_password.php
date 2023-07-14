@@ -1,5 +1,5 @@
 <?php
-$pesan_e="";
+$pesan_e= '';
 
 if (isset($_POST['btn_update_pass'])) {
 

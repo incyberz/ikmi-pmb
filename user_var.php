@@ -52,10 +52,10 @@ if (mysqli_num_rows($q) == 1) {
 
   # ==============================================
   # CHECK IF ID_KEC STILL EMPTY
-  $kecamatan = "";
-  $kabupaten = "";
-  $nama_kec = "";
-  $nama_kab = "";
+  $kecamatan = '';
+  $kabupaten = '';
+  $nama_kec = '';
+  $nama_kab = '';
 
   if ($id_kec!="") {
     $s = "SELECT b.nama_kec, c.nama_kab 
@@ -76,8 +76,8 @@ if (mysqli_num_rows($q) == 1) {
 
   # ==============================================
   # CHECK IF ID_SEKOLAH STILL EMPTY
-  $jenis_sekolah="";
-  $nama_sekolah="";
+  $jenis_sekolah= '';
+  $nama_sekolah= '';
   if ($id_sekolah!="") {
     $s = "SELECT a.* from tb_sekolah_asal a 
     join tb_calon b ON a.id_sekolah = b.id_sekolah  
@@ -103,7 +103,7 @@ if (mysqli_num_rows($q) == 1) {
   where b.email = '$email'
   ";
 
-  // $id_syarat = "";
+  // $id_syarat = '';
 
   if($debug_mode)echo "<hr>Debug #user_var SQL Get Sub Data Daftar: $s<hr>";
 
@@ -136,7 +136,7 @@ if (mysqli_num_rows($q) == 1) {
 
     # ==============================================
     # CHECK IF ID_PEGAWAI STILL EMPTY
-    $nama_pegawai="";
+    $nama_pegawai= '';
     $nama_petugas = "<b>Iin Sholihin, M.Kom</b><br>NIK: 2020.1987.073"; //zzz
 
     if ($id_pegawai!="") {
@@ -152,14 +152,14 @@ if (mysqli_num_rows($q) == 1) {
 
     # ==============================================
     # CHECK IF ID_GEL STILL EMPTY
-    // $id_angkatan="";
-    // $nama_gel="";
-    // $tanggal_awal="";
-    // $tanggal_akhir = "";
-    // $tanggal_tes = "";
-    // $durasi_pukul = "";
-    // $tempat_tes = "";
-    // $ruang_tes = "";
+    // $id_angkatan= '';
+    // $nama_gel= '';
+    // $tanggal_awal= '';
+    // $tanggal_akhir = '';
+    // $tanggal_tes = '';
+    // $durasi_pukul = '';
+    // $tempat_tes = '';
+    // $ruang_tes = '';
     // if ($id_gel!="") {
     //   $s = "SELECT a.* from tb_daftar_gel a 
     //   join tb_daftar b ON a.id_gel = b.id_gel  
@@ -179,25 +179,25 @@ if (mysqli_num_rows($q) == 1) {
 
     # ==============================================
     # CHECK IF ID_BIAYA STILL EMPTY
-    $id_prodi="";
-    $id_jnkelas="";
-    // $tipe_bayar="";
-    // $besar_dpp="";
-    // $besar_spp="";
+    $id_prodi= '';
+    $id_jnkelas= '';
+    // $tipe_bayar= '';
+    // $besar_dpp= '';
+    // $besar_spp= '';
 
     # ---------------------------------------------
     # SUB DATA ID_PRODI
-    // $id_fakultas=""; 
-    // $id_kaprodi=""; 
-    // $kode_nim=""; 
-    // $kode_pdpt=""; 
-    // $jenjang=""; 
-    // $nama_prodi=""; 
-    // $nama_fakultas=""; 
-    // $nama_pt=""; 
-    // $no_akred=""; 
-    // $akred=""; 
-    // $tanggal_berdiri="";
+    // $id_fakultas= ''; 
+    // $id_kaprodi= ''; 
+    // $kode_nim= ''; 
+    // $kode_pdpt= ''; 
+    // $jenjang= ''; 
+    // $nama_prodi= ''; 
+    // $nama_fakultas= ''; 
+    // $nama_pt= ''; 
+    // $no_akred= ''; 
+    // $akred= ''; 
+    // $tanggal_berdiri= '';
 
 
 
@@ -244,10 +244,10 @@ if (mysqli_num_rows($q) == 1) {
 
     # ==============================================
     # CHECK IF ID_REFERAL STILL EMPTY
-    $tipe_referal="";
-    $besar_fee="";
-    $nama_referal="";
-    $keterangan=""; //zzz tdk jelas
+    $tipe_referal= '';
+    $besar_fee= '';
+    $nama_referal= '';
+    $keterangan= ''; //zzz tdk jelas
     if ($id_referal!="") {
       $s = "SELECT a.* from tb_daftar_referal a 
       join tb_daftar b ON a.id_referal = b.id_referal  
@@ -262,17 +262,17 @@ if (mysqli_num_rows($q) == 1) {
 
     # ==============================================
     # CHECK IF ID_JALUR BEA IKMI STILL EMPTY //zzzzz
-    $id_kuota="";
-    $nama_jalur="";
-    $persen_pot_bpp="";
-    $persen_pot_spp="";
-    $jml_smt="";
-    $ket_beasiswa="";
-    $status_jalur="";
+    $id_kuota= '';
+    $nama_jalur= '';
+    $persen_pot_bpp= '';
+    $persen_pot_spp= '';
+    $jml_smt= '';
+    $ket_beasiswa= '';
+    $status_jalur= '';
 
-    $tahun_kuota="";
-    $qty_kuota="";
-    $nama_kuota="";
+    $tahun_kuota= '';
+    $qty_kuota= '';
+    $nama_kuota= '';
 
     if ($id_jalur!="") {
       $s = "SELECT a.*,c.* from tb_daftar_jalur a 
@@ -461,8 +461,8 @@ $file_syarat[21] = "dok_eko";
 $file_syarat[22] = "foto_rumah";
 $file_syarat[23] = "foto_ruang_klg";
 
-$file_syarat[24] = "";
-$file_syarat[25] = "";
+$file_syarat[24] = '';
+$file_syarat[25] = '';
 
 $file_syarat_cap[1] = "Biaya Formulir";
 $file_syarat_cap[2] = "Pas Photo";
@@ -489,8 +489,8 @@ $file_syarat_cap[21] = "Dokumen Pendukung Keadaan Ekonomi";
 $file_syarat_cap[22] = "Foto Rumah Tampak Depan";
 $file_syarat_cap[23] = "Foto Ruang Keluarga";
 
-$file_syarat_cap[24] = "";
-$file_syarat_cap[25] = "";
+$file_syarat_cap[24] = '';
+$file_syarat_cap[25] = '';
 
 
 
@@ -524,8 +524,8 @@ $statusdb_file_syarat[21] = $d['dok_eko'];
 $statusdb_file_syarat[22] = $d['foto_rumah'];
 $statusdb_file_syarat[23] = $d['foto_ruang_klg'];
 
-$statusdb_file_syarat[24] = "";
-$statusdb_file_syarat[25] = "";
+$statusdb_file_syarat[24] = '';
+$statusdb_file_syarat[25] = '';
 
 
 if ($debug_mode) {
@@ -619,8 +619,8 @@ for ($i=1; $i <=$jumlah_persyaratan_total ; $i++) {
 # SYARAT TAMBAHAN
 # =====================================================
 for ($i=1; $i <=14 ; $i++) { 
-  $syarat_tambahan[$i]="";
-  $status_file_syarat_tambahan[$i]="";
+  $syarat_tambahan[$i]= '';
+  $status_file_syarat_tambahan[$i]= '';
 }
 
 if ($id_jndaftar==2) {
@@ -752,8 +752,8 @@ if ($id_jalur>=17 and $id_jalur<=20 ) {
 
 for ($i=1; $i <=14 ; $i++) { 
   if ($syarat_tambahan[$i]=="") {
-    $html_syarat_tambahan[$i]= "";
-    $html_syarat_tambahan2[$i]= "";
+    $html_syarat_tambahan[$i]= '';
+    $html_syarat_tambahan2[$i]= '';
   }else{
     $html_syarat_tambahan[$i]= "<span style='color:#003'><img src='assets/img/icons/next_small.png' width='15px'> <a href='#input_".$syarat_tambahan[$i]."'>".$syarat_tambahan_cap[$i]."</a></span> ..... ".$status_file_syarat_tambahan[$i]."<br>";
 
@@ -842,7 +842,7 @@ if($status_step_daftar[2]) $status_daftar_new = 2;
 if($status_step_daftar[3]) $status_daftar_new = 3;
 if($status_daftar>3) $status_daftar_new = $status_daftar; //jika status daftar telah tes PMB
 
-$sql_status_daftar = "";
+$sql_status_daftar = '';
 if($status_daftar_new!=0) $sql_status_daftar = " ,status_daftar = $status_daftar_new "; 
 $s = "UPDATE tb_daftar set 
 is_lengkap_data = ".$status_step_daftar[1].",
@@ -882,15 +882,15 @@ $btn_cetak_regis_cap ="Belum bisa cetak";
 
 if ($status_step_daftar[1]) {
   $penanda_step1 = $ceklis; 
-  $btn_cetak_formulir_disabled = "";
-  $btn_download_profil_ikmi_disabled = "";
+  $btn_cetak_formulir_disabled = '';
+  $btn_download_profil_ikmi_disabled = '';
   $btn_cetak_formulir_cap ="Cetak Hasil Formulir";
   $btn_download_profil_ikmi_cap ="Download Profil IKMI";
 } //lengkapi data
 
 if ($status_step_daftar[0] and $status_step_daftar[2]) {
   $penanda_step3 = $ceklis; 
-  $btn_cetak_kartu_tes_disabled = "";
+  $btn_cetak_kartu_tes_disabled = '';
   $btn_cetak_kartu_tes_cap ="Cetak Kartu Tes PMB";
 } //bukti bayar
 else if($status_file_syarat[1]==0){$penanda_step3 = "<span class='note_red'>Belum upload</span>";} 
@@ -901,16 +901,16 @@ else{$penanda_step3 = $ceklis;}
 $is_lulus = 0; //zzz 
 if ($status_step_daftar[1] and $status_step_daftar[2] and $is_lulus ) {
   $penanda_step4 = $ceklis; 
-  $btn_cetak_regis_disabled = "";
+  $btn_cetak_regis_disabled = '';
   $btn_cetak_regis_cap ="Cetak Kartu Prasyarat Registrasi";
 } //lengkapi data dan syarat dan lulus_tes
 
 
-if ($status_step_daftar[4]) $penanda_step4 = ""; //seleksi
-if ($status_step_daftar[5]) $penanda_step5 = ""; //regis ulang
+if ($status_step_daftar[4]) $penanda_step4 = ''; //seleksi
+if ($status_step_daftar[5]) $penanda_step5 = ''; //regis ulang
 
 if (($id_jndaftar==3 or $id_jndaftar==4 or $id_jndaftar==5) and trim($id_jndaftar!="")) {
-  $btn_cetak_kartu_tes_disabled = "";
+  $btn_cetak_kartu_tes_disabled = '';
   $btn_cetak_kartu_tes_cap ="Cetak Kartu Tes PMB";
 
 }

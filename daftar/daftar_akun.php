@@ -1,8 +1,8 @@
 <?php 
-$pesan = "";
-$email = "";
-$no_wa = "";
-$nama_calon = "";
+$pesan = '';
+$email = '';
+$no_wa = '';
+$nama_calon = '';
 $is_submitted = 0;
 
 if(isset($_POST['email'])){
@@ -155,7 +155,7 @@ if(isset($_POST['email'])){
             this.value = this.oldValue;
             this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
           } else {
-            this.value = "";
+            this.value = '';
           }
         });
       };

@@ -1,7 +1,7 @@
 
 <?php
-$input_email="";
-$password="";
+$input_email= '';
+$password= '';
 $is_login=0;
 $is_pass_default=0;
 $hasil_proses="<p style='font-weight: bold; color: blue'>Selamat $waktu Calon Mahasiswa Baru IKMI, silahkan Anda login!</small></p>";
@@ -35,8 +35,8 @@ if (isset($_POST['btn_login'])) {
     $_SESSION['nama_calon'] = $nama_calon;
     $_SESSION['email'] = $input_email;
 
-    $link_isi_form = "";
-    $link_tes = "";
+    $link_isi_form = '';
+    $link_tes = '';
     // echo "<br><hr>status_daftar:$status_daftar";
 
     if($status_daftar<1)$link_isi_form = "<a href='?p=daftar4&aksi=isi_form' class='btn btn-primary btn-block' style='margin-bottom:10px'>Isi Formulir PMB</a>";

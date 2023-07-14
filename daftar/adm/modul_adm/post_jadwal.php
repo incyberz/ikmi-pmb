@@ -25,7 +25,7 @@
     $rows_jadwal_tes = "<tr><td colspan='11' style='color:red'>Belum ada Jadwal Tes untuk Gelombang $sel_g</td></tr>";
   }else{
     $i=0;
-    $rows_jadwal_tes = "";
+    $rows_jadwal_tes = '';
     while ($d=mysqli_fetch_assoc($q)) {
       $i++;
       $id_jadwal_tes = $d['id_jadwal_tes'];

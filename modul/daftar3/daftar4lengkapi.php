@@ -4,7 +4,7 @@
   var j_terisi_wajib = 0;
   var j_isian = 26;
   var j_isian_wajib = 14; //default for kelas reguler
-  var link_bt = "";
+  var link_bt = '';
   const days = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
   const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 </script>
@@ -15,7 +15,7 @@
 # ==========================================================================
 if (!isset($_SESSION['email'])) {die(tampil_error("Maaf, Anda belum login. <hr>$link_login"));}
 if (!isset($_SESSION['nama_calon'])) {die(tampil_error("Maaf, Sesi Nama Calon belum diset. Silahkan hubungi programmer!<hr>$link_login"));}
-$aksi=""; if(isset($_GET['aksi'])) $aksi=$_GET['aksi'];
+$aksi= ''; if(isset($_GET['aksi'])) $aksi=$_GET['aksi'];
 
 
 
@@ -26,10 +26,10 @@ $aksi=""; if(isset($_GET['aksi'])) $aksi=$_GET['aksi'];
 # VARIABEL AWAL
 # ==========================================================================
 $nama_calon = $_SESSION['nama_calon'];
-$nama_prodi = "";
-$sudah_kerja = "";
+$nama_prodi = '';
+$sudah_kerja = '';
 if ($instansi_kerja !="") {$sudah_kerja = "checked";}
-$kip_invitation_code="";
+$kip_invitation_code= '';
 
 
 
@@ -41,7 +41,7 @@ $kip_invitation_code="";
 $s = "SELECT * from tb_daftar_jndaftar where jenis_jalur = 'KIP'";
 $q = mysqli_query($cn,$s) or die("Error @index. Tidak dapat mendapatkan list Jenis Daftar KIP.");
 if(mysqli_num_rows($q)==0) die("Error @index. List Jenis Daftar KIP harus minimal satu baris.");
-$jndaftar_kip_options="";
+$jndaftar_kip_options= '';
 while ($d = mysqli_fetch_assoc($q)) {
   $id_jndaftar = $d['id_jndaftar'];
   $nama_jndaftar = $d['nama_jndaftar'];
@@ -53,7 +53,7 @@ while ($d = mysqli_fetch_assoc($q)) {
 $s = "SELECT * from tb_daftar_jndaftar where jenis_jalur = 'IKMI'";
 $q = mysqli_query($cn,$s) or die("Error @index. Tidak dapat mendapatkan list Jenis Daftar IKMI.");
 if(mysqli_num_rows($q)==0) die("Error @index. List Jenis Daftar IKMI harus minimal satu baris.");
-$jndaftar_ikmi_options="";
+$jndaftar_ikmi_options= '';
 while ($d = mysqli_fetch_assoc($q)) {
   $id_jndaftar = $d['id_jndaftar'];
   $nama_jndaftar = $d['nama_jndaftar'];
@@ -142,8 +142,8 @@ $tanggal_submit = $d['tanggal_submit'];
 $tanggal_tes = $d['tanggal_tes'];
 
 $id_kec_nik = $d['id_kec_nik'];
-$nama_kec = "";$nama_kab = "";$nama_prov = "";
-$lokasi_kec = "";
+$nama_kec = '';$nama_kab = '';$nama_prov = '';
+$lokasi_kec = '';
 if($id_kec_nik!=""){
   $s = "SELECT * from tb_nik_kec a 
   join tb_nik_kab b on a.id_kab=b.id_kab 
@@ -158,10 +158,10 @@ if($id_kec_nik!=""){
   $lokasi_kec = "$nama_kec - $nama_kab - $nama_prov";
 }
 
-$cek_alamat_domisili_checked = "";
+$cek_alamat_domisili_checked = '';
 if($alamat_domisili==$alamat_jalan and $alamat_jalan!="") $cek_alamat_domisili_checked = "checked";
 
-$sty_option4 = "";
+$sty_option4 = '';
 if($id_prodi==2 or $id_prodi==3) $sty_option4 = "display:none";
 
 $nama_calon = ucwords(strtolower($nama_calon));
@@ -173,8 +173,8 @@ if($nik!=""){
 }
 if($id_tahap>=10)$username_cbt = "cbt$id_daftar";
 
-$blok_hasil_submit_sty_class="";
-$blok_formulir_pendaftaran_sty_class="";
+$blok_hasil_submit_sty_class= '';
+$blok_formulir_pendaftaran_sty_class= '';
 if($status_daftar<1 or $aksi=="isi_form"){
   $blok_hasil_submit_sty_class="hideit";
 }else{
@@ -193,11 +193,11 @@ if($tanggal_submit==""){
   $ket_pra_maintenance="Anda mendaftar pada tanggal $tanggal_daftar_span sebelum revisi web PMB (tanggal 12 Juni 2021). Untuk mendapatkan Jadwal Tes, silahkan Anda klik tombol Perbaiki Isian Formulir, lalu Submit Ulang Formulir Pendaftaran.";
   $ket_pra_maintenance="Untuk mendapatkan Jadwal Tes, silahkan Anda klik tombol Perbaiki Isian Formulir, lalu Submit Ulang Formulir Pendaftaran.";
 }else{
-  $ket_pra_maintenance="";
+  $ket_pra_maintenance= '';
 }
 // if($status_daftar==0)
 
-$disabled_sudah_tes = "";
+$disabled_sudah_tes = '';
 if($status_daftar>3) $disabled_sudah_tes = "disabled";
 
 $tanggal_lahir_indo = date("dmY",strtotime($tanggal_lahir));
@@ -1299,7 +1299,7 @@ if($status_daftar==4 and $status_daftar==5) //zzz here
       var id_daftar = parseInt($("#id_daftar").val());
       var id_jnkelas = parseInt($("#id_jnkelas_db").val());
       var sesi_tes = (id_daftar % 4)+1;
-      var sesi_tes_ket = "";
+      var sesi_tes_ket = '';
 
       switch(sesi_tes){
         case 1: sesi_tes_ket = "08.00 s.d 10.00 WIB"; break;
@@ -1368,7 +1368,7 @@ if($status_daftar==4 and $status_daftar==5) //zzz here
     function hitung_j_terisi(){
       j_terisi=0;
       j_terisi_wajib=0;
-      link_bt = "";
+      link_bt = '';
       // if($("#no_kip").val().length==16) {setgreen("no_kip");}
       if($("#kip_invitation_code").val().length>=5)  {setgreen("kip_invitation_code");}
       if($("#no_daf_kip").val().length==19)  {setgreen("no_daf_kip");}
@@ -1500,7 +1500,7 @@ if($status_daftar==4 and $status_daftar==5) //zzz here
             this.value = this.oldValue;
             this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
           } else {
-            this.value = "";
+            this.value = '';
           }
         });
       };
@@ -1810,7 +1810,7 @@ if($status_daftar==4 and $status_daftar==5) //zzz here
           var true_tgl = parseInt(tgl);
           if(parseInt(tgl)>40) {gender = "Perempuan"; true_tgl = parseInt(tgl)-40; }
 
-          var nama_bulan = "";
+          var nama_bulan = '';
           switch(bln){
             case "01": nama_bulan = "Januari"; break;
             case "02": nama_bulan = "Februari"; break;
@@ -1827,7 +1827,7 @@ if($status_daftar==4 and $status_daftar==5) //zzz here
             default: alert("Kode bulan error.");
           }
 
-          var tahun = "";
+          var tahun = '';
           if(parseInt(thn)<50) tahun = "20"+thn;
           if(parseInt(thn)>=50) tahun = "19"+thn;
 

@@ -1,26 +1,7 @@
-<?php 
-$rget = [
-  'all_data',
-  'data_aktif',
-  'data_submit',
-  'data_nosubmit',
-  'data_disabled',
-
-  'data_reg',
-  'data_kip',
-
-  'reg_sudah_bayar',
-  'reg_belum_bayar',
-  'reg_lunas',
-  'reg_regisu',
-
-  'kip_sudah_verif',
-  'kip_belum_terverifikasi',
-  'kip_lunas',
-  'kip_regisu',
-
-];
-
+<?php
+include 'include_adm/include_rget.php';
+$opt_get='';
+foreach ($rget as $key => $val) $opt_get .= "<option>$val</option>";
 ?>
 <style type="text/css">
   .img_aksi, .img_aksi_disabled{
@@ -41,8 +22,8 @@ $rget = [
 <div class="debug" id=state>state</div>
 <div class="blok_filter mb2">
   <div>
-    <select class="form-control input-sm" id=get_data>
-      <option value=all_data>All Data</option>
+    <select class="form-control input-sm filter filter_select" id=get_data>
+      <?=$opt_get?>
     </select>
   </div>
 

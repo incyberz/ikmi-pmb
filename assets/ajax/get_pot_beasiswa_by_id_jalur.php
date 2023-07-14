@@ -12,7 +12,7 @@ $s = "
 	where a.id_jalur = '$id_jalur';
 	";
 
-$msg="";
+$msg= '';
 $q = mysqli_query($cn,$s) or die("AjaxGetPotBea# ".mysqli_error($cn));
 
 $d = mysqli_fetch_array($q);

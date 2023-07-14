@@ -28,7 +28,7 @@ $status_akun = $d['status_akun'];
 
 $link_wa_verifikasi = "https://api.whatsapp.com/send?phone=62$no_wa&text=[No-Reply] Selamat $nama_calon! Nomor WhatsApp Anda telah kami verifikasi. Segera lengkapi formulir pendaftaran di https://pmb.ikmi.ac.id, dengan cara menggunakan username: email, dan password: nomor whatsapp. Kemudian uploadkan persyaratan pendaftaran pada menu upload -- Mohon tidak berganti nomor selama proses Pendaftaran PMB. Terimakasih [Petugas PMB STMIK IKMI Cirebon, ".date("F d, Y, H:i:s")."] [No-Reply]";
 
-$btn_verifikasi_email_disabled = "";
+$btn_verifikasi_email_disabled = '';
 $status_email_show = "<span style='color:red'>Email Belum diverifikasi</span>";
 if ($status_email) {
     $btn_verifikasi_email_disabled = "disabled";
@@ -36,19 +36,19 @@ if ($status_email) {
 }
 
 if ($status_email==="0") {
-    $btn_verifikasi_email_disabled = "";
+    $btn_verifikasi_email_disabled = '';
     $status_email_show = "<span style='color:red'>Email Invalid $img_warning</span>";
 }
 
 
-$btn_verifikasi_wa_disabled = "";
+$btn_verifikasi_wa_disabled = '';
 $status_no_wa_show = "<span style='color:red'>WhatsApp Belum diverifikasi</span>";
 if ($status_no_wa) {
     $btn_verifikasi_wa_disabled = "disabled";
     $status_no_wa_show = "<span style='color:green'>WhatsApp Terverifikasi $img_check</span>";
 }
 if ($status_no_wa===0) {
-    $btn_verifikasi_wa_disabled = "";
+    $btn_verifikasi_wa_disabled = '';
     $status_no_wa_show = "<span style='color:red'>WhatsApp Invalid $img_warning</span>";
 }
 
@@ -56,8 +56,8 @@ if ($status_no_wa===0) {
 $btn_enable_akun = "<button id='btn_verif__status_akun__1' class='btn_verif btn btn-success' >Enable Akun</button>";
 if ($status_akun) {
     $btn_enable_akun = "<button id='btn_verif__status_akun__0' class='btn_verif btn btn-danger' >Disable Akun (Set Resign)</button>";
-    $btn_invalid_email_disabled = "";
-    $btn_invalid_wa_disabled = "";
+    $btn_invalid_email_disabled = '';
+    $btn_invalid_wa_disabled = '';
 } else {
     $btn_invalid_email_disabled = "disabled";
     $btn_verifikasi_email_disabled = "disabled";
@@ -129,7 +129,7 @@ if ($status_akun) {
         var alasan_resign = prompt("Alasan Resign:", "Diterima Bekerja / Diterima di PT Lain / Lain-lain");
         if(!alasan_resign) return;
       }else{
-        var alasan_resign = "";
+        var alasan_resign = '';
       }
 
       var link_ajax = "ajax_adm/ajax_set_akun.php"

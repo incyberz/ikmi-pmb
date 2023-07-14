@@ -11,7 +11,7 @@ if(isset($_POST['btn_upload'])){
   $s = "SELECT a.* from tb_persyaratan a where a.id_persyaratan=$id_persyaratan";
   $q = mysqli_query($cn,$s) or die("Tidak bisa mengakses data persyaratan. ".mysqli_error($cn));
   if(mysqli_num_rows($q)){
-    $rows_persyaratan = "";
+    $rows_persyaratan = '';
     $i=0;
     while ($d=mysqli_fetch_assoc($q)) {
       $id_persyaratan = $d['id_persyaratan'];
@@ -23,7 +23,7 @@ if(isset($_POST['btn_upload'])){
       $q2 = mysqli_query($cn,$s2) or die("Tidak dapat mengakses data verifikasi upload");
       if(mysqli_num_rows($q2)>1) die("Tidak boleh ganda. id_persyaratan=$id_persyaratan and id_daftar=$id_daftar");
 
-      $ekstensi_file = "";
+      $ekstensi_file = '';
       if(mysqli_num_rows($q2)){
         $d2 = mysqli_fetch_assoc($q2);
         $ekstensi_file = $d2['ekstensi_file'];

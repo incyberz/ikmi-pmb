@@ -1,7 +1,7 @@
 <?php 
 $manage = isset($_GET['manage']) ? $_GET['manage'] : "angkatan";
 echo "<input type='hidden' id='manage' value='$manage'>";
-$rows = "";
+$rows = '';
 $manage_proper = ucwords(strtolower($manage));
 
 ?>
@@ -52,7 +52,7 @@ if($manage=="angkatan"){
   $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
 
   if(mysqli_num_rows($q)>0){
-    $rows = "";
+    $rows = '';
     $i=0;
     while ($d = mysqli_fetch_array($q)) {
       $i++;
@@ -105,7 +105,7 @@ if($manage=="gelombang"){
   $q = mysqli_query($cn,$s) or die(mysqli_error($cn));
 
   if(mysqli_num_rows($q)>0){
-    $rows = "";
+    $rows = '';
     $i=0;
     while ($d = mysqli_fetch_array($q)) {
       $i++;

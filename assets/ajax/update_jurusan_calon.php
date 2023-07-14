@@ -14,7 +14,7 @@ $id_gel_calon = $_GET['id_gel_calon'];
 
 $sql_gel = " id_gel = '$id_gel' ";
 # JIKA PROSES UPDATE DI GELOMBANG YG LAIN -> JGN UPDATE ID_GEL
-if($id_gel!=$id_gel_calon) $sql_gel = "";
+if($id_gel!=$id_gel_calon) $sql_gel = '';
 if($id_gel_calon=="") $sql_gel = " id_gel = '$id_gel' ";
 
 $s = "

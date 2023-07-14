@@ -35,7 +35,7 @@ $status_upload = intval($d['status_upload']);
 $max_width = 40; if($id_persyaratan!=1) $max_width = 80;
 $img_upload = "<img src='../uploads/$folder_uploads/$format_nama_file"."__$id_daftar.$ekstensi_file' style='max-width: $max_width%' />";
 
-$btn_verifikasi_disabled = "";
+$btn_verifikasi_disabled = '';
 $status_upload_show = "<span style='color:red'>Belum diverifikasi</span>";
 if($id_petugas!=""){
   if($status_upload === 1){
@@ -44,13 +44,13 @@ if($id_petugas!=""){
 
   }else{
     $status_upload_show = "<span style='color:red'>Telah di-Reject oleh $nama_petugas at ".date("d M Y, H:i", strtotime($tanggal_verifikasi_upload))." dengan alasan: $alasan_reject</span>";
-    $btn_verifikasi_disabled = "";
+    $btn_verifikasi_disabled = '';
 
   }
 }
 
 
-$link_wa_notif_upload = "";
+$link_wa_notif_upload = '';
 if($id_petugas!=""){
   $tanggal_upload_show = date("d F Y H:i");
 
@@ -98,7 +98,7 @@ if($id_petugas!=""){
       var tid = $(this).prop("id");
       var rid = tid.split("__");
       var nilai = parseInt(rid[1]);
-      var alasan_reject = "";
+      var alasan_reject = '';
 
       if(!nilai){
         alasan_reject = prompt("Alasan reject:");
