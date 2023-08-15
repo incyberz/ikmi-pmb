@@ -169,7 +169,7 @@ if (!isset($_SESSION['admpmb_email'])) {
 
     .debug{
       background: red;
-      display: nonea;
+      <?php if(!$dm) echo 'display: none;'; ?>
       border: solid 3px red;
       color: white;
     }

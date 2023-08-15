@@ -2,7 +2,7 @@
 ?>
 <section id="biaya_kuliah" class="biaya_kuliah">
   <div class="container" data-aos="fade-up">
-    <h3>Biaya Kuliah IKMI 2022</h3>
+    <h3>Biaya Kuliah IKMI 2023</h3>
     <hr>
     <div class="row">
       <div class="col-lg-12">
